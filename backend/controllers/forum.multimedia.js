@@ -19,7 +19,7 @@ exports.getOneMessageMedia = async (req,res,next) => (
 
 exports.postOneMessageMedia = async (req,res,next) => {
     try {
-        let generate_Message_ID = Math.floor(Math.random() * 500000 * 500000)
+        let generate_Message_ID = Math.floor(Math.random() * 500000 * 500000);
 
         const message = Messagemedia.build({
             messageId: generate_Message_ID,

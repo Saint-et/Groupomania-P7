@@ -2,10 +2,8 @@ const { Sequelize, Op, Model, DataTypes, QueryTypes } = require('sequelize');
 require("dotenv").config({path: "./env/.env"});
 
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+// Connection à la Base de donné (DATAbase)
+const sequelize = require('../db/mysql');
 
   class Messagemedia extends Model {
     /**
@@ -34,8 +32,7 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
     videoMessage: {
       type: DataTypes.STRING,
       // allowNull defaults to true
-    }
-  },{
+    }},{
     sequelize,
     modelName: 'forummedia',
     tableName: 'forummedia'

@@ -13,5 +13,16 @@
   "devDependencies": {
     "babel-register": "^6.26.0",
     "sequelize-cli": "^6.4.1"
-  }
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "migration":"npx sequelize-cli db:migrate"
+
+  },
+  "name": "backend",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC"
 }
