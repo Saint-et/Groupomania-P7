@@ -1,0 +1,7 @@
+#Running Migrations
+
+Command: npx sequelize-cli db:migrate
+
+#Undoing Migrations
+
+Command: npx sequelize-cli db:migrate:undo
