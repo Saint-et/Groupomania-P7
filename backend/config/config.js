@@ -1,10 +1,10 @@
-
+require("dotenv").config({path: "./env/.env"});
 
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "Meddy971!saint",
-    "database": "groupo",
+    "username": process.env.USER,
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
     "host": "127.0.0.1",
     "dialect": "mysql",
 

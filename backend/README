@@ -1,7 +1,21 @@
-#Running Migrations
+# Installation backend
 
-Command: npx sequelize-cli db:migrate
+## Running installation backend
 
-#Undoing Migrations
+______ : npm install
 
-Command: npx sequelize-cli db:migrate:undo
+# create database
+
+## Database
+
+Create a database named groupomania
+
+# Installation Database Migration
+
+## Running Migrations
+
+______ : npm run migration
+
+## Undoing Migrations
+
+______ : npm run undo_migration

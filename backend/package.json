@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "migration":"npx sequelize-cli db:migrate"
+    "migration":"npx sequelize-cli db:migrate",
+    "undo_migration":"npx sequelize-cli db:migrate:undo"
 
   },
   "name": "backend",
