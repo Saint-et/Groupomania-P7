@@ -22,6 +22,7 @@ exports.signup = (req, res, next) => {
     .then(hash => {    
          
  try{
+
   let generate_User_ID = Math.floor(Math.random() * 500000 * 500000)
   const user = User.build({
       userId: generate_User_ID,
@@ -55,7 +56,7 @@ exports.signup = (req, res, next) => {
       bcrypt.compare(req.body.password, user.password)
           .then(valid => {
             if (!valid) {
-              return res.status(401).json({ message: 'Mot de passe incorrect !' });
+              return res.status(401).json({ message: 'Mot de passe incorrect.' });
             }
             res.status(200).json({
               userId: user,
