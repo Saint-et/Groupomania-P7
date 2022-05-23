@@ -39,9 +39,6 @@ const sequelize = require('../db/mysql');
             type: DataTypes.STRING,
             allowNull: false
             // allowNull defaults to true
-          },
-          isAdmin: {
-              type: DataTypes.BOOLEAN,
           }
         },
          {

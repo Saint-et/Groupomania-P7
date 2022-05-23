@@ -1,0 +1,15 @@
+.field {
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 149, 149, 0.555);
+    padding: 10px;
+    width: 100%;
+    font-size: 18px;
+    transition: 500ms;
+
+    &:hover{
+        transition: 500ms;
+        background-color: rgb(255, 149, 149);
+    }
+}

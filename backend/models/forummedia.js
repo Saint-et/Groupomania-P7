@@ -25,17 +25,17 @@ const sequelize = require('../db/mysql');
       allowNull: false
       // allowNull defaults to true
     },
-    // Model attributes are defined here
-    imageMessage: {
-      type: DataTypes.STRING,
-    },
-    videoMessage: {
+    message: {
       type: DataTypes.STRING,
       // allowNull defaults to true
+    },
+    // Model attributes are defined here
+    image: {
+      type: DataTypes.STRING,
     }},{
     sequelize,
-    modelName: 'forummedia',
-    tableName: 'forummedia'
+    modelName: 'forum',
+    tableName: 'forum'
   });
   
   module.exports = Messagemedia;

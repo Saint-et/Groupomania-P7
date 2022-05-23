@@ -4,7 +4,7 @@ const Messagemedia = require('../models/forummedia');
 require("uuid");
 
 exports.getAllMessageMedia = async (req,res,next) => (
-    Messagemedia.findAll({attributes: ['titleMessage','imageMessage','videoMessage']})
+    Messagemedia.findAll({attributes: ['titleMessage','message','image']})
     .then(message => {
         return  res.status(200).json({ message })
     })
@@ -24,8 +24,8 @@ exports.postOneMessageMedia = async (req,res,next) => {
         const message = Messagemedia.build({
             messageId: generate_Message_ID,
             titleMessage: req.body.titleMessage,
-            imageMessage: req.body.imageMessage,
-            videoMessage: req.body.videoMessage
+            message: req.body.message,
+            image: req.body.image
         })
         message.save()
             .then(() => res.status(201).json({ message: 'New message created.' }))
@@ -41,8 +41,8 @@ exports.updateMessageMedia = async (req,res,next) => (
     .then(message => {
         message.set({
            titleMessage: req.body.titleMessage,
-           imageMessage: req.body.imageMessage,
-           videoMessage: req.body.videoMessage
+           message: req.body.message,
+           image: req.body.image
         });
 
           message.save(message.dataValues);

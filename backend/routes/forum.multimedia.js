@@ -4,18 +4,18 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const messageCtrl = require('../controllers/forum.multimedia');
 
-router.get('/forumMultimedia', auth, messageCtrl.getAllMessageMedia);
+router.get('/forum', auth, messageCtrl.getAllMessageMedia);
 
 
-router.post('/forumMultimedia', auth, messageCtrl.postOneMessageMedia);
+router.post('/forum', auth, messageCtrl.postOneMessageMedia);
 
 //obtenir un profil
-router.get('/forumMultimedia/:messageId', auth, messageCtrl.getOneMessageMedia);
+router.get('/forum/:messageId', auth, messageCtrl.getOneMessageMedia);
 
 //modifier un message
-router.put('/forumMultimedia/:messageId', auth, messageCtrl.updateMessageMedia);
+router.put('/forum/:messageId', auth, messageCtrl.updateMessageMedia);
 
 //supprimer un message
-router.delete('/forumMultimedia/:messageId', auth, messageCtrl.deleteMessageMedia);
+router.delete('/forum/:messageId', auth, messageCtrl.deleteMessageMedia);
 
 module.exports = router;

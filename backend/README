@@ -1,6 +1,6 @@
 # Installation backend
 
-## Running installation backend
+### Running installation backend
 
 ______ : npm install
 
@@ -8,14 +8,18 @@ ______ : npm install
 
 ## Database
 
-Create a database named groupomania
+# Create a database named groupomania
 
-# Installation Database Migration
+## Installation Database Migration
 
-## Running Migrations
+### Running Migrations
 
 ______ : npm run migration
 
-## Undoing Migrations
+# Admin
 
-______ : npm run undo_migration
+______ : npm run admin
+
+"email" : ' admin@groupomania.com '
+
+"password" : ' admin0 '

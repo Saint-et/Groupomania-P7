@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('forumMedia', {
+    await queryInterface.createTable('forum', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,10 +14,10 @@ module.exports = {
       titleMessage: {
         type: Sequelize.STRING
       },
-      imageMessage: {
+      message: {
         type: Sequelize.STRING
       },
-      videoMessage: {
+      image: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -31,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('forumMedia');
+    await queryInterface.dropTable('forum');
   }
 };

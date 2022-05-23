@@ -1,0 +1,124 @@
+body {
+  margin: auto;
+  font-family: "Mukta", sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+body h3 {
+  font-size: 20px;
+  font-weight: 500;
+}
+body p {
+  width: max-content;
+}
+body img {
+  width: 100%;
+}
+body a {
+  color: #000;
+  text-decoration: none;
+}
+body a:hover {
+  color: #000;
+}
+
+main {
+  animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  /* Firefox */
+  -webkit-animation: fadein 1s;
+  /* Safari et Chrome */
+  -o-animation: fadein 1s;
+  /* Opera */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* sur Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* sur Safari et Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* sur Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.field {
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 149, 149, 0.555);
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  transition: 500ms;
+}
+.field:hover {
+  transition: 500ms;
+  background-color: rgb(255, 149, 149);
+}
+
+.button_center {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button {
+  border: none;
+  background-color: rgba(255, 149, 149, 0.555);
+  border-radius: 50px;
+  padding: 10px;
+  width: 100%;
+  transition: 500ms;
+}
+.button:hover {
+  transition: 500ms;
+  background-color: rgb(255, 149, 149);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+section form {
+  background-color: rgba(255, 226, 226, 0.877);
+  border-radius: 50px;
+  padding: 50px;
+  margin: 5px;
+}
+section .container_field {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=login_signup.css.map */

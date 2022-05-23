@@ -5,7 +5,6 @@ const test = require('./db/mysql');
 //route à suivre depuis le backend
 const userRoutes = require('./routes/login.signup');
 const groupomaniaRoutes = require('./routes/users');
-const forum_tchatRoutes = require('./routes/forum.tchat');
 const forum_multimedia = require('./routes/forum.multimedia');
 
 const app = express();
@@ -23,6 +22,5 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', userRoutes);
 app.use('/api/groupomania', groupomaniaRoutes);
-app.use('/api/groupomania', forum_tchatRoutes);
 app.use('/api/groupomania', forum_multimedia);
 module.exports = app;
