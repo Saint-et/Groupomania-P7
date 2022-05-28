@@ -14,6 +14,9 @@ const jwt = require('jsonwebtoken');
 
 //inscription avec vérification Email et hash mot de passe
 exports.signup = (req, res, next) => {
+  if (req.body.email == undefined) {
+    return res.status(400).json({ message: 'refresh the page' });
+  }
   
   if (req.body.password != req.body.password_verification) {
     return res.status(400).json({ message: 'passwords must be the same.' })
@@ -23,8 +26,13 @@ exports.signup = (req, res, next) => {
   }
     bcrypt.hash(req.body.password, 10)
     
-    .then(hash => {    
+    .then(hash => {
+    
+User.findOne({ where:{ email: req.body.email }})
+.then(data => {
          
+
+
  try{
 
   let generate_User_ID = Math.floor(Math.random() * 500000 * 500000)
@@ -35,14 +43,27 @@ exports.signup = (req, res, next) => {
       email: req.body.email,
       password: hash
     })
-    //console.log(user.dataValues);
+
      user.save()
             .then(() => res.status(201).json({ message: 'New user created.' }))
-            .catch(error => res.status(400).json({ error, message: 'Existing account.' }));
+            .catch(() => res.status(400).json({ message: 'Existing account.' }))
 
+      if (!data) {
+        res.status(200).json({
+          userId: user,
+          //création du token de connexion
+          token: jwt.sign(
+            { userId: user.userId },
+            process.env.TOKEN_SECRET,
+            { expiresIn: '24h' },
+          )
+        })
+        return res.status(400).json({ message: 'Existing account2.' })
+      }
+         
       } catch(err) {
         return res.status(400).send(err);
-      }
+      }})
       
       })
       .catch(error => res.status(500).json({ error }));
@@ -50,6 +71,9 @@ exports.signup = (req, res, next) => {
 
   //connexion avec vérification Email et mot de passe
   exports.login = (req, res, next) => {
+    if (req.body.email == undefined) {
+      return res.status(400).json({ message: 'refresh the page' });
+    }
     User.findOne({ where:{ email: req.body.email }})
     .then(user => {
     try {
@@ -62,7 +86,7 @@ exports.signup = (req, res, next) => {
               return res.status(400).json({ message: 'Incorrect password.' });
             }
             res.status(200).json({
-              userId: user,
+              User: user,
               //création du token de connexion
               token: jwt.sign(
                 { userId: user.userId },

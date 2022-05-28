@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, {useState,useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import LoginForm from "../components/LoginForm";
+import {isLog} from "../utils";
 import {API_URL} from '../config'
-import '../css/login_signup.css'
-import logo from '../image/icon-above-font.jpg';
+
+
 
 const Login = () => {
     //console.log(API_URL);
@@ -11,38 +14,38 @@ const Login = () => {
         password:""
     });
 
+    const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
     const handleChange = (name) => event => {
         setUser({...user, [name]: event.target.value})
     };
     //console.log(user);
     const userLogin = async (event) => {
-        event.preventDefault()
-        console.log("bonjour")
-        const data = await axios
+        event.preventDefault();
+        setUser(user);
+        try {
+            const data = await axios
           .post(`${API_URL}api/auth/login`, {
             email: user.email,
             password: user.password
           })
-          console.log("bonjour2");
-          console.log(data.data);
-          if (!data) {
-              return (data.name)
+          setUser(data);
+          localStorage.setItem("token",JSON.stringify(data.data));
+          if (isLog().token) {
+              console.log('bonjour');
+              return navigate('/');
           }
-          setUser(data)
+        } catch (error) {
+            setError(error.response.data.message)
+            console.log(error.response.data.message);
+        }
+          
       }
 
     return(
-        <main>
-        <section>
-        <img src={logo} alt="Logo" />
-        <form>
-        <div className="container_field"><p>Email :</p><input className="field" onChange={handleChange("email")} type={"text"} value={user.email}></input></div>
-        <div className="container_field"><p>Password :</p><input className="field" onChange={handleChange("password")} type={"password"} value={user.password}></input></div>
-        <div className="container_field"><button className="button" onClick={userLogin}>connexion</button></div>
-        </form>
-        <div className="container_field"><a href="http://localhost:3000/signup"><div className="button_center button">Signup</div></a></div>
-        </section>
-        </main>
+        <LoginForm isSignup={false} handleChange={handleChange} user={user} error={error} onSubmit={userLogin}/>
     )
 }
 

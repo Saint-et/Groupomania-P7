@@ -1,0 +1,54 @@
+.section_menu {
+  height: 600px;
+  width: 25%;
+  min-width: 140px;
+  max-width: 140px;
+  background-color: rgba(255, 226, 226, 0.877);
+  border-radius: 0px 0px 50px 0px;
+  padding: 0px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: -140px;
+  transition: 300ms;
+  position: absolute;
+  position: fixed;
+}
+.section_menu:hover {
+  transition: 400ms;
+  margin-left: 0px;
+}
+
+.menu_icon {
+  background-color: rgba(255, 226, 226, 0.877);
+  color: rgb(255, 132, 132);
+  border-radius: 0px 0px 10px 0px;
+  height: 50px;
+  width: 170px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.profil_menu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.profil_menu .profil_menu_text {
+  margin-left: 10px;
+}
+
+.img_profil_menu {
+  border-radius: 100px;
+}
+
+.button_menu {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=menu.css.map */
