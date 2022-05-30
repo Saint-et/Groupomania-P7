@@ -1,10 +1,9 @@
+@import "./utils/variable";
+
 @import "./base/body.scss";
 
-@import "./utils/animation";
-@import "./utils/variable";
+@import "./components/animation";
 
 @import "./components/button.scss";
 
-@import "./layout/header";
 @import "./layout/home.scss";
-@import "./layout/home_message";

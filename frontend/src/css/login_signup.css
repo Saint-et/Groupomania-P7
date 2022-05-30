@@ -1,3 +1,15 @@
+/*__________Login&Signup__________*/
+/*__________Login&Signup__________*/
+/*___________Header___________*/
+/*___________Header___________*/
+/*____________SlideMenu__________*/
+/*____________SlideMenu__________*/
+/*____________PostMessage_________*/
+/*____________PostMessage_________*/
+/*____________Commentaire_________*/
+/*____________Commentaire_________*/
+/*___________media query__________*/
+/*___________media query__________*/
 body {
   margin: auto;
   font-family: "Mukta", sans-serif;
@@ -15,7 +27,7 @@ body img {
   width: 100%;
 }
 body a {
-  color: #000;
+  color: rgb(129, 22, 0);
   text-decoration: none;
 }
 body a:hover {
@@ -67,38 +79,10 @@ main {
     opacity: 1;
   }
 }
-.field {
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  background-color: rgba(255, 149, 149, 0.555);
-  padding: 10px;
-  width: 100%;
-  font-size: 18px;
-  transition: 500ms;
-}
-.field:hover {
-  transition: 500ms;
-  background-color: rgb(255, 149, 149);
-}
-
 .button_center {
   display: flex;
   justify-content: center;
   cursor: pointer;
-}
-
-.button {
-  border: none;
-  background-color: rgba(255, 149, 149, 0.555);
-  border-radius: 50px;
-  padding: 10px;
-  transition: 500ms;
-  cursor: pointer;
-}
-.button:hover {
-  transition: 500ms;
-  background-color: rgb(255, 149, 149);
 }
 
 .main_login_signup {
@@ -113,13 +97,79 @@ main {
   margin-bottom: 100px;
 }
 .section_login_signup .form_login_signup {
-  background-color: rgba(255, 226, 226, 0.877);
+  background-color: rgb(245, 245, 245);
   border-radius: 50px;
   padding: 50px;
   margin: 5px;
 }
+.section_login_signup .P_log {
+  color: #000;
+}
 .section_login_signup .container_field {
   margin-top: 20px;
+}
+.section_login_signup .button_log {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  width: 100%;
+  background-color: rgb(212, 212, 212);
+}
+.section_login_signup .button_log:hover {
+  transition: 500ms;
+}
+.section_login_signup .button_log:hover {
+  background-color: rgb(255, 181, 181);
+}
+.section_login_signup .field_log {
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  transition: 500ms;
+  background-color: rgb(212, 212, 212);
+}
+.section_login_signup .field_log:hover {
+  transition: 500ms;
+}
+.section_login_signup .field_log:hover {
+  background-color: rgba(223, 223, 223, 0.726);
+}
+.section_login_signup .button_connect {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  color: #000;
+  background-color: rgb(212, 212, 212);
+}
+.section_login_signup .button_connect:hover {
+  transition: 500ms;
+}
+.section_login_signup .button_connect:hover {
+  color: #000;
+  background-color: rgb(255, 126, 126);
+}
+.section_login_signup .button_cancel {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  color: #000;
+  background-color: rgb(212, 212, 212);
+}
+.section_login_signup .button_cancel:hover {
+  transition: 500ms;
+}
+.section_login_signup .button_cancel:hover {
+  color: #000;
+  background-color: rgb(255, 126, 126);
 }
 
 /*# sourceMappingURL=login_signup.css.map */

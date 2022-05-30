@@ -20,11 +20,6 @@ const sequelize = require('../db/mysql');
     messageId: {
       type: DataTypes.NUMBER,
     },
-    titleMessage: {
-      type: DataTypes.STRING,
-      allowNull: false
-      // allowNull defaults to true
-    },
     message: {
       type: DataTypes.STRING,
       // allowNull defaults to true

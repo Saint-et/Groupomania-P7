@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    background: rgba(255, 226, 226, 0.877);
-    color: rgb(255, 132, 132);
+    background: $backgroundHeader;
+    color: $titleHeader;
+    border-top: 5px solid $titleHeader;
+    border-bottom: 1px solid $border_backgroundMenu;
+    box-shadow: 1px 1px 3px $border_backgroundMenu;
 }

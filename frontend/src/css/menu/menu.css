@@ -1,9 +1,20 @@
+/*__________Login&Signup__________*/
+/*__________Login&Signup__________*/
+/*___________Header___________*/
+/*___________Header___________*/
+/*____________SlideMenu__________*/
+/*____________SlideMenu__________*/
+/*____________PostMessage_________*/
+/*____________PostMessage_________*/
+/*____________Commentaire_________*/
+/*____________Commentaire_________*/
+/*___________media query__________*/
+/*___________media query__________*/
 .section_menu {
-  height: 600px;
   width: 25%;
   min-width: 140px;
   max-width: 140px;
-  background-color: rgba(255, 226, 226, 0.877);
+  background-color: rgb(255, 255, 255);
   border-radius: 0px 0px 50px 0px;
   padding: 0px 10px 10px 10px;
   display: flex;
@@ -12,6 +23,9 @@
   transition: 300ms;
   position: absolute;
   position: fixed;
+  z-index: 20;
+  border-right: 1px solid rgba(201, 201, 201, 0.678);
+  box-shadow: 1px 1px 3px rgba(201, 201, 201, 0.678);
 }
 .section_menu:hover {
   transition: 400ms;
@@ -19,14 +33,15 @@
 }
 
 .menu_icon {
-  background-color: rgba(255, 226, 226, 0.877);
-  color: rgb(255, 132, 132);
-  border-radius: 0px 0px 10px 0px;
+  box-shadow: 1px 0px 3px rgba(201, 201, 201, 0.678);
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 10px 10px 0px;
   height: 50px;
   width: 170px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  justify-content: space-between;
   padding: 10px;
   font-size: 20px;
 }
@@ -34,21 +49,68 @@
 .profil_menu {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
 }
 .profil_menu .profil_menu_text {
   margin-left: 10px;
 }
 
 .img_profil_menu {
+  margin-left: 20px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(201, 201, 201, 0.678);
+  padding: 2px;
   border-radius: 100px;
 }
 
 .button_menu {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 18px;
   font-weight: 500;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  margin-left: 25px;
+}
+.button_menu:hover {
+  transition: 500ms;
+}
+
+.PMenu {
+  color: #000;
+}
+
+.iconMenu {
+  color: rgb(0, 0, 0);
+  border: 1px solid rgba(201, 201, 201, 0.678);
+}
+.iconMenu:hover {
+  border: 1px solid rgb(129, 22, 0);
+  color: rgb(129, 22, 0);
+}
+
+@media all and (min-width: 700px) {
+  .section_menu {
+    border-radius: 0px 50px 50px 0px;
+    margin-left: 0px;
+    position: fixed;
+    margin-top: 0px;
+  }
+
+  .img_profil_menu {
+    margin-top: 20px;
+  }
+
+  .menu_icon {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=menu.css.map */

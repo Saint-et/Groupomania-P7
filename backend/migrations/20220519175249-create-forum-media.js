@@ -11,9 +11,6 @@ module.exports = {
       messageId: {
         type: Sequelize.STRING
       },
-      titleMessage: {
-        type: Sequelize.STRING
-      },
       message: {
         type: Sequelize.STRING
       },

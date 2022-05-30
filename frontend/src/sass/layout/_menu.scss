@@ -1,9 +1,8 @@
 .section_menu{
-    height: 600px;
     width: 25%;
     min-width: 140px;
     max-width: 140px;
-    background-color: $primary;
+    background-color: $backgroundMenu;
     border-radius: 0px 0px 50px 0px;
     padding: 0px 10px 10px 10px;
     display: flex;
@@ -12,38 +11,77 @@
     transition: 300ms;
     position: absolute;
     position: fixed;
+    z-index: 20;
+    border-right: 1px solid $border_backgroundMenu;
+    box-shadow: 1px 1px 3px $border_backgroundMenu;
     &:hover{
         transition: 400ms;
         margin-left: 0px;
     }
 }
 .menu_icon{
-    background-color: $primary;
-    color: $red_color_text;
-    border-radius: 0px 0px 10px 0px;
+    box-shadow: 1px 0px 3px $border_backgroundMenu;
+    background-color: $backgroundMenu;
+    border-radius: 0px 10px 10px 0px;
     height: 50px;
     width: 170px;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
     font-size: 20px;
 }
 .profil_menu{
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     
     .profil_menu_text{
         margin-left: 10px;
     }
 }
 .img_profil_menu{
+    margin-left: 20px;
+    width: 80px;
+    height: 80px;
+    border: 2px solid $border_backgroundMenu;
+    padding: 2px;
     border-radius: 100px;
 }
 .button_menu{
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 18px;
     font-weight: 500;
+    @include button;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    margin-left: 25px;
+}
+.PMenu{
+    color: $PMenu;
+}
+.iconMenu{
+    color: $iconMenu;
+    border: 1px solid $border_backgroundMenu;
+    &:hover{
+        border: 1px solid $titleHeader;
+        color: $titleHeader;
+    }
+}
+@media all and (min-width: $media_query) {
+    .section_menu{
+        border-radius: 0px 50px 50px 0px;
+        margin-left: 0px;
+        position: fixed;
+        margin-top: 0px;
+    }
+    .img_profil_menu{
+        margin-top: 20px;
+    }
+    .menu_icon{
+        display: none;
+    }
 }

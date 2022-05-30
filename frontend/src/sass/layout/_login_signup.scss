@@ -10,13 +10,48 @@
 
 
     .form_login_signup {
-    background-color: rgba(255, 226, 226, 0.877);
+    background-color: $backgroundLogin_Signup;
     border-radius: 50px;
     padding: 50px;
     margin: 5px;
     }
-
+    .P_log{
+        color: $P_log;
+    }
     .container_field{
         margin-top: 20px;
+    }
+    .button_log{
+        @include button;
+        width: 100%;
+        background-color: $button_log;
+        &:hover{
+            background-color: $button_logHover;
+        }
+    }
+    .field_log{
+        @include field;
+        background-color: $field_LoginSignup;
+        &:hover{
+            background-color: $field_LoginSignupHover;
+        }
+    }
+    .button_connect{
+        @include button;
+        color: $button_connect_cancel;
+        background-color: $button_connect;
+        &:hover{
+            color: $button_connect_cancel;
+            background-color: $button_connectHover;
+        }
+    }
+    .button_cancel{
+        @include button;
+        color: $button_connect_cancel;
+        background-color: $button_cancel;
+        &:hover{
+            color: $button_connect_cancel;
+            background-color: $button_cancelHover;
+        }
     }
 }
