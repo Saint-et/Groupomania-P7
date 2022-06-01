@@ -25,7 +25,7 @@ const sequelize = require('../db/mysql');
       // allowNull defaults to true
     },
     // Model attributes are defined here
-    image: {
+    imageUrl: {
       type: DataTypes.STRING,
     }},{
     sequelize,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from "../components/LoginForm";
 import {isLog} from "../utils";
@@ -32,7 +32,7 @@ const Login = () => {
             password: user.password
           })
           setUser(data);
-          localStorage.setItem("token",JSON.stringify(data.data));
+          localStorage.setItem("User",JSON.stringify(data.data));
           if (isLog().token) {
               console.log('bonjour');
               return navigate('/');

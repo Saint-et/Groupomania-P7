@@ -1,7 +1,5 @@
 .section_menu{
-    width: 25%;
-    min-width: 140px;
-    max-width: 140px;
+    width: 140px;
     background-color: $backgroundMenu;
     border-radius: 0px 0px 50px 0px;
     padding: 0px 10px 10px 10px;
@@ -13,7 +11,6 @@
     position: fixed;
     z-index: 20;
     border-right: 1px solid $border_backgroundMenu;
-    box-shadow: 1px 1px 3px $border_backgroundMenu;
     &:hover{
         transition: 400ms;
         margin-left: 0px;
@@ -73,10 +70,13 @@
 }
 @media all and (min-width: $media_query) {
     .section_menu{
-        border-radius: 0px 50px 50px 0px;
+        border: none;
+        border-radius: 0px;
         margin-left: 0px;
+        position: static;
+    }
+    .section_menu_content{
         position: fixed;
-        margin-top: 0px;
     }
     .img_profil_menu{
         margin-top: 20px;

@@ -11,30 +11,39 @@
 /*___________media query__________*/
 /*___________media query__________*/
 .section_commentaire {
+  padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
   width: 100%;
   background-color: rgb(245, 245, 245);
   border-top: 1px solid rgba(201, 201, 201, 0.678);
-  box-shadow: 1px 1px 3px rgba(201, 201, 201, 0.678);
+  height: auto;
 }
 
 .commentaire_container {
-  width: 98%;
+  width: 100%;
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.commentaire {
+.commentaire_content {
+  margin-bottom: 20px;
+  width: 98%;
+}
+
+.pulication {
   border-radius: 25px;
-  margin: 10px 0px 0px 0px;
   border: 1px solid rgba(201, 201, 201, 0.678);
   background-color: white;
-  overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 
 .message_com {
   margin-top: 10px;
-  border-top: 1px solid rgba(201, 201, 201, 0.678);
 }
 
 .message_com_mes {
@@ -44,37 +53,49 @@
 .img_com_container {
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 300px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.img_com_content {
+  display: flex;
+  justify-content: center;
+  height: max-content;
+  width: max-content;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .img_com {
-  object-fit: contain;
-  width: 500px;
-  height: 300px;
+  height: 400px;
+  width: min-content;
+  object-fit: cover;
 }
 
-.delete_container {
+.system_container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 40px;
+  flex-direction: row-reverse;
 }
 
-.delete_content {
+.system_content {
   cursor: pointer;
   font-size: 20px;
+  margin-right: 30px;
   transition: 500ms;
 }
-.delete_content:hover {
+.system_content:hover {
   transition: 200ms;
-  color: rgba(223, 0, 0, 0.815);
+  color: rgba(0, 0, 0, 0.5);
 }
 
-@media all and (min-width: 700px) {
+@media all and (min-width: 785px) {
   .commentaire_container {
-    margin-left: 100px;
-    width: 70%;
+    width: 100%;
+  }
+
+  .commentaire_content {
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -83,6 +104,13 @@
     padding: 20px;
     width: 100%;
   }
+
+  .pulication {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 25px;
+    margin: 10px;
+  }
 }
 
-/*# sourceMappingURL=commentaire.css.map */
+/*# sourceMappingURL=Publication.css.map */

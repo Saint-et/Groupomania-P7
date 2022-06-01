@@ -1,10 +1,13 @@
+.main_home{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 .section_home_message{
     background-color: $backgroundPostMessage;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
-    max-width: 800px;
     padding: 50px 10px 20px 10px;
     border-radius: 0px;
     margin: 0px 0px 0px 0px;
@@ -13,7 +16,7 @@
 }
 .post_message_forum{
     width: 100%;
-    height: auto;
+    height: 45px;
     border: none;
     outline: none;
     border-radius: 20px;
@@ -36,6 +39,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top: 20px;
 }
 .button_add_img_container{
     width: 50%;
@@ -74,6 +78,7 @@
     }
 }
 .facirclexmark_container{
+    margin-left: 10px;
     cursor: pointer;
     height: fit-content;
     transition: 500ms;
@@ -85,7 +90,7 @@
     
 }
 .img_upload_container{
-    margin: 10px 0px 5px 0px;
+    margin: 10px 0px -15px 0px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -96,7 +101,7 @@
     min-height: 100px;
     max-height: 300px;
     min-width: 200px;
-    border-radius: 50px;
+    border-radius: 15px;
     overflow: hidden;
     border: 1px dashed rgba(44, 44, 44, 0.600);
     cursor: pointer;
@@ -111,7 +116,7 @@
     min-height: 100px;
     max-height: 300px;
     min-width: 200px;
-    object-fit: contain;
+    object-fit: fill;
     border: none;
     
 }
@@ -119,7 +124,9 @@
     .section_home_message{
         border-radius: 20px;
         padding: 10px 10px 20px 10px;
-        margin: 20px 10px 10px 150px;
+        margin: 10px;
+        max-width: 600px;
+        
     }
     .text_Ico{
         display: initial;

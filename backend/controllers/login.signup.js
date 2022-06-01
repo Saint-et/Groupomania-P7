@@ -45,21 +45,14 @@ User.findOne({ where:{ email: req.body.email }})
     })
 
      user.save()
-            .then(() => res.status(201).json({ message: 'New user created.' }))
+            .then(() => res.status(201).json({ userId: user,
+              //création du token de connexion
+              token: jwt.sign(
+                { User: user.User },
+                process.env.TOKEN_SECRET,
+                { expiresIn: '24h' },
+              ) }))
             .catch(() => res.status(400).json({ message: 'Existing account.' }))
-
-      if (!data) {
-        res.status(200).json({
-          userId: user,
-          //création du token de connexion
-          token: jwt.sign(
-            { userId: user.userId },
-            process.env.TOKEN_SECRET,
-            { expiresIn: '24h' },
-          )
-        })
-        return res.status(400).json({ message: 'Existing account2.' })
-      }
          
       } catch(err) {
         return res.status(400).send(err);
@@ -89,7 +82,7 @@ User.findOne({ where:{ email: req.body.email }})
               User: user,
               //création du token de connexion
               token: jwt.sign(
-                { userId: user.userId },
+                { User: user.User },
                 process.env.TOKEN_SECRET,
                 { expiresIn: '24h' },
               )

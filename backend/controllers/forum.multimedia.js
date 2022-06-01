@@ -3,7 +3,7 @@ const Messagemedia = require('../models/forummedia');
 require("uuid");
 
 exports.getAllMessageMedia = async (req,res,next) => (
-    Messagemedia.findAll({attributes: ['message','image']})
+    Messagemedia.findAll({attributes: ['messageId','message','imageUrl','createdAt']})
     .then(message => {
         return  res.status(200).json({ message })
     })
@@ -23,14 +23,14 @@ exports.postOneMessageMedia = async (req,res,next) => {
         const messageImg = req.file ?
         {
           ...req.body,
-          image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+          imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         } : {
           ...req.body
         }
         const message = Messagemedia.build({
             messageId: generate_Message_ID,
             message: messageImg.message,
-            image: messageImg.image
+            imageUrl: messageImg.imageUrl
         })
 
         message.save()

@@ -1,8 +1,14 @@
 .main_home{
     display: flex;
-    justify-content: center;
-}
-.section_home {
-    height: 1000px;
+    justify-content: space-between;
     width: 100%;
+}
+.container_main{
+    width: 100%;
+}
+@media all and (min-width: $media_query) {
+    .container_slidemenu {
+        border-right: 1px solid $border_backgroundMenu;
+    }
+    
 }

@@ -1,11 +1,12 @@
 const express = require('express');
-const test = require('./db/mysql');
+const path = require('path');
 
 
 //route à suivre depuis le backend
 const userRoutes = require('./routes/login.signup');
 const groupomaniaRoutes = require('./routes/users');
 const forum_multimedia = require('./routes/forum.multimedia');
+
 
 const app = express();
 app.use(express.json());
@@ -23,4 +24,5 @@ app.use((req, res, next) => {
 app.use('/api/auth', userRoutes);
 app.use('/api/groupomania', groupomaniaRoutes);
 app.use('/api/groupomania', forum_multimedia);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app;

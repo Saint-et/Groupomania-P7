@@ -34,7 +34,8 @@ body a:hover {
   color: #000;
 }
 
-main {
+main,
+.img_upload_container {
   animation: fadein 1s;
   -moz-animation: fadein 1s;
   /* Firefox */

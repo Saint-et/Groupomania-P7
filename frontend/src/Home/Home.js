@@ -1,9 +1,9 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import '../css/home.css';
 import Slidemenu from '../components/Slidemenu';
 import Message from './MessageEditor';
 import Header from '../Header/Header';
-import Commentaire from '../Commentaire/Commentaire';
+import Publication from '../Publication/Publication';
 
 const Home = () => {
 
@@ -11,12 +11,18 @@ const Home = () => {
   
 
  return(
-   <>
+   <div>
    <Header />
-   <Slidemenu />
+   <main className='main_home'>
+   <section className='container_slidemenu'>
+     <Slidemenu />
+    </section>
+   <section className='container_main'>
    <Message />
-   <Commentaire />
-   </>
+   <Publication />
+   </section>
+   </main>
+   </div>
  )
 }
 

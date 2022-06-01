@@ -6,7 +6,7 @@ const multer = require('../middleware/multer-config');
 const messageCtrl = require('../controllers/forum.multimedia');
 
 //obtenir tous les profils
-router.get('/forum', auth, messageCtrl.getAllMessageMedia);
+router.get('/forum', messageCtrl.getAllMessageMedia);
 
 
 router.post('/forum', auth, multer, messageCtrl.postOneMessageMedia);

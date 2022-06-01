@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import LoginForm from "../components/LoginForm";
 import {API_URL} from '../config'
 
@@ -33,6 +33,7 @@ const Signup = () => {
             password_verification: user.password_verification
           })
           console.log(data.data)
+          localStorage.setItem("User",JSON.stringify(data.data));
           setUser(data)
         } catch (error) {
             setError(error.response.data.message)
