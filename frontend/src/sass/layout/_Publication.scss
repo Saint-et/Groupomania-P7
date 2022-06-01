@@ -42,16 +42,15 @@
 .img_com_content{
     display: flex;
     justify-content: center;
-    height: max-content;
-    width: max-content;
+    height: min-content;
+    width: min-content;
     border-radius: 25px;
     overflow: hidden;
 }
 .img_com{
-    height: 400px;
+    max-height: 300px;
     width: min-content;
     object-fit: cover;
-   
 }
 .system_container{
     display: flex;

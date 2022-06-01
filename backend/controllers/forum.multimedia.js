@@ -3,7 +3,9 @@ const Messagemedia = require('../models/forummedia');
 require("uuid");
 
 exports.getAllMessageMedia = async (req,res,next) => (
-    Messagemedia.findAll({attributes: ['messageId','message','imageUrl','createdAt']})
+    Messagemedia.findAll({order: [
+        ['createdAt', 'DESC'],
+    ],attributes: ['messageId','message','imageUrl','createdAt']})
     .then(message => {
         return  res.status(200).json({ message })
     })
