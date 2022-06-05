@@ -1,9 +1,10 @@
-//Utilisation de la variable d'environnement
-require("dotenv").config({path: "../env/.env"});
 //route model user
 const User = require('../models/login.signup');
 
-require("uuid")
+
+//Utilisation de la variable d'environnement
+require("dotenv").config({path: "../env/.env"});
+
 
 //utilisation de bcrypt pour crypter le mot de passe
 const bcrypt = require('bcrypt');
@@ -27,17 +28,10 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     
     .then(hash => {
-    
 User.findOne({ where:{ email: req.body.email }})
-.then(data => {
-         
-
-
+.then(() => {
  try{
-
-  let generate_User_ID = Math.floor(Math.random() * 500000 * 500000)
   const user = User.build({
-      userId: generate_User_ID,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -45,18 +39,20 @@ User.findOne({ where:{ email: req.body.email }})
     })
 
      user.save()
-            .then(() => res.status(201).json({ userId: user,
-              //création du token de connexion
-              token: jwt.sign(
-                { User: user.User },
-                process.env.TOKEN_SECRET,
-                { expiresIn: '24h' },
+            .then(() => res.status(201).json({ 
+              user: user.dataValues,
+                //création du token de connexion
+                token: jwt.sign(
+                  { userId: user.userId },
+                  process.env.TOKEN_SECRET,
+                  { expiresIn: '24h' },
               ) }))
             .catch(() => res.status(400).json({ message: 'Existing account.' }))
          
       } catch(err) {
         return res.status(400).send(err);
-      }})
+      }
+    })
       
       })
       .catch(error => res.status(500).json({ error }));
@@ -69,6 +65,7 @@ User.findOne({ where:{ email: req.body.email }})
     }
     User.findOne({ where:{ email: req.body.email }})
     .then(user => {
+      //console.log(user);
     try {
       if (!user) {
         return res.status(400).json({ message: 'Non-existent account' });
@@ -79,10 +76,10 @@ User.findOne({ where:{ email: req.body.email }})
               return res.status(400).json({ message: 'Incorrect password.' });
             }
             res.status(200).json({
-              User: user,
+              user: user.dataValues,
               //création du token de connexion
               token: jwt.sign(
-                { User: user.User },
+                { userId: user.userId },
                 process.env.TOKEN_SECRET,
                 { expiresIn: '24h' },
               )

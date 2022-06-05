@@ -1,4 +1,5 @@
 [
   "20220515134013-create-users.js",
-  "20220519175249-create-forum-media.js"
+  "20220519175249-create-forum-media.js",
+  "30220604165225-user-associate.js"
 ]

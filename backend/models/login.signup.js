@@ -1,6 +1,7 @@
 const { Sequelize, Op, Model, DataTypes, QueryTypes } = require('sequelize');
 require("dotenv").config({path: "./env/.env"});
 
+const { models } = require('../db/mysql')
 
 // Connection à la Base de donné (DATAbase)
 const sequelize = require('../db/mysql');
@@ -13,14 +14,11 @@ const sequelize = require('../db/mysql');
      */
     static associate(models) {
       // define association here
+     
     }
   }
 
           User.init({
-          userId: {
-            type: DataTypes.NUMBER,
-          },
-          // Model attributes are defined here
           firstName: {
             type: DataTypes.STRING,
             allowNull: false
@@ -41,12 +39,11 @@ const sequelize = require('../db/mysql');
             // allowNull defaults to true
           }
         },
-         {
-          // Other model options go here
-          sequelize, // We need to pass the connection instance
-          modelName: 'user', // We need to choose the model name
-          tableName: 'users'
-        });
-        
-      
-        module.exports = User;
+     {
+      // Other model options go here
+      sequelize, // We need to pass the connection instance
+      modelName: 'users', // We need to choose the model name
+      tableName: 'users'
+    });
+
+module.exports = User

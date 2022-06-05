@@ -8,16 +8,15 @@ const profilCtrl = require('../controllers/profil');
 
 // obtenir tous les profiles
 router.get('/users', auth, profilCtrl.getAllUser);
-router.post('/users', auth, profilCtrl.getAllUser);
 
 //obtenir un profil
-router.get('/users/:userId', auth, profilCtrl.getOneUser);
+router.get('/users/:id', auth, profilCtrl.getOneUser);
 
 //modifier un utilisateur
-router.put('/users/:userId', auth, profilCtrl.updateUser);
+router.put('/users/:id', auth, profilCtrl.updateUser);
 
 //supprimer un utilisateur
-router.delete('/users/:userId', auth, profilCtrl.deleteUser);
+router.delete('/users/:id', auth, profilCtrl.deleteUser);
 
 // supression
 //router.delete('/:id', auth,profilCtrl.deleteProfil);
