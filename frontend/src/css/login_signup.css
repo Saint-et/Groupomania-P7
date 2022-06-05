@@ -27,15 +27,12 @@ body img {
   width: 100%;
 }
 body a {
-  color: rgb(129, 22, 0);
   text-decoration: none;
-}
-body a:hover {
-  color: #000;
 }
 
 main,
-.img_upload_container {
+.img_upload_container,
+.pulication {
   animation: fadein 1s;
   -moz-animation: fadein 1s;
   /* Firefox */

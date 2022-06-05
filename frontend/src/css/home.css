@@ -27,15 +27,12 @@ body img {
   width: 100%;
 }
 body a {
-  color: rgb(129, 22, 0);
   text-decoration: none;
-}
-body a:hover {
-  color: #000;
 }
 
 main,
-.img_upload_container {
+.img_upload_container,
+.pulication {
   animation: fadein 1s;
   -moz-animation: fadein 1s;
   /* Firefox */
@@ -88,12 +85,6 @@ main,
 
 .container_main {
   width: 100%;
-}
-
-@media all and (min-width: 785px) {
-  .container_slidemenu {
-    border-right: 1px solid rgba(201, 201, 201, 0.678);
-  }
 }
 
 /*# sourceMappingURL=home.css.map */

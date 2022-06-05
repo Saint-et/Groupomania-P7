@@ -10,7 +10,54 @@
 /*____________Commentaire_________*/
 /*___________media query__________*/
 /*___________media query__________*/
-.section_commentaire {
+main,
+.img_upload_container,
+.pulication {
+  animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  /* Firefox */
+  -webkit-animation: fadein 1s;
+  /* Safari et Chrome */
+  -o-animation: fadein 1s;
+  /* Opera */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* sur Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* sur Safari et Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* sur Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.section_pulication {
   padding-top: 50px;
   padding-bottom: 50px;
   display: flex;
@@ -21,17 +68,16 @@
   height: auto;
 }
 
-.commentaire_container {
-  width: 100%;
+.pulication_container {
+  width: 98%;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 
-.commentaire_content {
+.pulication_content {
   margin-bottom: 20px;
-  width: 98%;
+  width: 100%;
 }
 
 .pulication {
@@ -40,6 +86,7 @@
   background-color: white;
   width: 100%;
   height: auto;
+  overflow: hidden;
 }
 
 .message_com {
@@ -47,6 +94,8 @@
 }
 
 .message_com_mes {
+  padding: 10px;
+  width: 100%;
   word-wrap: break-word;
 }
 
@@ -72,37 +121,142 @@
   object-fit: cover;
 }
 
-.system_container {
+.container_system_menu {
+  padding-right: 20px;
+  width: 100%;
+  overflow: hidden;
   display: flex;
-  align-items: center;
   flex-direction: row-reverse;
 }
 
-.system_content {
+.system_menu_ellipsis {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
   cursor: pointer;
-  font-size: 20px;
-  margin-right: 30px;
-  transition: 500ms;
 }
-.system_content:hover {
+.system_menu_ellipsis:hover {
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.content_system_menu {
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 201, 201, 0.678);
+  overflow: hidden;
+  margin-top: -80px;
+}
+
+.system_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  transition: 500ms;
+  font-size: 14px;
+  width: 100%;
+  color: rgba(184, 0, 0, 0.5);
+}
+.system_delete:hover {
   transition: 200ms;
+}
+.system_delete:hover {
+  background-color: rgba(255, 0, 0, 0.199);
+  color: rgba(184, 0, 0, 0.8);
+}
+
+.system_Modify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  transition: 500ms;
+  width: 100%;
+  font-size: 14px;
+  color: rgba(0, 0, 170, 0.5);
+}
+.system_Modify:hover {
+  transition: 200ms;
+}
+.system_Modify:hover {
+  background-color: rgba(0, 0, 255, 0.199);
+  color: rgba(0, 0, 170, 0.8);
+}
+
+.system_Cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  transition: 500ms;
+  width: 100%;
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.5);
+}
+.system_Cancel:hover {
+  transition: 200ms;
+}
+.system_Cancel:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  color: rgba(75, 75, 75, 0.8);
+}
+
+.pulication_user_container {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(255, 215, 215);
+}
+
+.pulication_user_content {
+  margin-left: 25px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pulication_user_img_container {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 201, 201, 0.678);
+}
+
+.pulication_user_img {
+  object-fit: contain;
+}
+
+.pulication_user_name {
+  width: max-content;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  height: 20px;
+  margin-left: 10px;
 }
 
 @media all and (min-width: 785px) {
-  .commentaire_container {
+  .pulication_container {
     width: 100%;
   }
 
-  .commentaire_content {
+  .pulication_content {
     width: 100%;
     display: flex;
     justify-content: center;
-  }
-
-  .message_com_mes {
-    padding: 20px;
-    width: 100%;
   }
 
   .pulication {

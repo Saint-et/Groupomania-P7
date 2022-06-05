@@ -7,16 +7,11 @@ import Publication from '../Publication/Publication';
 
 const Home = () => {
 
-
-  
-
  return(
    <div>
    <Header />
    <main className='main_home'>
-   <section className='container_slidemenu'>
-     <Slidemenu />
-    </section>
+   <Slidemenu />
    <section className='container_main'>
    <Message />
    <Publication />

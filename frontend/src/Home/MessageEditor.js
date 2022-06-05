@@ -20,8 +20,6 @@ const Message = () => {
   // error & validate
   const [, setError] = useState("");
 
-  
-
   // bouton choisir un fichier
   const hiddenFileInput = React.useRef(null);
   
@@ -57,18 +55,19 @@ const Message = () => {
   //chargement du message
   const handleChange = (name) => event => {
     setMessage({...message, [name]: event.target.value});
+    setValueTextarea()
   };
 
 //Methode Post vers L'api
 const Share = async (event) => {
   event.preventDefault()
   const getToken = JSON.parse(localStorage.getItem("User"));
-  
 
   try {
     const formData = new FormData();
-    formData.append("image", imgUpload);
+    formData.append("userId", getToken.user.id);
     formData.append("message", message.message);
+    formData.append("image", imgUpload);
       const data = await axios
     .post(`${API_URL}api/groupomania/forum`,
     formData,
@@ -78,24 +77,25 @@ const Share = async (event) => {
       accept: 'application/json'
     }
   })
-  console.log();
     setImgUpload(data);
     //remise à zero des useState
     setImgHidden(true)
-    setValueTextarea(null)
+    setValueTextarea('')
     setImg('')
     setImgUpload('')
   } catch (error) {
       setError(error.response)
       console.log(error.response);
   }
-}
+};
+
+
 
     return(
     <div className='main_home'>
      <div className='section_home_message'>
      <h4>Post something.</h4>
-         <textarea onKeyDown={handleKeyDown} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
+         <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
          <div hidden={imgHidden} className='img_upload_container'><div onClick={removeImage} className='facirclexmark_container'><i className="fa-solid fa-xmark"></i></div>
          <div className='img_upload_content'><img className='img_upload' src={img} alt=' 'onClick={handleClick} /></div>
          </div>

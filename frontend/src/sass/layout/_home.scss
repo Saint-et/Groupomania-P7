@@ -6,9 +6,3 @@
 .container_main{
     width: 100%;
 }
-@media all and (min-width: $media_query) {
-    .container_slidemenu {
-        border-right: 1px solid $border_backgroundMenu;
-    }
-    
-}

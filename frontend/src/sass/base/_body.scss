@@ -14,10 +14,6 @@ body {
         width: 100%;
     }
     a {
-        color: $titleHeader;
         text-decoration: none;
-        &:hover {
-            color: #000;
-        }
     }
 }

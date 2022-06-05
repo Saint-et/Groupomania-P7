@@ -69,11 +69,14 @@
     }
 }
 @media all and (min-width: $media_query) {
+    .container_slidemenu {
+        border-right: 1px solid $border_backgroundMenu;
+    }
     .section_menu{
-        border: none;
         border-radius: 0px;
         margin-left: 0px;
         position: static;
+        border-right: 1px solid $border_backgroundMenu;
     }
     .section_menu_content{
         position: fixed;

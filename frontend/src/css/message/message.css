@@ -11,7 +11,8 @@
 /*___________media query__________*/
 /*___________media query__________*/
 main,
-.img_upload_container {
+.img_upload_container,
+.pulication {
   animation: fadein 1s;
   -moz-animation: fadein 1s;
   /* Firefox */

@@ -1,4 +1,4 @@
-.section_commentaire{
+.section_pulication{
     padding-top: 50px;
     padding-bottom: 50px;
     display: flex;
@@ -8,16 +8,15 @@
     border-top: 1px solid $border_backgroundMenu;
     height: auto;
 }
-.commentaire_container{
-    width: 100%;
+.pulication_container{
+    width: 98%;
     margin-top: 20px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
-.commentaire_content{
+.pulication_content{
     margin-bottom: 20px;
-    width: 98%;
+    width: 100%;
 }
 .pulication{
     border-radius: 25px;
@@ -25,12 +24,15 @@
     background-color: #ffff;
     width: 100%;
     height: auto;
+    overflow: hidden;
 }
 .message_com{
     margin-top: 10px;
     
 }
 .message_com_mes{
+    padding: 10px;
+    width: 100%;
     word-wrap: break-word;
 }
 .img_com_container{
@@ -52,33 +54,103 @@
     width: min-content;
     object-fit: cover;
 }
-.system_container{
+.container_system_menu{
+    padding-right: 20px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
-    align-items: center;
     flex-direction: row-reverse;
 }
-.system_content{
+.system_menu_ellipsis{
+    font-size: 18px;
+    color: rgb(0, 0, 0);
     cursor: pointer;
-    font-size: 20px;
-    margin-right: 30px;
-    transition: 500ms;
     &:hover{
-        transition: 200ms;
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(43, 43, 43, 0.8);
     }
 }
+.content_system_menu{
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid $border_backgroundMenu;
+    overflow: hidden;
+    margin-top: -80px
+}
+.system_delete{
+    @include button_ellipsis;
+    font-size: 14px;
+    width: 100%;
+    color: rgba(184, 0, 0, 0.500);
+    &:hover{
+        background-color: rgba(255, 0, 0, 0.199);
+        color: rgba(184, 0, 0, 0.800);
+    }
+}
+.system_Modify{
+    @include button_ellipsis;
+    width: 100%;
+    font-size: 14px;
+    color: rgba(0, 0, 170, 0.500);
+    &:hover{
+        background-color: rgba(0, 0, 255, 0.199);
+        color: rgba(0, 0, 170, 0.800);
+    }
+}
+.system_Cancel{
+    @include button_ellipsis;
+    width: 100%;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.199);
+        color: rgba(75, 75, 75, 0.8);
+    }
+}
+.pulication_user_container{
+    width: 100%;
+    height: 50px;
+    background-color: $backgroundHeader;
+}
+.pulication_user_content{
+    margin-left: 25px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.pulication_user_img_container{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid $border_backgroundMenu;
+}
+.pulication_user_img{
+    object-fit: contain;
+}
+.pulication_user_name{
+    width: max-content;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    height: 20px;
+    margin-left: 10px;
+}
 @media all and (min-width: $media_query) {
-    .commentaire_container{
+    .pulication_container{
         width: 100%;
     }
-    .commentaire_content{
+    .pulication_content{
         width: 100%;
         display: flex;
         justify-content: center;
-    }
-    .message_com_mes{
-        padding: 20px;
-        width: 100%;
     }
     .pulication{
         width: 100%;
