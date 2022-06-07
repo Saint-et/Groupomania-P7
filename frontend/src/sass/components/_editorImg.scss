@@ -1,0 +1,43 @@
+.img_upload_container{
+    margin: 10px 0px -15px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    font-size: 25px;
+}
+.facirclexmark_container{
+    margin-left: 10px;
+    cursor: pointer;
+    height: fit-content;
+    transition: 500ms;
+    color: #000;
+    &:hover{
+        color: rgba(223, 0, 0, 0.815);
+        transition: 200ms;
+    }
+    
+}
+.img_upload_content{
+    min-height: 100px;
+    max-height: 400px;
+    min-width: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px dashed rgba(44, 44, 44, 0.600);
+    cursor: pointer;
+    transition: 500ms;
+    &:hover{
+        background-color: rgba(0, 128, 0, 0.055);
+        border: 1px dashed rgba(0, 128, 0, 0.753);
+        transition: 200ms;
+    }
+}
+.img_upload{
+    min-height: 100px;
+    max-height: 400px;
+    min-width: 200px;
+    object-fit: fill;
+    border: none;
+    
+}

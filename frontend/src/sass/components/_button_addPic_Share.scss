@@ -1,0 +1,50 @@
+.button_message_container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+.button_add_img_container{
+    width: 50%;
+}
+.text_Ico{
+    display: none;
+}
+.button_add_img{
+    @include button;
+    font-size: 20px;
+    background-color: $B_addImg;
+    width: 100%;
+    border: 1px solid $border_backgroundMenu;
+    &:hover{
+        background-color: rgba(0, 128, 0, 0.055);
+        border: 1px solid rgba(0, 128, 0, 0.753);
+        color: rgba(0, 128, 0, 0.753);
+        box-shadow: 1px 1px 3px $B_addImgHover;
+    }
+}
+.button_message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    @include button;
+    font-size: 18px;
+    background-color: $B_addImg;
+    border: 1px solid $border_backgroundMenu;
+    margin-right: 5px;
+    &:hover{
+        background-color: rgba(0, 0, 221, 0.048);
+        border: 1px solid rgba(0, 0, 221, 0.836);
+        color: rgba(0, 0, 221, 0.836);
+        box-shadow: 1px 1px 3px $B_addImgHover;
+    }
+}
+
+@media all and (min-width: $media_query) {
+    .text_Ico{
+        display: initial;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+}

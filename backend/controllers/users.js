@@ -1,4 +1,4 @@
-const User = require('../models/forummedia');
+const User = require('../models/login.signup');
 
 
 exports.getAllUser = async (req, res, next) => {

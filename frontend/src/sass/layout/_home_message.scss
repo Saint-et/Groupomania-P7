@@ -14,112 +14,10 @@
     border: 1px solid $border_backgroundMenu;
     box-shadow: 1px 1px 3px $border_backgroundMenu;
 }
-.post_message_forum{
-    width: 100%;
-    height: 45px;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    padding: 10px;
-    overflow: hidden;
-    resize: none;
-    border: 1px solid $border_backgroundMenu;
-    transition: 500ms;
-    cursor: pointer;
-    &:hover{
-        border: 1px solid $titleHeader;
-        transition: 200ms;
-        box-shadow: 1px 1px 3px $B_addImgHover;
-    }
-}
 .button_file_message{
     display: none;
 }
-.button_message_container{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 20px;
-}
-.button_add_img_container{
-    width: 50%;
-}
-.text_Ico{
-    display: none;
-}
-.button_add_img{
-    @include button;
-    font-size: 20px;
-    background-color: $B_addImg;
-    width: 100%;
-    border: 1px solid $border_backgroundMenu;
-    &:hover{
-        background-color: rgba(0, 128, 0, 0.055);
-        border: 1px solid rgba(0, 128, 0, 0.753);
-        color: rgba(0, 128, 0, 0.753);
-        box-shadow: 1px 1px 3px $B_addImgHover;
-    }
-}
-.button_message{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    @include button;
-    font-size: 18px;
-    background-color: $B_addImg;
-    border: 1px solid $border_backgroundMenu;
-    margin-right: 5px;
-    &:hover{
-        background-color: rgba(0, 0, 221, 0.048);
-        border: 1px solid rgba(0, 0, 221, 0.836);
-        color: rgba(0, 0, 221, 0.836);
-        box-shadow: 1px 1px 3px $B_addImgHover;
-    }
-}
-.facirclexmark_container{
-    margin-left: 10px;
-    cursor: pointer;
-    height: fit-content;
-    transition: 500ms;
-    color: #000;
-    &:hover{
-        color: rgba(223, 0, 0, 0.815);
-        transition: 200ms;
-    }
-    
-}
-.img_upload_container{
-    margin: 10px 0px -15px 0px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: row-reverse;
-    font-size: 25px;
-}
-.img_upload_content{
-    min-height: 100px;
-    max-height: 300px;
-    min-width: 200px;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px dashed rgba(44, 44, 44, 0.600);
-    cursor: pointer;
-    transition: 500ms;
-    &:hover{
-        background-color: rgba(0, 128, 0, 0.055);
-        border: 1px dashed rgba(0, 128, 0, 0.753);
-        transition: 200ms;
-    }
-}
-.img_upload{
-    min-height: 100px;
-    max-height: 300px;
-    min-width: 200px;
-    object-fit: fill;
-    border: none;
-    
-}
+
 @media all and (min-width: $media_query) {
     .section_home_message{
         border-radius: 20px;
@@ -127,10 +25,5 @@
         margin: 10px;
         max-width: 600px;
         
-    }
-    .text_Ico{
-        display: initial;
-        font-size: 16px;
-        margin-left: 10px;
     }
 }

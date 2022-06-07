@@ -15,7 +15,7 @@ const Slidemenu = () => {
     <p className='profil_menu_text PMenu'>{locals.user.firstName}</p>
     <p className='profil_menu_text PMenu'>{locals.user.lastName}</p>
     </div>
-    <div><p className='button_menu iconMenu'><i className="fa-solid fa-house"></i></p></div>
+    <div><a href='http://localhost:3000/'><p className='button_menu iconMenu'><i className="fa-solid fa-house"></i></p></a></div>
     <div><p className='button_menu iconMenu'><i className="fa-solid fa-user"></i></p></div>
     <div><p className='button_menu iconMenu'><i className="fa-solid fa-users"></i></p></div>
     <div><p className='button_menu iconMenu'><i className="fa-solid fa-power-off"></i></p></div>

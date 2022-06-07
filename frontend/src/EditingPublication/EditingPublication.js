@@ -1,26 +1,26 @@
-import '../css/Editing_publication/Editing_publication.css'
 import React from "react";
+import '../css/home.css';
 import Slidemenu from '../components/Slidemenu';
 import Header from '../Header/Header';
+import LayoutEditingPublication from './layoutEditingPublication';
 //import {API_URL} from '../config';
 //import axios from "axios";
 
 
-const EditingPucation = () => {
-
-console.log('bonjour');
+const EditingPublication = () => {
     
 
     return(
         <div>
         <Header />
+        <main className='main_home'>
         <Slidemenu />
-        <div className="section_editing_pucation">
-        
-
-        </div>
+        <section className='container_main'>
+        <LayoutEditingPublication />
+        </section>
+        </main>
         </div>
     )
 }
 
-export default EditingPucation
+export default EditingPublication

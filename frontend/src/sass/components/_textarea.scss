@@ -1,0 +1,17 @@
+.post_message_forum{
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    resize: none;
+    border: 1px solid $border_backgroundMenu;
+    transition: 500ms;
+    cursor: pointer;
+    &:hover{
+        border: 1px solid $titleHeader;
+        transition: 200ms;
+        box-shadow: 1px 1px 3px $B_addImgHover;
+    }
+}

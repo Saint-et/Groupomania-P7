@@ -10,11 +10,6 @@ const sequelize = require('../db/mysql');
   
 
   Messagemedia.init({
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
     message: {
       type: DataTypes.STRING,
       // allowNull defaults to true
@@ -36,7 +31,7 @@ const sequelize = require('../db/mysql');
     tableName: 'forum'
   });
 
-  sequelize.models.users.hasMany(Messagemedia, {foreignKey: 'userId', sourceKey: 'id'})
-  Messagemedia.belongsTo(sequelize.models.users, {foreignKey: 'userId', targetKey: 'id'})
+  sequelize.models.users.hasMany(Messagemedia, {foreignKey: 'userId', sourceKey: 'id'});
+  Messagemedia.belongsTo(sequelize.models.users, {foreignKey: 'userId', targetKey: 'id'});
 
   module.exports = Messagemedia

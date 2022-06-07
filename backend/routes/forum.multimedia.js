@@ -15,9 +15,9 @@ router.post('/forum', auth, multer, messageCtrl.postOneMessageMedia);
 router.get('/forum/:id', auth, messageCtrl.getOneMessageMedia);
 
 //modifier un message
-router.put('/forum/:id', auth, multer, messageCtrl.updateMessageMedia);
+router.put('/forum/edite/:id', auth, multer, messageCtrl.updateMessageMedia);
 
 //supprimer un message
-router.delete('/forum/:id', auth, messageCtrl.deleteMessageMedia);
+router.delete('/forum/delete/:id', auth, messageCtrl.deleteMessageMedia);
 
 module.exports = router;

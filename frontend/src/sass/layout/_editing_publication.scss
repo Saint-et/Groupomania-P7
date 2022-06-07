@@ -1,4 +1,26 @@
-.section_editing_pucation{
+.section_editing_publication{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 900px;
+    background-color: $backgroundCommentaire;
+    border-top: 1px solid $border_backgroundMenu;
+    height: auto;
+}
+.container_editing_publication{
+    width: 100%;
+    max-width: 500px;
+    background-color: $backgroundPostMessage;
+    border: 1px solid $border_backgroundMenu;
+    overflow: hidden;
+    border-radius: 25px;
+    margin: 10px;
+}
+.title_editing_publication{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.content_editing_publication{
+    padding: 10px;
 }
