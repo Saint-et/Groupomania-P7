@@ -54,10 +54,13 @@
 .img_profil_menu {
   margin-left: 20px;
   width: 80px;
-  height: 80px;
+  height: auto;
+  max-height: 80px;
   border: 2px solid rgba(201, 201, 201, 0.678);
   padding: 2px;
   border-radius: 100px;
+  object-fit: cover;
+  object-position: 0px 0px;
 }
 
 .button_menu {
@@ -85,12 +88,14 @@
 }
 
 .iconMenu {
-  color: rgb(0, 0, 0);
-  border: 1px solid rgba(201, 201, 201, 0.678);
+  color: rgb(255, 255, 255);
+  background: rgb(200, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
 }
 .iconMenu:hover {
-  border: 1px solid rgb(129, 22, 0);
-  color: rgb(129, 22, 0);
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(200, 0, 0);
+  color: rgb(200, 0, 0);
 }
 
 @media all and (min-width: 785px) {

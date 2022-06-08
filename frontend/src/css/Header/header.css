@@ -14,9 +14,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: rgb(255, 215, 215);
-  color: rgb(129, 22, 0);
-  border-top: 5px solid rgb(129, 22, 0);
+  background: rgb(200, 0, 0);
+  color: rgb(255, 255, 255);
   border-bottom: 1px solid rgba(201, 201, 201, 0.678);
   box-shadow: 1px 1px 3px rgba(201, 201, 201, 0.678);
   z-index: 100;

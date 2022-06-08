@@ -33,6 +33,12 @@ const sequelize = require('../db/mysql');
             allowNull: false
             // allowNull defaults to true
           },
+          imageUrl: {
+            type: DataTypes.STRING
+          },
+          isAdmin: {
+            type: DataTypes.BOOLEAN,
+          },
           password: {
             type: DataTypes.STRING,
             allowNull: false

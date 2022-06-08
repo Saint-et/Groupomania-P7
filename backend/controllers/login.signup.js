@@ -39,11 +39,16 @@ User.findOne({ where:{ email: req.body.email }})
     })
 
      user.save()
-            .then(() => res.status(201).json({ 
-              user: user.dataValues,
+            .then(() => res.status(201).json({
+              isAdmin: false,
+              firstName: user.dataValues.firstName,
+              lastName:  user.dataValues.lastName,
+              email:  user.dataValues.email,
+              id:  user.dataValues.id,
+              imageUrl: user.dataValues.imageUrl,
                 //création du token de connexion
                 token: jwt.sign(
-                  { userId: user.userId },
+                  { id: user.dataValues.id },
                   process.env.TOKEN_SECRET,
                   { expiresIn: '24h' },
               ) }))
@@ -76,10 +81,15 @@ User.findOne({ where:{ email: req.body.email }})
               return res.status(400).json({ message: 'Incorrect password.' });
             }
             res.status(200).json({
-              user: user.dataValues,
+              firstName: user.dataValues.firstName,
+              lastName:  user.dataValues.lastName,
+              email:  user.dataValues.email,
+              id:  user.dataValues.id,
+              imageUrl: user.dataValues.imageUrl,
+              isAdmin: user.dataValues.isAdmin,
               //création du token de connexion
               token: jwt.sign(
-                { userId: user.userId },
+                { id: user.dataValues.id },
                 process.env.TOKEN_SECRET,
                 { expiresIn: '24h' },
               )

@@ -11,10 +11,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: 400;
+    color: $titleHeader;
+    &:hover{
+        color: $titleHeader;
+    }
 }
 .pulication_user_img_container{
     width: 45px;
-    height: 45px;
+    height: auto;
+    max-height: 45px;
     display: flex;
     flex-direction: row;
     border-radius: 50px;
@@ -22,7 +28,8 @@
     border: 1px solid $border_backgroundMenu;
 }
 .pulication_user_img{
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 0px 0px;
 }
 .pulication_user_name{
     width: max-content;

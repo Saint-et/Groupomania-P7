@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 const profilCtrl = require('../controllers/users');
 
 
@@ -13,7 +14,10 @@ router.get('/users', auth, profilCtrl.getAllUser);
 router.get('/users/:id', auth, profilCtrl.getOneUser);
 
 //modifier un utilisateur
-router.put('/users/:id', auth, profilCtrl.updateUser);
+router.put('/users/update/:id', auth, multer, profilCtrl.updateUser);
+
+//modifier un utilisateur
+//router.put('/users/update/:id', auth, multer, profilCtrl.updateAdmin);
 
 //supprimer un utilisateur
 router.delete('/users/:id', auth, profilCtrl.deleteUser);

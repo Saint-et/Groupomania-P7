@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from "../components/LoginForm";
 import {isLog} from "../utils";
-import {API_URL} from '../config'
+import {API_URL} from '../config';
+
 
 
 
@@ -32,9 +33,10 @@ const Login = () => {
             password: user.password
           })
           setUser(data);
+          console.log(data.data);
           localStorage.setItem("User",JSON.stringify(data.data));
+          localStorage.setItem("imageUrl",JSON.stringify(data.data.imageUrl));
           if (isLog().token) {
-              console.log('bonjour');
               return navigate('/');
           }
         } catch (error) {

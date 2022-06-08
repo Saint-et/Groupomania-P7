@@ -1,0 +1,32 @@
+.container_system_menu{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.content_system_menu{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    
+}
+.system_delete{
+    margin-right: 20px;
+    @include button_ellipsis;
+    font-size: 14px;
+    color: rgba(184, 0, 0, 0.500);
+    &:hover{
+        color: rgba(184, 0, 0, 0.800);
+    }
+}
+.system_Modify{
+    margin-right: 10px;
+    @include button_ellipsis;
+    color: rgba(0, 0, 170, 0.500);
+    font-size: 14px;
+    &:hover{
+        color: rgba(0, 0, 170, 0.800);
+        
+    }
+}

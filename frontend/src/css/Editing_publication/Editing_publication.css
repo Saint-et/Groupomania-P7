@@ -23,7 +23,7 @@
   cursor: pointer;
 }
 .post_message_forum:hover {
-  border: 1px solid rgb(129, 22, 0);
+  border: 1px solid rgb(255, 255, 255);
   transition: 200ms;
   box-shadow: 1px 1px 3px rgba(163, 163, 163, 0.74);
 }
@@ -103,7 +103,7 @@
   transition: 500ms;
 }
 .button_add_img:hover {
-  background-color: rgba(0, 128, 0, 0.055);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 128, 0, 0.753);
   color: rgba(0, 128, 0, 0.753);
   box-shadow: 1px 1px 3px rgba(163, 163, 163, 0.74);
@@ -128,7 +128,7 @@
   transition: 500ms;
 }
 .button_message:hover {
-  background-color: rgba(0, 0, 221, 0.048);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 0, 221, 0.836);
   color: rgba(0, 0, 221, 0.836);
   box-shadow: 1px 1px 3px rgba(163, 163, 163, 0.74);
@@ -144,7 +144,7 @@
 .pulication_user_container {
   width: 100%;
   height: 50px;
-  background-color: rgb(255, 215, 215);
+  background-color: rgb(200, 0, 0);
 }
 
 .pulication_user_content {
@@ -154,11 +154,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}
+.pulication_user_content:hover {
+  color: rgb(255, 255, 255);
 }
 
 .pulication_user_img_container {
   width: 45px;
-  height: 45px;
+  height: auto;
+  max-height: 45px;
   display: flex;
   flex-direction: row;
   border-radius: 50px;
@@ -167,7 +173,8 @@
 }
 
 .pulication_user_img {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 0px 0px;
 }
 
 .pulication_user_name {

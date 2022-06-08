@@ -1,5 +1,5 @@
 import logo from '../image/icon-above-font.jpg';
-import '../css/login_signup.css'
+import '../css/login_signup/login_signup.css';
 
 const LoginForm = (props) => {
     return(

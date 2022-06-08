@@ -1,15 +1,16 @@
 const User = require('../models/login.signup');
 
+const fs = require('fs');
 
 exports.getAllUser = async (req, res, next) => {
-    User.findAll({attributes: ['firstName','lastName','email']})
+    User.findAll({attributes: ['firstName','lastName','email','imageUrl']})
         .then(user => {
         return res.status(200).json({ user })
         })
 }
 
 exports.getOneUser = async (req,res,next) => {
-    await User.findOne({ where: { id: req.params.id }})
+    await User.findOne({ where: { id: req.params.id }, attributes: ['id','firstName','lastName','email','imageUrl','isAdmin']})
     .then(user => {
         return res.status(200).json({ user })
     })
@@ -17,18 +18,48 @@ exports.getOneUser = async (req,res,next) => {
 
 exports.updateUser = async (req, res, next) => {
     await User.findOne({ where: { id: req.params.id }})
-    .then(user => {
-        user.set({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            isAdmin: req.body.isAdmin
-          });
+    .then((userFind) => {
+        console.log(req.body);
 
-          user.save(user.dataValues);
-          return res.status(200).json({ message: 'user changed', user })
-    })
+
+    const userImg = req.file ?
+    {
+      ...req.body,
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : {
+      ...req.body
+    }
+
+    //console.log(userFind);
+
+    if (userFind._previousDataValues.imageUrl == null || userImg.image == userFind._previousDataValues.imageUrl) {
+      console.log(0);
+        User.update({ ...userImg }, {where : { id: req.params.id }});
+        return res.status(200).json({ message: 'user changed' });
+    } else {
+        if (userImg.image == userFind._previousDataValues.imageUrl || userImg.image != null) {
+            console.log(1);
+            const filename = userFind.imageUrl.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+            User.update({ ...userImg, imageUrl: null }, {where : { id: req.params.id }});
+          return res.status(200).json({ message: 'Message changed' })});
+          } else {
+            console.log(2);
+        const filename = userFind.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {
+            User.update({ ...userImg }, {where : { id: req.params.id }});
+          return res.status(200).json({ message: 'Message changed' })});
+          }
+    }
+    
+  })  
 };
+
+exports.updateAdmin = async (req, res, next) => {
+  await User.findOne({ where: { id: req.params.id }})
+  .then((userFind) => {
+    console.log(userFind);
+  })}
 
 exports.deleteUser = async (req, res, next) => {
     await User.destroy({ where: { id: req.params.id }})

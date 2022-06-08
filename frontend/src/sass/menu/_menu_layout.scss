@@ -40,10 +40,13 @@
 .img_profil_menu{
     margin-left: 20px;
     width: 80px;
-    height: 80px;
+    height: auto;
+    max-height: 80px;
     border: 2px solid $border_backgroundMenu;
     padding: 2px;
     border-radius: 100px;
+    object-fit: cover;
+    object-position: 0px 0px;
 }
 .button_menu{
     display: flex;
@@ -61,11 +64,13 @@
     color: $PMenu;
 }
 .iconMenu{
-    color: $iconMenu;
-    border: 1px solid $border_backgroundMenu;
+    color: $titleHeader;
+    background: $backgroundHeader;
+    border: 1px solid $titleHeader;
     &:hover{
-        border: 1px solid $titleHeader;
-        color: $titleHeader;
+        background: $titleHeader;
+        border: 1px solid $backgroundHeader;
+        color: $backgroundHeader;
     }
 }
 @media all and (min-width: $media_query) {

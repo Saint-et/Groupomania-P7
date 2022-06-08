@@ -17,7 +17,7 @@
     width: 100%;
     border: 1px solid $border_backgroundMenu;
     &:hover{
-        background-color: rgba(0, 128, 0, 0.055);
+        background-color: rgb(255, 255, 255);
         border: 1px solid rgba(0, 128, 0, 0.753);
         color: rgba(0, 128, 0, 0.753);
         box-shadow: 1px 1px 3px $B_addImgHover;
@@ -34,7 +34,7 @@
     border: 1px solid $border_backgroundMenu;
     margin-right: 5px;
     &:hover{
-        background-color: rgba(0, 0, 221, 0.048);
+        background-color: rgb(255, 255, 255);
         border: 1px solid rgba(0, 0, 221, 0.836);
         color: rgba(0, 0, 221, 0.836);
         box-shadow: 1px 1px 3px $B_addImgHover;

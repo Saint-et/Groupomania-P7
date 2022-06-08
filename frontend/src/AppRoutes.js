@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import EditingPublication from './EditingPublication/EditingPublication';
+import MyProfil from './MyProfil/MyProfilUser'
 
 
 
@@ -17,7 +18,8 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<Signup />}/>
-          <Route path="/:id" element={<EditingPublication />} />
+          <Route path="/forum/:id" element={<EditingPublication />} />
+          <Route path="/user/:id" element={<MyProfil />} />
   
           
         </Routes>

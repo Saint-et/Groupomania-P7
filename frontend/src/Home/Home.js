@@ -1,10 +1,11 @@
 import React from 'react';
-import '../css/home.css';
+import '../css/home/home.css';
 import Slidemenu from '../components/Slidemenu';
 import Header from '../Header/Header';
 import Publication from '../Publication/Publication';
 
 const Home = () => {
+  
 
  return(
    <div>

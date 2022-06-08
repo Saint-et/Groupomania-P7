@@ -3,11 +3,28 @@ import React, {useState, useEffect} from "react";
 import img_profil from '../image/image_profil.png';
 import {API_URL} from '../config';
 import axios from "axios";
-import {Local} from '../config';
 import '../css/message/message.css';
 
 
+
+
 const Commentaire = () => {
+
+
+  const Local = JSON.parse(localStorage.getItem("User"));
+  //récupération des POST
+  const GetALLPostFromAPI = () => {
+    axios.get(`${API_URL}api/groupomania/forum`,{headers: {
+      Authorization: `Bearer ${Local.token}`,
+    }
+  })
+  .then((res) => {
+      setPost(res.data);
+      setMessage({message : ''});
+  });
+  }
+  
+  
 
 /*________useState GET_______*/
 
@@ -30,9 +47,6 @@ const Commentaire = () => {
   });
   // error & validate
   const [, setError] = useState("");
-
-
- 
 
   /*________________________________POST_____________________________________*/
 
@@ -70,28 +84,15 @@ const Commentaire = () => {
     setMessage({...message, [name]: event.target.value});
     setValueTextarea()
   };
-//récupération des POST
-const GetALLPostFromAPI = () => {
-  axios.get(`${API_URL}api/groupomania/forum`,{headers: {
-    Authorization: `Bearer ${Local.token}`,
-  }
-})
-.then((res) => {
-    setPost(res.data);
-});
-}
+
 
 //Methode Post vers L'api
-const Share = async (event) => {
-  event.preventDefault()
-
-  console.log(message.message);
-
+const Share = async () => {
   try {
     if (message.message || imgUpload) {
     const formData = new FormData();
-    formData.append("userId", Local.user.id);
-    formData.append("message", message.message);
+    formData.append("userId", Local.id);
+    formData.append("message",  message.message);
     formData.append("image", imgUpload);
       const data = await axios
     .post(`${API_URL}api/groupomania/forum`,
@@ -104,11 +105,11 @@ const Share = async (event) => {
   });
     setImgUpload(data);
     //remise à zero des useState
-    setValueTextarea('')
-    setMessage('')
-    setImg('')
-    setImgUpload('')
-    GetALLPostFromAPI()
+    setValueTextarea('');
+    setMessage({message : ''});
+    setImg('');
+    setImgUpload('');
+    GetALLPostFromAPI();
   } 
 }catch (error) {
   setError(error.response)
@@ -117,20 +118,14 @@ const Share = async (event) => {
 };
 
 /*___________________________________GET______________________________________*/
-
-
-  
+    
 useEffect(() => {
   GetALLPostFromAPI()
 },[]);
-    
-    
-    
 
 const deleted = (id) => {
   setDeletePost(id);
 }
-
 
 if (deletePost !== undefined) {
   axios.delete(`${API_URL}api/groupomania/forum/delete/${deletePost}`,{headers: {
@@ -145,12 +140,10 @@ if (deletePost !== undefined) {
         });
       }
 
-      
-      
+     
 /*_______________________________RENDER________________________________*/
      
       if (!post) return null;
-
 
     return(
       <>
@@ -175,12 +168,11 @@ if (deletePost !== undefined) {
             {post.message?.map((publication) => (
                 <div className='pulication_content' key={publication.id}>
                 <div className='pulication'>
-                <div className='pulication_user_container'><div className='pulication_user_content'><div className='pulication_user_img_container'><img className='pulication_user_img' src={img_profil} alt='' /></div><p className='pulication_user_name'>{publication.user.firstName},{publication.user.lastName}</p></div></div>
+                <div className='pulication_user_container'><a className='pulication_user_content' href={`http://localhost:3000/user/${publication.userId}`}><div className='pulication_user_img_container'><img className='pulication_user_img' src={publication.user.imageUrl || img_profil} alt='' /></div><p className='pulication_user_name'>{publication.user.firstName},{publication.user.lastName}</p></a></div>
                 <div className='message_com'><p className='message_com_mes'>{publication.message}</p></div>
                 <div className='img_com_container' hidden={!publication.imageUrl}><div className='img_com_content'><img className='img_com' src={publication.imageUrl} alt=" "/></div></div>
-
-                <div className='container_system_menu'><div className='content_system_menu'><div className='system_Modify'><a className='system_Modify_button' href={`http://localhost:3000/${publication.id}`}><i className="fa-solid fa-pen"></i></a></div><div className='system_delete' onClick={()=> deleted(publication.id)}><i className="fa-solid fa-trash"></i></div></div></div>
-
+                <div className='container_system_menu' hidden={Local.id !== publication.userId} ><div className='content_system_menu'><div className='system_Modify'><a className='system_Modify_button' href={`http://localhost:3000/forum/${publication.id}`}><i className="fa-solid fa-pen"></i></a></div><div className='system_delete' onClick={()=> deleted(publication.id)}><i className="fa-solid fa-trash"></i></div></div></div>
+                <div className='container_system_menu' hidden={Local.isAdmin === false} ><div className='content_system_menu' hidden={publication.user.isAdmin === true} ><div className='system_Modify'><a className='system_Modify_button' href={`http://localhost:3000/forum/${publication.id}`}><i className="fa-solid fa-pen"></i></a></div><div className='system_delete' onClick={()=> deleted(publication.id)}><i className="fa-solid fa-trash"></i></div></div></div>
                 </div>
                 </div>
                 ))}

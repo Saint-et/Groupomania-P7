@@ -1,10 +1,9 @@
 import React from "react";
-import '../css/home/home.css';
+import '../css/home/home.css'
 import Slidemenu from '../components/Slidemenu';
 import Header from '../Header/Header';
-import LayoutEditingPublication from './layoutEditingPublication';
-//import {API_URL} from '../config';
-//import axios from "axios";
+import GetOneUser from './MyProfil';
+
 
 
 const EditingPublication = () => {
@@ -16,7 +15,7 @@ const EditingPublication = () => {
         <main className='main_home'>
         <Slidemenu />
         <section className='container_main'>
-        <LayoutEditingPublication />
+        <GetOneUser />
         </section>
         </main>
         </div>

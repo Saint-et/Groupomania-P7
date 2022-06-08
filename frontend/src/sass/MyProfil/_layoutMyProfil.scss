@@ -1,0 +1,86 @@
+.section_profil{
+    display: flex;
+    justify-content: center;
+    background-color: $backgroundCommentaire;
+    padding-bottom: 50px;
+}
+.header_myprofil{
+    background: $backgroundHeader;
+    display: flex;
+    justify-content: center;
+}
+.container_profil{
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+.header_myprofil_title{
+    color: $titleHeader;
+    font-size: 20px;
+    width: max-content;
+    margin: auto;
+}
+.img_container{
+    margin-bottom: 30px;
+}
+.img_container,
+.name_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container_admin{
+    justify-content: center;
+    width: 100%;
+}
+.content_admin{
+    width: max-content;
+    border: 1px solid $border_backgroundMenu;
+    padding: 10px;
+    margin-right: 10px;
+    margin: 10px;
+    border-radius: 25px;
+    
+}
+.img_content{
+    margin-top: 20px;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 3px solid $border_backgroundMenu;
+}
+.container_checkbox{
+    height: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.valide_checkbox{
+    margin-top: -4px;
+    font-size: 21px;
+    max-width: max-content;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.500);
+    &:hover{
+        color: rgb(0, 0, 0)
+    }
+}
+.fiels{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    @include field;
+    background: gainsboro;
+}
+.button_message_container{
+    padding: 10px;
+}
+@media all and (min-width: $media_query) {
+    .container_profil{
+        border-radius: 25px;
+        margin-top: 100px;
+        border: 1px solid $border_backgroundMenu;
+    }
+}

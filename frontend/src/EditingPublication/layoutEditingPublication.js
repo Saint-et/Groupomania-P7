@@ -4,11 +4,28 @@ import img_profil from '../image/image_profil.png';
 import axios from "axios";
 import {API_URL} from '../config';
 import {Local} from '../config';
+import { useNavigate } from 'react-router-dom';
 
 const url = window.location.href;
     const Id = url.split("/").pop();
 
 const LayoutEditingPublication = () => {
+
+   // rechercher un post dans la db
+   const GetOnePostFromAPI = () => {
+    axios.get(`${API_URL}api/groupomania/forum/${Id}`,{headers: {
+      Authorization: `Bearer ${Local.token}`,
+    }
+  })
+  .then((res) => {
+      setPost(res.data);
+      setValueTextarea(res.data.message.message);
+      setImg(res.data.message.imageUrl);
+      setImgUpload(res.data.message.imageUrl);
+      setMessage({message: res.data.message.message})
+  });
+  }
+
 
     const [valueTextarea, setValueTextarea] = useState();
 
@@ -27,33 +44,20 @@ const LayoutEditingPublication = () => {
     message: ''
   });
 
-  const GetOnePostFromAPI = () => {
-    axios.get(`${API_URL}api/groupomania/forum/${Id}`,{headers: {
-      Authorization: `Bearer ${Local.token}`,
-    }
-  })
-  .then((res) => {
-      setPost(res.data);
-      setValueTextarea(res.data.message.message)
-      setMessage(res.data.message.message)
-      setImg(res.data.message.imageUrl)
-      setImgUpload(res.data.message.imageUrl)
-  });
-  }
+
     useEffect(() => {
       GetOnePostFromAPI()
       },[]);
 
     //supression de l'image
   const removeImage = () => {
-    setImg('')
-    setImgUpload('')
+    setImg('');
+    setImgUpload('');
   };
 
-  //console.log(imgUpload);
 
   const handleLoad = (event) => {
-    const fileUploaded = event.target.files[0]
+    const fileUploaded = event.target.files[0];
     setImgUpload(fileUploaded);
     setImg(URL.createObjectURL(fileUploaded));
   };
@@ -73,18 +77,16 @@ const LayoutEditingPublication = () => {
    //chargement du message
    const handleChange = (name) => event => {
     setMessage({...message, [name]: event.target.value});
-    setValueTextarea()
+    setValueTextarea();
   };
+  const navigate = useNavigate();
 
-console.log(message);
-console.log(message.message);
-//console.log(imgUpload);
 
-const Share = async () => {
+const AppliedModification = async () => {
     try {
         const formData = new FormData();
         formData.append("userId", post.message.user.id);
-        formData.append("message", message.message || message );
+        formData.append("message", message.message);
         formData.append("image", imgUpload || null);
           const data = await axios
         .put(`${API_URL}api/groupomania/forum/edite/${Id}`,
@@ -95,10 +97,10 @@ const Share = async () => {
           accept: 'application/json'
         }
       })
-      console.log(data);
+      setMessage({message: ''});
+      return navigate('/');
       } catch (error) {
           setError(error.response)
-          console.log(error.response);
       }
 };
 
@@ -107,16 +109,16 @@ const Share = async () => {
     return(
         <div className="section_editing_publication">
         <div className="container_editing_publication">
-        <div className='pulication_user_container'><div className='pulication_user_content'><div className='pulication_user_img_container'><img className='pulication_user_img' src={img_profil} alt='' /></div><p className='pulication_user_name'>{post.message.user.firstName},{post.message.user.lastName}</p></div></div>
+        <div className='pulication_user_container'><div className='pulication_user_content'><div className='pulication_user_img_container'><img className='pulication_user_img' src={post.message.user.imageUrl || img_profil} alt='' /></div><p className='pulication_user_name'>{post.message.user.firstName},{post.message.user.lastName}</p></div></div>
         <div className='content_editing_publication'>
         <div className="title_editing_pucation"><h3>Edit publication</h3></div>
         <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
         <div hidden={!img} className='img_upload_container'><div onClick={removeImage} className='facirclexmark_container'><i className="fa-solid fa-xmark"></i></div>
-        <div className='img_upload_content'><img className='img_upload' src={img || post.message.imageUrl} alt=' 'onClick={handleClick} /></div>
+        <div className='img_upload_content'><img className='img_upload' src={img || img_profil} alt=' 'onClick={handleClick} /></div>
         </div>
         <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
         <div className='button_message_container'>
-           <p className='button_message' onClick={Share}><i className="fa-solid fa-share"></i><span className='text_Ico'>applied</span></p>
+           <p className='button_message' onClick={AppliedModification}><i className="fa-solid fa-share"></i><span className='text_Ico'>applied</span></p>
            <p className='button_add_img_container'><button className='button_add_img' onClick={handleClick}>
            <i className="fa-solid fa-image"></i><span className='text_Ico'>Change picture</span>
          </button></p>
