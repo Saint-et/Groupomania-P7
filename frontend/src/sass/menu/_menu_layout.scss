@@ -11,31 +11,26 @@
     position: fixed;
     z-index: 50;
     border-right: 1px solid $border_backgroundMenu;
-    &:hover{
-        transition: 400ms;
-        margin-left: 0px;
-    }
+}
+.section_menu.active{
+    transition: 400ms;
+    margin-left: 0px;
 }
 .menu_icon{
-    box-shadow: 1px 0px 3px $border_backgroundMenu;
     background-color: $backgroundMenu;
     border-radius: 0px 10px 10px 0px;
     height: 50px;
     width: 170px;
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     font-size: 20px;
+    cursor: pointer;
 }
 .profil_menu{
     display: flex;
     flex-direction: column;
-    
-    .profil_menu_text{
-        margin-left: 10px;
-    }
 }
 .img_profil_menu{
     margin-left: 20px;
@@ -62,23 +57,28 @@
 }
 .PMenu{
     color: $PMenu;
+    text-align: center;
 }
 .iconMenu{
-    color: $titleHeader;
-    background: $backgroundHeader;
-    border: 1px solid $titleHeader;
+    color: $backgroundHeader;
+    background: $titleHeader;
     &:hover{
-        background: $titleHeader;
-        border: 1px solid $backgroundHeader;
-        color: $backgroundHeader;
+        border: 1px solid $border_backgroundMenu;
     }
+}
+.menu_icon_nav{
+    font-size: 25px;
+    margin-left: 80px;
+    margin-top: 20px;
 }
 @media all and (min-width: $media_query) {
     .container_slidemenu {
         z-index: 50;
         border-right: 1px solid $border_backgroundMenu;
+        background-color: $backgroundMenu;
     }
     .section_menu{
+        padding: 0px 0px 0px 15px;
         border-radius: 0px;
         margin-left: 0px;
         position: static;
@@ -92,5 +92,8 @@
     }
     .menu_icon{
         display: none;
+    }
+    .profil_menu_text{
+        margin-left: 5px;
     }
 }

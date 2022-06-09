@@ -2,6 +2,8 @@
 /*__________Login&Signup__________*/
 /*___________Header___________*/
 /*___________Header___________*/
+/*___________Publication_________*/
+/*___________Publication_________*/
 /*____________SlideMenu__________*/
 /*____________SlideMenu__________*/
 /*____________PostMessage_________*/
@@ -24,31 +26,28 @@
   z-index: 50;
   border-right: 1px solid rgba(201, 201, 201, 0.678);
 }
-.section_menu:hover {
+
+.section_menu.active {
   transition: 400ms;
   margin-left: 0px;
 }
 
 .menu_icon {
-  box-shadow: 1px 0px 3px rgba(201, 201, 201, 0.678);
   background-color: rgb(255, 255, 255);
   border-radius: 0px 10px 10px 0px;
   height: 50px;
   width: 170px;
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .profil_menu {
   display: flex;
   flex-direction: column;
-}
-.profil_menu .profil_menu_text {
-  margin-left: 10px;
 }
 
 .img_profil_menu {
@@ -84,27 +83,33 @@
 }
 
 .PMenu {
-  color: #000;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
 
 .iconMenu {
-  color: rgb(255, 255, 255);
-  background: rgb(200, 0, 0);
-  border: 1px solid rgb(255, 255, 255);
+  color: rgb(150, 0, 0);
+  background: rgb(255, 255, 255);
 }
 .iconMenu:hover {
-  background: rgb(255, 255, 255);
-  border: 1px solid rgb(200, 0, 0);
-  color: rgb(200, 0, 0);
+  border: 1px solid rgba(201, 201, 201, 0.678);
+}
+
+.menu_icon_nav {
+  font-size: 25px;
+  margin-left: 80px;
+  margin-top: 20px;
 }
 
 @media all and (min-width: 785px) {
   .container_slidemenu {
     z-index: 50;
     border-right: 1px solid rgba(201, 201, 201, 0.678);
+    background-color: rgb(255, 255, 255);
   }
 
   .section_menu {
+    padding: 0px 0px 0px 15px;
     border-radius: 0px;
     margin-left: 0px;
     position: static;
@@ -121,6 +126,10 @@
 
   .menu_icon {
     display: none;
+  }
+
+  .profil_menu_text {
+    margin-left: 5px;
   }
 }
 

@@ -13,6 +13,7 @@ router.post('/forum', auth, multer, messageCtrl.postOneMessageMedia);
 
 //obtenir un profil
 router.get('/forum/:id', auth, messageCtrl.getOneMessageMedia);
+router.get('/forum/user/:userId', auth, messageCtrl.getAllMessageMediaByUser);
 
 //modifier un message
 router.put('/forum/edite/:id', auth, multer, messageCtrl.updateMessageMedia);

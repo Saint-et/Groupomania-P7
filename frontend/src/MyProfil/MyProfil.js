@@ -94,7 +94,7 @@ const GetMyProfil = () => {
           formData.append("lastName", editProfile.lastName);
           formData.append("email", editProfile.email);
           formData.append("image", imgUpload || null);
-            const data = await axios
+            await axios
           .put(`${API_URL}api/groupomania/users/update/${Id}`,
           formData,
           {headers: {
@@ -120,9 +120,9 @@ const GetMyProfil = () => {
     return (
       <div className='section_profil'>
         <div className='container_profil'>
-          <div className='header_myprofil'><p className='header_myprofil_title'>My profil</p></div>
+          <div className='header_myprofil'><p className='header_myprofil_title'>Profil</p></div>
           <div className='container_admin' hidden={Local.isAdmin !== true}><div className='content_admin'><p>Admin : </p><div className='container_checkbox'><input className='input' onChange={value => handleChecked(value)} checked={isAdmin} type="checkbox" /><div className='valide_checkbox'><i className="fa-solid fa-circle-check" hidden={hiddenValid} onClick={updateAdmin}></i></div></div></div></div>
-          <div className='name_container' hidden={myProfil.user.isAdmin !== true}><div className='name_content'><p><i className="fa-solid fa-user-check"></i>Admin</p></div></div>
+          <div className='name_container' hidden={myProfil.user.isAdmin !== true}><div className='name_content'><p className='name_content_admin'><i className="fa-solid fa-user-check"></i>Admin</p></div></div>
           <div className='img_container'><div className='img_content'><img src={img || myProfil.user.imageUrl || img_profil} alt='' /></div></div>
           <div className='img_upload_container' hidden={hiddenEdit}><div onClick={removeImage} className='facirclexmark_container'><i className="fa-solid fa-xmark"></i></div>
         </div>
@@ -137,8 +137,8 @@ const GetMyProfil = () => {
           <div className='container_system_menu' hidden={Local.id !== myProfil.user.id}><div className='content_system_menu'>
         <div className='system_Modify'><i className="fa-solid fa-user-pen" onClick={handleShowEdit}></i></div><div className='system_delete'><i className="fa-solid fa-user-large-slash"></i></div></div></div>
 
-        <div className='container_system_menu' hidden={myProfil.user.isAdmin == true}><div className='content_system_menu'>
-        <div className='system_delete' hidden={Local.isAdmin !== true}><i className="fa-solid fa-user-large-slash" hidden={myProfil.user.id == Local.id}></i></div></div></div>
+        <div className='container_system_menu' hidden={myProfil.user.isAdmin === true}><div className='content_system_menu'>
+        <div className='system_delete' hidden={Local.isAdmin !== true}><i className="fa-solid fa-user-large-slash" hidden={myProfil.user.id === Local.id}></i></div></div></div>
         </div>
       </div>
     )

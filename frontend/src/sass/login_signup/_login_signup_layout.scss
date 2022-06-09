@@ -10,12 +10,14 @@
 
 
     .form_login_signup {
-    background-color: $backgroundLogin_Signup;
+    background:  $backgroundLogin_Signup;
     border-radius: 50px;
     padding: 50px;
     margin: 5px;
     }
     .P_log{
+        font-size: 18px;
+        font-weight: 500;
         color: $P_log;
     }
     .container_field{
@@ -31,10 +33,10 @@
     }
     .field_log{
         @include field;
-        background-color: $field_LoginSignup;
-        &:hover{
-            background-color: $field_LoginSignupHover;
-        }
+        border: 5px solid $field_LoginSignup;
+        //&:hover{
+        //    background-color: $field_LoginSignupHover;
+        //}
     }
     .button_connect{
         @include button;

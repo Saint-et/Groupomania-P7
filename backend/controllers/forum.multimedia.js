@@ -8,11 +8,19 @@ const fs = require('fs');
 
 exports.getAllMessageMedia = async (req,res,next) => (
     await Messagemedia.findAll({order: [
-      ['updatedAt', 'DESC'],
-  ],attributes: ['id','message','imageUrl','userId','createdAt'], include: [models.users]})
+      ['updatedAt', 'DESC']],
+      attributes: ['id','message','imageUrl','userId','createdAt'], include: [models.users]})
     .then(message => {
         return  res.status(200).json({ message })
     })
+);
+
+exports.getAllMessageMediaByUser = async (req,res,next) => (
+  await Messagemedia.findAll({order: [
+    ['updatedAt', 'DESC']], where: { userId: req.params.userId }, include: [models.users]})
+  .then(message => {
+      return res.status(200).json({ message });
+  })
 );
 
 exports.getOneMessageMedia = async (req,res,next) => (

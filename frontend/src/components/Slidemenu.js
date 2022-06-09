@@ -35,14 +35,18 @@ const Slidemenu = () => {
         return navigate('/login');
     }
 
+    const [sidebar, setsidebar] = useState(false);
+
+    const showSidebar = () => setsidebar(!sidebar);
+
     if (!myProfil) return null;
     
     return(
     <section className='container_slidemenu'>
-    <div className='section_menu'>
+    <div className={sidebar ? 'section_menu active' : 'section_menu'}>
     <div className='section_menu_content'>
      <div className='profil_menu'>
-     <p className='menu_icon PMenu'><i className="fa-solid fa-bars"></i>Menu</p>
+     <div className='menu_icon PMenu'>Menu<p className='menu_icon_nav' onClick={showSidebar} hidden={sidebar}><i className="fa-solid fa-bars"></i></p><p className='menu_icon_nav' onClick={showSidebar} hidden={!sidebar}><i className="fa-solid fa-xmark"></i></p></div>
      <img className='img_profil_menu' src={myProfil.user.imageUrl || img_profil} alt=' '/>
     <p className='profil_menu_text PMenu'>{myProfil.user.firstName}</p>
     <p className='profil_menu_text PMenu'>{myProfil.user.lastName}</p>

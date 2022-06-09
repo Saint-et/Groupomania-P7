@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    background-color: $backgroundHeaderPublication;
 }
 .section_home_message{
     background-color: $backgroundPostMessage;
@@ -12,7 +13,6 @@
     border-radius: 0px;
     margin: 0px 0px 0px 0px;
     border: 1px solid $border_backgroundMenu;
-    box-shadow: 1px 1px 3px $border_backgroundMenu;
 }
 .button_file_message{
     display: none;

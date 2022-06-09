@@ -1,4 +1,4 @@
-import logo from '../image/icon-above-font.jpg';
+import logo from '../image/icon-above-font.svg';
 import '../css/login_signup/login_signup.css';
 
 const LoginForm = (props) => {

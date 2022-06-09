@@ -2,6 +2,8 @@
 /*__________Login&Signup__________*/
 /*___________Header___________*/
 /*___________Header___________*/
+/*___________Publication_________*/
+/*___________Publication_________*/
 /*____________SlideMenu__________*/
 /*____________SlideMenu__________*/
 /*____________PostMessage_________*/
@@ -62,6 +64,7 @@ main,
   overflow: hidden;
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 10px;
 }
 
 .content_system_menu {
@@ -72,6 +75,8 @@ main,
 }
 
 .system_delete {
+  padding-left: 5px;
+  padding-right: 5px;
   margin-right: 20px;
   display: flex;
   justify-content: center;
@@ -82,6 +87,8 @@ main,
   transition: 500ms;
   font-size: 14px;
   color: rgba(184, 0, 0, 0.5);
+  border-left: 1px solid rgba(184, 0, 0, 0.5);
+  border-right: 1px solid rgba(184, 0, 0, 0.5);
 }
 .system_delete:hover {
   transition: 200ms;
@@ -91,6 +98,8 @@ main,
 }
 
 .system_Modify {
+  padding-left: 5px;
+  padding-right: 5px;
   margin-right: 10px;
   display: flex;
   justify-content: center;
@@ -101,6 +110,8 @@ main,
   transition: 500ms;
   color: rgba(0, 0, 170, 0.5);
   font-size: 14px;
+  border-left: 1px solid rgba(0, 0, 170, 0.5);
+  border-right: 1px solid rgba(0, 0, 170, 0.5);
 }
 .system_Modify:hover {
   transition: 200ms;
@@ -112,7 +123,12 @@ main,
 .pulication_user_container {
   width: 100%;
   height: 50px;
-  background-color: rgb(200, 0, 0);
+  background-color: rgb(150, 0, 0);
+  transition: 300ms;
+}
+.pulication_user_container:hover {
+  transition: 200ms;
+  background-color: rgba(170, 0, 0, 0.85);
 }
 
 .pulication_user_content {

@@ -2,6 +2,8 @@
 /*__________Login&Signup__________*/
 /*___________Header___________*/
 /*___________Header___________*/
+/*___________Publication_________*/
+/*___________Publication_________*/
 /*____________SlideMenu__________*/
 /*____________SlideMenu__________*/
 /*____________PostMessage_________*/
@@ -64,7 +66,7 @@
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 128, 0, 0.753);
   color: rgba(0, 128, 0, 0.753);
-  box-shadow: 1px 1px 3px rgba(163, 163, 163, 0.74);
+  box-shadow: 1px 1px 3px rgba(0, 0, 221, 0.836);
 }
 
 .button_message {
@@ -89,7 +91,7 @@
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 0, 221, 0.836);
   color: rgba(0, 0, 221, 0.836);
-  box-shadow: 1px 1px 3px rgba(163, 163, 163, 0.74);
+  box-shadow: 1px 1px 3px rgba(0, 128, 0, 0.753);
 }
 
 @media all and (min-width: 785px) {
@@ -104,6 +106,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 10px;
 }
 
 .content_system_menu {
@@ -114,6 +117,8 @@
 }
 
 .system_delete {
+  padding-left: 5px;
+  padding-right: 5px;
   margin-right: 20px;
   display: flex;
   justify-content: center;
@@ -124,6 +129,8 @@
   transition: 500ms;
   font-size: 14px;
   color: rgba(184, 0, 0, 0.5);
+  border-left: 1px solid rgba(184, 0, 0, 0.5);
+  border-right: 1px solid rgba(184, 0, 0, 0.5);
 }
 .system_delete:hover {
   transition: 200ms;
@@ -133,6 +140,8 @@
 }
 
 .system_Modify {
+  padding-left: 5px;
+  padding-right: 5px;
   margin-right: 10px;
   display: flex;
   justify-content: center;
@@ -143,6 +152,8 @@
   transition: 500ms;
   color: rgba(0, 0, 170, 0.5);
   font-size: 14px;
+  border-left: 1px solid rgba(0, 0, 170, 0.5);
+  border-right: 1px solid rgba(0, 0, 170, 0.5);
 }
 .system_Modify:hover {
   transition: 200ms;
@@ -159,7 +170,7 @@
 }
 
 .header_myprofil {
-  background: rgb(200, 0, 0);
+  background: rgb(150, 0, 0);
   display: flex;
   justify-content: center;
 }
@@ -249,6 +260,11 @@
 
 .button_message_container {
   padding: 10px;
+}
+
+.name_content_admin {
+  color: rgb(0, 100, 0);
+  margin-top: 5px;
 }
 
 @media all and (min-width: 785px) {
