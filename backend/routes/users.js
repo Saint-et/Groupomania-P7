@@ -13,11 +13,12 @@ router.get('/users', auth, profilCtrl.getAllUser);
 //obtenir un profil
 router.get('/users/:id', auth, profilCtrl.getOneUser);
 
+
 //modifier un utilisateur
 router.put('/users/update/:id', auth, multer, profilCtrl.updateUser);
 
 //modifier un utilisateur
-//router.put('/users/update/:id', auth, multer, profilCtrl.updateAdmin);
+router.put('/users/update-admin/:id', auth, profilCtrl.updateAdmin);
 
 //supprimer un utilisateur
 router.delete('/users/:id', auth, profilCtrl.deleteUser);

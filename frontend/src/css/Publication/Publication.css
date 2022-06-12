@@ -12,15 +12,14 @@
 /*____________Commentaire_________*/
 /*___________media query__________*/
 /*___________media query__________*/
-main,
 .img_upload_container,
 .pulication {
-  animation: fadein 1s;
-  -moz-animation: fadein 1s;
+  animation: fadein 500ms;
+  -moz-animation: fadein 500ms;
   /* Firefox */
-  -webkit-animation: fadein 1s;
+  -webkit-animation: fadein 500ms;
   /* Safari et Chrome */
-  -o-animation: fadein 1s;
+  -o-animation: fadein 500ms;
   /* Opera */
 }
 
@@ -120,6 +119,58 @@ main,
   color: rgba(0, 0, 170, 0.8);
 }
 
+.warning_delete {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+.button_warning_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgb(100, 0, 0);
+  color: rgb(100, 0, 0);
+  margin-right: 5px;
+}
+.button_warning_delete:hover {
+  transition: 500ms;
+}
+.button_warning_delete:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: rgb(255, 0, 0);
+}
+
+.warning_cancel {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border: 1px solid rgba(201, 201, 201, 0.678);
+}
+.warning_cancel:hover {
+  transition: 500ms;
+}
+.warning_cancel:hover {
+  background-color: rgba(0, 0, 255, 0.1);
+  border: 1px solid rgba(0, 0, 255, 0.75);
+  color: rgba(0, 0, 255, 0.75);
+}
+
 .pulication_user_container {
   width: 100%;
   height: 50px;
@@ -129,6 +180,14 @@ main,
 .pulication_user_container:hover {
   transition: 200ms;
   background-color: rgba(170, 0, 0, 0.85);
+}
+
+.pulication_user_container_Profil {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(150, 0, 0);
+  transition: 300ms;
+  cursor: default;
 }
 
 .pulication_user_content {
@@ -170,6 +229,15 @@ main,
   margin-left: 10px;
 }
 
+.isAdmin_badge {
+  margin-top: 10px;
+  margin-bottom: -20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: rgb(0, 100, 0);
+}
+
 @media all and (min-width: 785px) {
   .pulication_user_content {
     margin-left: 25px;
@@ -182,7 +250,6 @@ main,
   justify-content: center;
   width: 100%;
   background-color: rgb(245, 245, 245);
-  border-top: 1px solid rgba(201, 201, 201, 0.678);
   height: auto;
 }
 

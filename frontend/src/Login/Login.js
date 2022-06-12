@@ -6,8 +6,6 @@ import {isLog} from "../utils";
 import {API_URL} from '../config';
 
 
-
-
 const Login = () => {
     //console.log(API_URL);
     const [user, setUser] = useState({
@@ -35,9 +33,9 @@ const Login = () => {
           setUser(data);
           console.log(data.data);
           localStorage.setItem("User",JSON.stringify(data.data));
-          localStorage.setItem("imageUrl",JSON.stringify(data.data.imageUrl));
           if (isLog().token) {
-              return navigate('/');
+              navigate('/');
+              return window.location.reload()
           }
         } catch (error) {
             setError(error.response.data.message)

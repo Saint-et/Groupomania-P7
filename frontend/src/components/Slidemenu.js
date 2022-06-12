@@ -1,14 +1,15 @@
 import img_profil from '../image/image_profil.png';
 import '../css/menu/menu.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
+import {Local} from '../config';
 
 
 
 const Slidemenu = () => {
-    const Local = JSON.parse(localStorage.getItem("User"))
+    
 
     const [myProfil, setMyProfil] = useState()
 
@@ -30,9 +31,10 @@ const Slidemenu = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        navigate('/login')
         localStorage.removeItem("User");
         localStorage.removeItem("imageUrl");
-        return navigate('/login');
+        return window.location.reload();
     }
 
     const [sidebar, setsidebar] = useState(false);
@@ -51,10 +53,10 @@ const Slidemenu = () => {
     <p className='profil_menu_text PMenu'>{myProfil.user.firstName}</p>
     <p className='profil_menu_text PMenu'>{myProfil.user.lastName}</p>
     </div>
-    <div><a href='http://localhost:3000/'><p className='button_menu iconMenu'><i className="fa-solid fa-house"></i></p></a></div>
-    <div><a href={`http://localhost:3000/user/${Local.id}`}><p className='button_menu iconMenu'><i className="fa-solid fa-user"></i></p></a></div>
-    <div><p className='button_menu iconMenu'><i className="fa-solid fa-users"></i></p></div>
-    <div><p className='button_menu iconMenu' onClick={handleClick}><i className="fa-solid fa-power-off"></i></p></div>
+    <Link to={'/'} className='button_menu iconMenu'><i className="fa-solid fa-house"></i></Link>
+    <Link to={`my-profil/${Local.firstName}.${Local.lastName}/${Local.id}`} className='button_menu iconMenu'><i className="fa-solid fa-user"></i></Link>
+    <Link to={'/employ'} className='button_menu iconMenu'><i className="fa-solid fa-users"></i></Link>
+    <p className='button_menu iconMenu' onClick={handleClick}><i className="fa-solid fa-power-off"></i></p>
     </div>
     </div>
     </section>

@@ -40,7 +40,8 @@ const Signup = () => {
           setUser(data)
           localStorage.setItem("User",JSON.stringify(data.data));
           if (isLog().token) {
-            return navigate('/');
+            navigate('/');
+            return window.location.reload()
         }
         } catch (error) {
             setError(error.response.data.message)

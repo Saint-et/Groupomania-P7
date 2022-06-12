@@ -12,27 +12,90 @@
 /*____________Commentaire_________*/
 /*___________media query__________*/
 /*___________media query__________*/
-.input {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  transition: box-shadow 0.3s;
-  background: red;
+/* 
+
+The following vars come from my theme. 
+You'll need to replace with your own color values. 
+*/
+.toggle {
+  align-items: center;
+  border-radius: 100px;
+  display: flex;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.toggle:last-of-type {
+  margin: 0;
+}
+
+.toggle__input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.toggle__input:not([disabled]):active + .toggle-track, .toggle__input:not([disabled]):focus + .toggle-track {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px 2px rgb(0, 0, 140);
+}
+.toggle__input:disabled + .toggle-track {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.toggle-track {
+  background: white;
+  border: 1px solid rgb(0, 0, 140);
+  border-radius: 100px;
   cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-}
-.input:hover {
-  box-shadow: inset 0 0 0 20px green;
-}
-
-.input:checked {
-  box-shadow: inset 0 0 0 20px green;
-}
-.input:checked:hover {
-  box-shadow: inset 0 0 0 20px red;
+  display: flex;
+  height: 21px;
+  margin-right: 12px;
+  position: relative;
+  width: 37.5px;
 }
 
+.toggle-indicator {
+  align-items: center;
+  background: rgb(0, 0, 140);
+  border-radius: 15px;
+  bottom: 2px;
+  display: flex;
+  height: 15px;
+  justify-content: center;
+  left: 2px;
+  outline: solid 2px transparent;
+  position: absolute;
+  transition: 500ms;
+  width: 15px;
+}
+
+.checkMark {
+  fill: #fff;
+  height: 11px;
+  width: 11px;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+  margin-top: -13px;
+}
+
+.toggle__input:checked + .toggle-track .toggle-indicator {
+  background: rgb(0, 0, 140);
+  transform: translateX(16.5px);
+}
+.toggle__input:checked + .toggle-track .toggle-indicator .checkMark {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .toggle-track {
+    border-radius: 0;
+  }
+}
 .button_message_container {
   display: flex;
   justify-content: space-around;
@@ -162,6 +225,58 @@
   color: rgba(0, 0, 170, 0.8);
 }
 
+.warning_delete {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+.button_warning_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgb(100, 0, 0);
+  color: rgb(100, 0, 0);
+  margin-right: 5px;
+}
+.button_warning_delete:hover {
+  transition: 500ms;
+}
+.button_warning_delete:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: rgb(255, 0, 0);
+}
+
+.warning_cancel {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  transition: 500ms;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border: 1px solid rgba(201, 201, 201, 0.678);
+}
+.warning_cancel:hover {
+  transition: 500ms;
+}
+.warning_cancel:hover {
+  background-color: rgba(0, 0, 255, 0.1);
+  border: 1px solid rgba(0, 0, 255, 0.75);
+  color: rgba(0, 0, 255, 0.75);
+}
+
 .section_profil {
   display: flex;
   justify-content: center;
@@ -275,4 +390,4 @@
   }
 }
 
-/*# sourceMappingURL=myprofil.css.map */
+/*# sourceMappingURL=Profil.css.map */

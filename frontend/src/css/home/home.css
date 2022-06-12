@@ -32,15 +32,14 @@ body a {
   text-decoration: none;
 }
 
-main,
 .img_upload_container,
 .pulication {
-  animation: fadein 1s;
-  -moz-animation: fadein 1s;
+  animation: fadein 500ms;
+  -moz-animation: fadein 500ms;
   /* Firefox */
-  -webkit-animation: fadein 1s;
+  -webkit-animation: fadein 500ms;
   /* Safari et Chrome */
-  -o-animation: fadein 1s;
+  -o-animation: fadein 500ms;
   /* Opera */
 }
 
@@ -86,6 +85,7 @@ main,
 }
 
 .container_main {
+  background-color: white;
   width: 100%;
 }
 

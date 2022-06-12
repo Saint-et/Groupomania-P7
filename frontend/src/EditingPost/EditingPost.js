@@ -1,3 +1,4 @@
+import '../css/home/home.css';
 import '../css/Editing_publication/Editing_publication.css';
 import React, {useState, useEffect} from "react";
 import img_profil from '../image/image_profil.png';
@@ -6,10 +7,15 @@ import {API_URL} from '../config';
 import {Local} from '../config';
 import { useNavigate } from 'react-router-dom';
 
-const url = window.location.href;
-    const Id = url.split("/").pop();
 
-const LayoutEditingPublication = () => {
+
+const EditingPost = () => {
+
+// récupération de l'id dans URL
+  const navigate = useNavigate();
+
+  const url = window.location.href;
+    const Id = url.split("/").pop();
 
    // rechercher un post dans la db
    const GetOnePostFromAPI = () => {
@@ -18,6 +24,7 @@ const LayoutEditingPublication = () => {
     }
   })
   .then((res) => {
+    // set tous les element du post
       setPost(res.data);
       setValueTextarea(res.data.message.message);
       setImg(res.data.message.imageUrl);
@@ -26,7 +33,7 @@ const LayoutEditingPublication = () => {
   });
   }
 
-
+    // useState
     const [valueTextarea, setValueTextarea] = useState();
 
     const [img, setImg] = useState('');
@@ -44,7 +51,7 @@ const LayoutEditingPublication = () => {
     message: ''
   });
 
-
+  // useEffect affichage du post
     useEffect(() => {
       GetOnePostFromAPI()
       },[]);
@@ -55,13 +62,14 @@ const LayoutEditingPublication = () => {
     setImgUpload('');
   };
 
-
+  // affichage et enregistrement de l'image
   const handleLoad = (event) => {
     const fileUploaded = event.target.files[0];
     setImgUpload(fileUploaded);
     setImg(URL.createObjectURL(fileUploaded));
   };
-
+  
+  // utilisation d'un bouton personalisé pour choisir une image
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -70,8 +78,6 @@ const LayoutEditingPublication = () => {
   const handleKeyDown = (e) => {
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`;
-    // In case you have a limitation
-    // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
   };
 
    //chargement du message
@@ -79,8 +85,8 @@ const LayoutEditingPublication = () => {
     setMessage({...message, [name]: event.target.value});
     setValueTextarea();
   };
-  const navigate = useNavigate();
 
+  // Methode put afin d'appliquer les modification
 
 const AppliedModification = async () => {
     try {
@@ -109,24 +115,54 @@ const AppliedModification = async () => {
     return(
         <div className="section_editing_publication">
         <div className="container_editing_publication">
-        <div className='pulication_user_container'><div className='pulication_user_content'><div className='pulication_user_img_container'><img className='pulication_user_img' src={post.message.user.imageUrl || img_profil} alt='' /></div><p className='pulication_user_name'>{post.message.user.firstName},{post.message.user.lastName}</p></div></div>
-        <div className='content_editing_publication'>
-        <div className="title_editing_pucation"><h3>Edit publication</h3></div>
-        <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
-        <div hidden={!img} className='img_upload_container'><div onClick={removeImage} className='facirclexmark_container'><i className="fa-solid fa-xmark"></i></div>
-        <div className='img_upload_content'><img className='img_upload' src={img || img_profil} alt=' 'onClick={handleClick} /></div>
+
+            <div className='pulication_user_container'>
+                <div className='pulication_user_content'>
+                    <div className='pulication_user_img_container'>
+                        <img className='pulication_user_img' src={post.message.user.imageUrl || img_profil} alt='' />
+                    </div>
+                        <p className='pulication_user_name'>{post.message.user.firstName},{post.message.user.lastName}</p>
+                </div>
+            </div>
+    
+            <div className='content_editing_publication'>
+    
+                <div className="title_editing_pucation">
+                   <h3>Edit publication</h3>
+                </div>
+    
+            <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
+    
+            <div hidden={!img} className='img_upload_container'>
+                <div onClick={removeImage} className='facirclexmark_container'>
+                    <i className="fa-solid fa-xmark"></i>
+                </div>
+    
+                <div className='img_upload_content'>
+                    <img className='img_upload' src={img || img_profil} alt=' 'onClick={handleClick} />
+                </div>
+            </div>
+    
+            <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
+    
+            <div className='button_message_container'>
+                <p className='button_message' onClick={AppliedModification}>
+                    <i className="fa-solid fa-share"></i>
+                    <span className='text_Ico'>applied</span>
+                </p>
+    
+               <p className='button_add_img_container'>
+                    <button className='button_add_img' onClick={handleClick}>
+                        <i className="fa-solid fa-image"></i>
+                        <span className='text_Ico'>Change picture</span>
+                    </button>
+                </p>
+            </div>
+
         </div>
-        <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
-        <div className='button_message_container'>
-           <p className='button_message' onClick={AppliedModification}><i className="fa-solid fa-share"></i><span className='text_Ico'>applied</span></p>
-           <p className='button_add_img_container'><button className='button_add_img' onClick={handleClick}>
-           <i className="fa-solid fa-image"></i><span className='text_Ico'>Change picture</span>
-         </button></p>
-         </div>
-         </div>
         </div>
         </div>
     )
 }
 
-export default LayoutEditingPublication
+export default EditingPost

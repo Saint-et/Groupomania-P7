@@ -92,6 +92,7 @@
   background: rgb(255, 255, 255);
 }
 .iconMenu:hover {
+  color: rgb(150, 0, 0);
   border: 1px solid rgba(201, 201, 201, 0.678);
 }
 

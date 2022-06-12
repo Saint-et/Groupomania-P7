@@ -1,22 +1,15 @@
-import React from 'react';
 import '../css/home/home.css';
-import Slidemenu from '../components/Slidemenu';
-import Header from '../Header/Header';
-import Publication from '../Publication/Publication';
+import Post from '../Post/Post';
+import React from 'react'
+
 
 const Home = () => {
   
 
  return(
-   <div>
-   <Header />
-   <main className='main_home'>
-   <Slidemenu />
-   <section className='container_main'>
-   <Publication />
-   </section>
-   </main>
-   </div>
+  <>
+  <Post />
+  </>
  )
 }
 

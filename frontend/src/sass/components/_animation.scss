@@ -1,10 +1,9 @@
-main,
 .img_upload_container,
 .pulication {
-    animation: fadein 1s;
-    -moz-animation: fadein 1s; /* Firefox */
-    -webkit-animation: fadein 1s; /* Safari et Chrome */
-    -o-animation: fadein 1s; /* Opera */
+    animation: fadein 500ms;
+    -moz-animation: fadein 500ms; /* Firefox */
+    -webkit-animation: fadein 500ms; /* Safari et Chrome */
+    -o-animation: fadein 500ms; /* Opera */
 }
 @keyframes fadein {
     from {

@@ -1,18 +1,14 @@
-import PublicationForm from '../components/PublicationComponent';
+import PublicationForm from '../components/PostComponent';
 import '../css/Publication/Publication.css'
 import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
 import '../css/message/message.css';
+import {Local} from '../config';
 
 
+const Publication = () => {
 
-
-
-const Commentaire = () => {
-
-
-  const Local = JSON.parse(localStorage.getItem("User"));
   //récupération des POST
   const GetALLPostFromAPI = () => {
     axios.get(`${API_URL}api/groupomania/forum`,{headers: {
@@ -25,14 +21,11 @@ const Commentaire = () => {
   });
   }
   
-  
-
 /*________useState GET_______*/
 
   const [post, setPost] = useState([]);
 
   const [deletePost, setDeletePost] = useState();
-
 
 /*________useState POST_______*/
 
@@ -49,12 +42,18 @@ const Commentaire = () => {
   // error & validate
   const [, setError] = useState("");
 
-  /*________________________________POST_____________________________________*/
+/*________useEffect GET_______*/
 
-  // bouton choisir un fichier
+  useEffect(() => {
+    GetALLPostFromAPI()
+  },[]);
+
+  /*___________POST___________*/
+
+  //Methode afin de cacher le bouton pour choisir un fichier
   const hiddenFileInput = React.useRef(null);
   
-
+  // utilisation d'un bouton personalisé pour choisir une image
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -63,8 +62,6 @@ const Commentaire = () => {
   const handleKeyDown = (e) => {
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`;
-    // In case you have a limitation
-    // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
   };
   
   //chargement de l'image & Affichage de l’image
@@ -74,7 +71,7 @@ const Commentaire = () => {
     setImg(URL.createObjectURL(fileUploaded));
   };
 
-  //supression de l'image
+  //supression de l'image affiché et enregistré
   const removeImage = () => {
     setImg('')
     setImgUpload('')
@@ -100,7 +97,6 @@ const Share = async () => {
     formData,
     {headers: {
       Authorization: `Bearer ${Local.token}`,
-      //' Content-Type ' : ' multipart/form-data ' ,
       accept: 'application/json'
     }
   });
@@ -114,35 +110,40 @@ const Share = async () => {
   } 
 }catch (error) {
   setError(error.response)
-  console.log(error.response);
 }
 };
 
-/*___________________________________GET______________________________________*/
-    
-useEffect(() => {
-  GetALLPostFromAPI()
-},[]);
+/*_________delete__________*/
 
+// Methode delete
 const deleted = (id) => {
   setDeletePost(id);
 }
 
+// vérification du usestate delete !undefined
 if (deletePost !== undefined) {
   axios.delete(`${API_URL}api/groupomania/forum/delete/${deletePost}`,{headers: {
     Authorization: `Bearer ${Local.token}`,
   }
 })
-  .then((res) => {
+  .then(() => {
           GetALLPostFromAPI()
+          //renvoi undefined
           setDeletePost(undefined)
-          console.log(res);
-          
         });
       }
 
-     
-/*_______________________________RENDER________________________________*/
+      const [warningDetele, setWarningDetele] = useState(true);
+
+    const showWarningDetele = () => {
+      let test = document.getElementById('86')
+      console.log(test);
+      setWarningDetele(false)
+    };
+
+    const cancelButtonDelete = () => {
+      setWarningDetele(true)
+    }
      
       if (!post) return null;
 
@@ -150,24 +151,41 @@ if (deletePost !== undefined) {
       <>
       <div className='main_home'>
      <div className='section_home_message'>
+
      <h4>Post something.</h4>
+
          <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
-         <div hidden={!img} className='img_upload_container'><div onClick={removeImage} className='facirclexmark_container'><i className="fa-solid fa-xmark"></i></div>
-         <div className='img_upload_content'><img className='img_upload' src={img} alt=' 'onClick={handleClick} /></div>
+
+         <div hidden={!img} className='img_upload_container'>
+           <div onClick={removeImage} className='facirclexmark_container'>
+             <i className="fa-solid fa-xmark"></i>
+           </div>
+           <div className='img_upload_content'>
+            <img className='img_upload' src={img} alt=' 'onClick={handleClick} />
+           </div>
          </div>
+
          <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
-         <div className='button_message_container'>
-           <p className='button_message' onClick={Share}><i className="fa-solid fa-share"></i><span className='text_Ico'>post</span></p>
-           <p className='button_add_img_container'><button className='button_add_img' onClick={handleClick}>
-           <i className="fa-solid fa-image"></i><span className='text_Ico'>Add picture</span>
-         </button></p>
-         </div>
+
+          <div className='button_message_container'>
+             <p className='button_message' onClick={Share}><i className="fa-solid fa-share">
+               </i><span className='text_Ico'>post</span>
+             </p>
+             <p className='button_add_img_container'>
+               <button className='button_add_img' onClick={handleClick}>
+                 <i className="fa-solid fa-image"></i><span className='text_Ico'>Add picture</span>
+               </button>
+             </p>
+          </div>
+
      </div>
    </div>
-        <PublicationForm post={post} Local={Local} deleted={deleted} />
+
+        <PublicationForm isProfile={false} isPost={true} post={post} Local={Local} deleted={deleted} showWarningDetele={showWarningDetele} cancelButtonDelete={cancelButtonDelete} warningDetele={warningDetele}/>
+
         </>
     )
 }
 
 
-export default Commentaire
+export default Publication

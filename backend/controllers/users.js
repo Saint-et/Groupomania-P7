@@ -3,7 +3,7 @@ const User = require('../models/login.signup');
 const fs = require('fs');
 
 exports.getAllUser = async (req, res, next) => {
-    User.findAll({attributes: ['firstName','lastName','email','imageUrl']})
+    User.findAll({attributes: ['firstName','lastName','email','imageUrl','isAdmin']})
         .then(user => {
         return res.status(200).json({ user })
         })
@@ -29,8 +29,6 @@ exports.updateUser = async (req, res, next) => {
     } : {
       ...req.body
     }
-
-    //console.log(userFind);
 
     if (userFind._previousDataValues.imageUrl == null || userImg.image == userFind._previousDataValues.imageUrl) {
       console.log(0);
@@ -59,6 +57,9 @@ exports.updateAdmin = async (req, res, next) => {
   await User.findOne({ where: { id: req.params.id }})
   .then((userFind) => {
     console.log(userFind);
+    console.log(req.body);
+    User.update({ isAdmin: req.body.isAdmin }, {where : { id: req.params.id }});
+       return res.status(200).json({ message: 'user changed' });
   })}
 
 exports.deleteUser = async (req, res, next) => {

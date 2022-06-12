@@ -63,6 +63,7 @@
     color: $backgroundHeader;
     background: $titleHeader;
     &:hover{
+        color: $backgroundHeader;
         border: 1px solid $border_backgroundMenu;
     }
 }

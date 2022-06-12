@@ -9,6 +9,13 @@
         background-color: $backgroundHeaderPostHover;
     }
 }
+.pulication_user_container_Profil{
+    width: 100%;
+    height: 50px;
+    background-color: $backgroundHeaderPost;
+    transition: 300ms;
+    cursor: default;
+}
 .pulication_user_content{
     margin-left: 5px;
     width: 100%;
@@ -43,6 +50,14 @@
     margin-top: 10px;
     height: 20px;
     margin-left: 10px;
+}
+.isAdmin_badge{
+    margin-top: 10px;
+    margin-bottom: -20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 100, 0);
 }
 @media all and (min-width: $media_query) {
     .pulication_user_content{
