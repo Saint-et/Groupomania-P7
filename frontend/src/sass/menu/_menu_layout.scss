@@ -60,6 +60,7 @@
     text-align: center;
 }
 .iconMenu{
+    font-size: 22px;
     color: $backgroundHeader;
     background: $titleHeader;
     &:hover{
@@ -71,6 +72,9 @@
     font-size: 25px;
     margin-left: 80px;
     margin-top: 20px;
+}
+.logo_menu_pc{
+    display: none;
 }
 @media all and (min-width: $media_query) {
     .container_slidemenu {
@@ -86,6 +90,7 @@
         border-right: 1px solid $border_backgroundMenu;
     }
     .section_menu_content{
+        width: 110px;
         position: fixed;
     }
     .img_profil_menu{
@@ -96,5 +101,11 @@
     }
     .profil_menu_text{
         margin-left: 5px;
+    }
+    .logo_menu{
+        display: none;
+    }
+    .logo_menu_pc{
+        display: initial;
     }
 }

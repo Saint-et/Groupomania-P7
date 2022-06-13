@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
 import {Local} from '../config';
+import logo_groupomania_menu from '../image/icon-left-font-monochrome-black.svg';
 
 
 
@@ -33,7 +34,6 @@ const Slidemenu = () => {
     const handleClick = () => {
         navigate('/login')
         localStorage.removeItem("User");
-        localStorage.removeItem("imageUrl");
         return window.location.reload();
     }
 
@@ -47,8 +47,10 @@ const Slidemenu = () => {
     <section className='container_slidemenu'>
     <div className={sidebar ? 'section_menu active' : 'section_menu'}>
     <div className='section_menu_content'>
+    <img className='logo_menu_pc' src={logo_groupomania_menu} />
      <div className='profil_menu'>
      <div className='menu_icon PMenu'>Menu<p className='menu_icon_nav' onClick={showSidebar} hidden={sidebar}><i className="fa-solid fa-bars"></i></p><p className='menu_icon_nav' onClick={showSidebar} hidden={!sidebar}><i className="fa-solid fa-xmark"></i></p></div>
+     <img className='logo_menu' src={logo_groupomania_menu} />
      <img className='img_profil_menu' src={myProfil.user.imageUrl || img_profil} alt=' '/>
     <p className='profil_menu_text PMenu'>{myProfil.user.firstName}</p>
     <p className='profil_menu_text PMenu'>{myProfil.user.lastName}</p>

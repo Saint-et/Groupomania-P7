@@ -1,7 +1,9 @@
 import img_profil from '../image/image_profil.png';
 import { Link } from 'react-router-dom';
+import React from "react";
 
 const PublicationForm = (props) => {
+
     return(
         <div className="section_pulication">
             <div className='pulication_container'>
@@ -42,13 +44,13 @@ const PublicationForm = (props) => {
 
 
                 <div className='container_system_menu' hidden={props.Local.id !== publication.userId} >
-                    <div className='content_system_menu' >
+                    <div className='content_system_menu' id={`subMenu${publication.id}`}>
                         <div className='system_Modify'>
                             <Link className='system_Modify_button' to={`/forum/${publication.id}`}>
                             <i className="fa-solid fa-pen"></i>
                             </Link>
                         </div>
-                        <div className='system_delete' id={publication.id} onClick={props.showWarningDetele}>
+                        <div className='system_delete' onClick={() => document.getElementById(`deleteMenu${publication.id}`).hidden = false}>
                             <i className="fa-solid fa-trash"></i>
                         </div>
                     </div>
@@ -56,34 +58,35 @@ const PublicationForm = (props) => {
 
                 
                 <div className='container_system_menu' hidden={props.Local.id === publication.user.id} >
-                    <div className='content_system_menu' hidden={props.Local.isAdmin === false} >
+                    <div className='content_system_menu' hidden={props.Local.isAdmin === false} id={`subMenu${publication.id}`}>
                         <div className='system_Modify'>
                             <Link className='system_Modify_button' to={`/forum/${publication.id}`}>
                             <i className="fa-solid fa-pen"></i>
                             </Link>
                         </div>
-                        <div className='system_delete' id={publication.id} onClick={props.showWarningDetele}>
+                        <div className='system_delete' onClick={() => document.getElementById(`deleteMenu${publication.id}`).hidden = false}>
                             <i className="fa-solid fa-trash"></i>
                         </div>
                     </div>
                 </div>
 
-                <div hidden={props.warningDetele}>
-          <h3 className='warning_delete'>Delete the post ?</h3>
+                
+
+                <div id={`deleteMenu${publication.id}`} hidden={true}>
+        <p className='warning_delete'>Delete the post ?</p>
         <div className='button_message_container'>
-            <p className='button_warning_delete'>
+            <p className='button_warning_delete' onClick={()=> props.deleted(publication.id)}>
             <i className="fa-solid fa-ban"></i>
             <span className='text_Ico'>I'm sure</span>
             </p>
             <p className='button_add_img_container'>
-            <button className='warning_cancel' onClick={props.cancelButtonDelete}>
+            <button className='warning_cancel' onClick={() => document.getElementById(`deleteMenu${publication.id}`).hidden = true}>
             <i className="fa-solid fa-xmark"></i>
             <span className='text_Ico'>Cancel</span>
             </button>
             </p>
          </div>
          </div>
-
 
                 </div>
                 </div>

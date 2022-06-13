@@ -88,6 +88,7 @@
 }
 
 .iconMenu {
+  font-size: 22px;
   color: rgb(150, 0, 0);
   background: rgb(255, 255, 255);
 }
@@ -100,6 +101,10 @@
   font-size: 25px;
   margin-left: 80px;
   margin-top: 20px;
+}
+
+.logo_menu_pc {
+  display: none;
 }
 
 @media all and (min-width: 785px) {
@@ -118,6 +123,7 @@
   }
 
   .section_menu_content {
+    width: 110px;
     position: fixed;
   }
 
@@ -131,6 +137,14 @@
 
   .profil_menu_text {
     margin-left: 5px;
+  }
+
+  .logo_menu {
+    display: none;
+  }
+
+  .logo_menu_pc {
+    display: initial;
   }
 }
 

@@ -1,13 +1,16 @@
 import PublicationForm from '../components/PostComponent';
-import '../css/Publication/Publication.css'
+import '../css/Post/Post.css'
 import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
 import '../css/message/message.css';
+import { useNavigate } from 'react-router-dom';
 import {Local} from '../config';
+import {isLog} from "../utils";
 
 
 const Publication = () => {
+
 
   //récupération des POST
   const GetALLPostFromAPI = () => {
@@ -25,8 +28,6 @@ const Publication = () => {
 
   const [post, setPost] = useState([]);
 
-  const [deletePost, setDeletePost] = useState();
-
 /*________useState POST_______*/
 
   const [valueTextarea, setValueTextarea] = useState();
@@ -43,9 +44,13 @@ const Publication = () => {
   const [, setError] = useState("");
 
 /*________useEffect GET_______*/
-
+const navigate = useNavigate();
   useEffect(() => {
+    if (isLog() === false) {
+      navigate('/login');
+    } else {
     GetALLPostFromAPI()
+  }
   },[]);
 
   /*___________POST___________*/
@@ -115,35 +120,16 @@ const Share = async () => {
 
 /*_________delete__________*/
 
-// Methode delete
-const deleted = (id) => {
-  setDeletePost(id);
-}
-
-// vérification du usestate delete !undefined
-if (deletePost !== undefined) {
-  axios.delete(`${API_URL}api/groupomania/forum/delete/${deletePost}`,{headers: {
+const deleted = async (id) => {
+  await axios.delete(`${API_URL}api/groupomania/forum/delete/${id}`,{headers: {
     Authorization: `Bearer ${Local.token}`,
   }
 })
   .then(() => {
           GetALLPostFromAPI()
-          //renvoi undefined
-          setDeletePost(undefined)
         });
-      }
-
-      const [warningDetele, setWarningDetele] = useState(true);
-
-    const showWarningDetele = () => {
-      let test = document.getElementById('86')
-      console.log(test);
-      setWarningDetele(false)
-    };
-
-    const cancelButtonDelete = () => {
-      setWarningDetele(true)
-    }
+  
+}
      
       if (!post) return null;
 
@@ -161,7 +147,7 @@ if (deletePost !== undefined) {
              <i className="fa-solid fa-xmark"></i>
            </div>
            <div className='img_upload_content'>
-            <img className='img_upload' src={img} alt=' 'onClick={handleClick} />
+            <img className='img_upload' src={img} alt=' ' onClick={handleClick} />
            </div>
          </div>
 
@@ -180,9 +166,11 @@ if (deletePost !== undefined) {
 
      </div>
    </div>
+   
 
-        <PublicationForm isProfile={false} isPost={true} post={post} Local={Local} deleted={deleted} showWarningDetele={showWarningDetele} cancelButtonDelete={cancelButtonDelete} warningDetele={warningDetele}/>
+        <PublicationForm isProfile={false} isPost={true} post={post} Local={Local} deleted={deleted} />
 
+        
         </>
     )
 }

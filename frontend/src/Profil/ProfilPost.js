@@ -2,8 +2,12 @@ import PublicationForm from '../components/PostComponent';
 import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import {isLog} from "../utils";
 
 const ProfilPublication = () => {
+
+  const navigate = useNavigate();
 
     const url = window.location.href;
     const Id = url.split("/").pop();
@@ -23,7 +27,11 @@ const ProfilPublication = () => {
   }
 
   useEffect(() => {
+    if (isLog() === false) {
+      navigate('/login');
+    } else {
     GetALLPostFromAPI()
+    }
   },[]);
 
 

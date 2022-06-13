@@ -1,4 +1,5 @@
 const User = require('../models/login.signup');
+const Messagemedia = require('../models/forummedia');
 
 const fs = require('fs');
 
@@ -55,15 +56,27 @@ exports.updateUser = async (req, res, next) => {
 
 exports.updateAdmin = async (req, res, next) => {
   await User.findOne({ where: { id: req.params.id }})
-  .then((userFind) => {
-    console.log(userFind);
-    console.log(req.body);
-    User.update({ isAdmin: req.body.isAdmin }, {where : { id: req.params.id }});
-       return res.status(200).json({ message: 'user changed' });
+  .then(() => {
+    User.update({ isAdmin: req.body.isAdmin }, {where : { id: req.params.id }})
+       .then(() => res.status(200).json({ message: 'user changed' }));
   })}
 
+
+
 exports.deleteUser = async (req, res, next) => {
-    await User.destroy({ where: { id: req.params.id }})
-      .then(() => res.status(200).json({ message: 'User deleted.'}))
-      .catch(error => res.status(400).json({ error }));
+  await User.findOne({ where: { id: req.params.id }})
+  .then((userFind) => {
+     Messagemedia.findAll({where: { userId: userFind.dataValues.id } })
+     .then(( messageFind ) => {
+      messageFind.forEach(element => {
+        if (element.dataValues.imageUrl !== null) {
+          const filename = element.dataValues.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`);
+        }
+      })
+      User.destroy({ where: { id: req.params.id }});
+      return res.status(200).json({ message: 'user deleted' });
+     })
+  })
+  .catch(error => res.status(400).json({ error }));
 };

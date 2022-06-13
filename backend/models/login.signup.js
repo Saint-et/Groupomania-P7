@@ -46,9 +46,8 @@ const sequelize = require('../db/mysql');
           }
         },
      {
-      // Other model options go here
-      sequelize, // We need to pass the connection instance
-      modelName: 'users', // We need to choose the model name
+      sequelize,
+      modelName: 'users',
       tableName: 'users'
     });
 

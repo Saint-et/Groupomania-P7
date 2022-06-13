@@ -4,13 +4,14 @@ import React, {useState, useEffect} from "react";
 import img_profil from '../image/image_profil.png';
 import '../css/Profil/Profil.css';
 import {Local} from '../config';
-
-
-
+import { useNavigate } from 'react-router-dom';
+import {isLog} from "../utils";
 
 
 
 const GetMyProfil = () => {
+
+  const navigate = useNavigate();
   
   const url = window.location.href;
     const Id = url.split("/").pop();
@@ -37,7 +38,11 @@ const GetMyProfil = () => {
 
 
 useEffect(() => {
+  if (isLog() === false) {
+    navigate('/login');
+  } else {
  GetProfilFromAPI();
+  }
 },[]);
 
 
@@ -61,11 +66,11 @@ useEffect(() => {
 
   const [img, setImg] = useState('');
 
- 
+
 
   const hiddenFileInput = React.useRef(null);
 
- 
+
 
     const handleLoad = (event) => {
       const fileUploaded = event.target.files[0];
@@ -165,16 +170,27 @@ const cancelAccountDelete = () => {
   setdeleteAccount(true)
 }
 
-// vérification du usestate delete !undefined
-//if (deletePost !== undefined) {
-//  axios.delete(`${API_URL}api/groupomania/forum/delete/${deletePost}`,{headers: {
-//    Authorization: `Bearer ${Local.token}`,
-//  }
-//})
-//  .then(() => {
-//    
-//        });
-//      }
+const DeleteProfile = async (id) => {
+  console.log(id);
+  await axios.delete(`${API_URL}api/groupomania/users/delete/${id}`,{headers: {
+    Authorization: `Bearer ${Local.token}`,
+  }
+})
+  .then(() => {
+    if (Local.id != myProfil.user.id) {
+      navigate('/')
+      //return window.location.reload();
+    } else {
+      localStorage.removeItem("User");
+      navigate('/login')
+      return window.location.reload();
+    }
+      
+    
+  
+    });
+  
+}
 
     if (!myProfil) return null;
 
@@ -308,11 +324,11 @@ const cancelAccountDelete = () => {
         </div>
 
         <div hidden={deleteAccount}>
-          <h3 className='warning_delete'>Delete the account ?</h3>
+          <p className='warning_delete'>Delete the account ?</p>
         <div className='button_message_container'>
-            <p className='button_warning_delete' onClick={deleted}>
+            <p className='button_warning_delete' onClick={()=> DeleteProfile(myProfil.user.id)}>
             <i className="fa-solid fa-ban"></i>
-            <span className='text_Ico'>I'm sure</span>
+            <span className='text_Ico'>Yes,I'm sure</span>
             </p>
             <p className='button_add_img_container'>
             <button className='warning_cancel' onClick={cancelAccountDelete}>

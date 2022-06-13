@@ -172,14 +172,7 @@ You'll need to replace with your own color values.
   margin-bottom: 10px;
 }
 
-.content_system_menu {
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-}
-
-.system_delete {
+.system_menu_ellipsis {
   padding-left: 5px;
   padding-right: 5px;
   margin-right: 20px;
@@ -191,9 +184,35 @@ You'll need to replace with your own color values.
   cursor: pointer;
   transition: 500ms;
   font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.system_menu_ellipsis:hover {
+  transition: 200ms;
+}
+.system_menu_ellipsis:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.content_system_menu {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.system_delete {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  transition: 500ms;
+  font-size: 14px;
   color: rgba(184, 0, 0, 0.5);
-  border-left: 1px solid rgba(184, 0, 0, 0.5);
-  border-right: 1px solid rgba(184, 0, 0, 0.5);
 }
 .system_delete:hover {
   transition: 200ms;
@@ -215,8 +234,6 @@ You'll need to replace with your own color values.
   transition: 500ms;
   color: rgba(0, 0, 170, 0.5);
   font-size: 14px;
-  border-left: 1px solid rgba(0, 0, 170, 0.5);
-  border-right: 1px solid rgba(0, 0, 170, 0.5);
 }
 .system_Modify:hover {
   transition: 200ms;

@@ -6,6 +6,7 @@ import axios from "axios";
 import {API_URL} from '../config';
 import {Local} from '../config';
 import { useNavigate } from 'react-router-dom';
+import {isLog} from "../utils";
 
 
 
@@ -53,7 +54,11 @@ const EditingPost = () => {
 
   // useEffect affichage du post
     useEffect(() => {
+      if (isLog() === false) {
+        navigate('/login');
+      } else {
       GetOnePostFromAPI()
+      }
       },[]);
 
     //supression de l'image

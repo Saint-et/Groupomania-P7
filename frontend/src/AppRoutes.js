@@ -26,18 +26,10 @@ const AppRoutes = () => {
         <section className='container_main'>
         <Routes>
         <Route path="/" element={<Home />}/>
-
-
         <Route path="/employ" element={<Employ />}/>
-
         <Route path="forum/:id" element={<EditingPublication />}/>
         <Route path=":firstName.:lastName/:id" element={<Profils />}/>
         <Route path="my-profil/:firstName.:lastName/:id" element={<MyProfil />}/>
-
-
-        
-
-
         <Route path="login" element={<Login />}/>
         <Route path="signup" element={<Signup />}/>
         </Routes>
