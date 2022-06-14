@@ -27,8 +27,8 @@ const sequelize = require('../db/mysql');
     }
   },{
     sequelize,
-    modelName: 'forum',
-    tableName: 'forum'
+    modelName: 'post',
+    tableName: 'post'
   });
 
   sequelize.models.users.hasMany(Messagemedia, {foreignKey: 'userId', sourceKey: 'id'});

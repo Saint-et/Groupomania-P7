@@ -121,7 +121,7 @@ const AppliedModification = async () => {
         <div className="section_editing_publication">
         <div className="container_editing_publication">
 
-            <div className='pulication_user_container'>
+            <div className='pulication_user_container_Profil'>
                 <div className='pulication_user_content'>
                     <div className='pulication_user_img_container'>
                         <img className='pulication_user_img' src={post.message.user.imageUrl || img_profil} alt='' />
@@ -136,7 +136,7 @@ const AppliedModification = async () => {
                    <h3>Edit publication</h3>
                 </div>
     
-            <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
+            <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} maxLength='2000' value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
     
             <div hidden={!img} className='img_upload_container'>
                 <div onClick={removeImage} className='facirclexmark_container'>

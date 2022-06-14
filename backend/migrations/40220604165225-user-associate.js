@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.addConstraint('forum', {
+    await queryInterface.addConstraint('post', {
       fields: ['userId'],
       type: 'foreign key',
       name: 'associate_users',
@@ -16,7 +16,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.removeConstraint('forum', {
+    await queryInterface.removeConstraint('post', {
       fields: ['userId'],
       type: 'foreign key',
       name: 'associate_users',

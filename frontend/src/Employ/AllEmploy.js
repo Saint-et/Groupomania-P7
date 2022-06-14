@@ -42,10 +42,6 @@ const Employ = () => {
     setSearchUser(e.target.value)
   }
 
-
-  console.log(searchUser);
-
-
   if (!allUsers) return null;
 
     return(
@@ -55,7 +51,7 @@ const Employ = () => {
         </div>
         <div className="main_employs">
         <div className="section_employs"> 
-        {allUsers.user.filter((users) => {
+        {allUsers.user?.filter((users) => {
             return users.lastName.toLowerCase().includes(searchUser.toLowerCase())
         }).map((users) => (
             

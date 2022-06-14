@@ -52,7 +52,6 @@ const navigate = useNavigate();
     GetALLPostFromAPI()
   }
   },[]);
-
   /*___________POST___________*/
 
   //Methode afin de cacher le bouton pour choisir un fichier
@@ -140,7 +139,7 @@ const deleted = async (id) => {
 
      <h4>Post something.</h4>
 
-         <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
+         <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} maxLength='2000' value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
 
          <div hidden={!img} className='img_upload_container'>
            <div onClick={removeImage} className='facirclexmark_container'>

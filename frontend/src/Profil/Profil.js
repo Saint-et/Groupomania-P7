@@ -177,7 +177,7 @@ const DeleteProfile = async (id) => {
   }
 })
   .then(() => {
-    if (Local.id != myProfil.user.id) {
+    if (Local.id !== myProfil.user.id) {
       navigate('/')
       return window.location.reload();
     } else {
@@ -261,11 +261,11 @@ const DeleteProfile = async (id) => {
 
 
           <div className='name_container'><div className='name_content'>
-            <p>firstname : {myProfil.user.firstName}</p>
+            <p>firstname :<span translate='no'> {myProfil.user.firstName}</span></p>
             <input className='fiels' onChange={handleChange("firstName")} hidden={hiddenEdit} type='text' />
-            <p>lastname : {myProfil.user.lastName}</p>
+            <p translate='no'>lastname : <span translate='no'>{myProfil.user.lastName}</span></p>
             <input className='fiels' onChange={handleChange("lastName")} hidden={hiddenEdit} type='text' />
-            <p>email : {myProfil.user.email}</p>
+            <p translate='no'>email : <span translate='no'>{myProfil.user.email}</span></p>
             <input className='fiels' onChange={handleChange("email")} hidden={hiddenEdit} type='text' />
             </div>
           </div>

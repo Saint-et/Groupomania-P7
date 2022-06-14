@@ -17,6 +17,13 @@ body {
   font-family: "Mukta", sans-serif;
   background-color: rgb(255, 255, 255);
   width: 100%;
+  margin: auto;
+  overflow: overlay;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 body h3 {
   font-size: 20px;
@@ -31,7 +38,18 @@ body img {
 body a {
   text-decoration: none;
 }
+body::-webkit-scrollbar {
+  width: 15px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(90, 90, 90, 0.7);
+  border-radius: 50px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(90, 90, 90);
+}
 
+.comments_message_content,
 .fiels,
 .section_profil,
 .img_upload_container,
@@ -90,22 +108,20 @@ body a {
 }
 
 .section_employs {
-  background-color: rgb(150, 0, 0);
   width: 100%;
   max-width: 1400px;
   height: auto;
   padding: 10px;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .card_employs {
   width: 100%;
-  max-width: 400px;
+  min-width: 100px;
   background-color: rgb(255, 255, 255);
   border-radius: 25px;
-  margin: 10px;
+  margin: 5px;
   border: 1px solid rgba(201, 201, 201, 0.678);
   display: flex;
   flex-direction: column;
@@ -118,6 +134,7 @@ body a {
   transition: 100ms;
   background-color: rgba(255, 255, 255, 0.95);
   color: black;
+  border: 1px solid rgb(150, 0, 0);
 }
 
 .img_employs_container {
@@ -129,9 +146,9 @@ body a {
 
 .img_employs_content {
   width: 100%;
-  max-width: 100px;
+  max-width: 110px;
   height: auto;
-  max-height: 100px;
+  max-height: 110px;
   border-radius: 100px;
   margin-top: 5px;
   border: 1px solid rgba(201, 201, 201, 0.678);
@@ -142,6 +159,12 @@ body a {
 
 .name_content_admin {
   color: rgb(0, 100, 0);
+}
+
+.name_content_employs {
+  width: 100%;
+  display: flex;
+  text-align: center;
 }
 
 .barre_search_container {
@@ -184,6 +207,11 @@ body a {
     margin-left: 5px;
     margin-right: 5px;
     border-radius: 25px;
+  }
+
+  .card_employs {
+    width: 18%;
+    min-width: 200px;
   }
 }
 
