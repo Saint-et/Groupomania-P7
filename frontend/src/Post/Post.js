@@ -13,8 +13,8 @@ const Publication = () => {
 
 
   //récupération des POST
-  const GetALLPostFromAPI = () => {
-    axios.get(`${API_URL}api/groupomania/forum`,{headers: {
+  const GetALLPostFromAPI = async () => {
+    await axios.get(`${API_URL}api/groupomania/forum`,{headers: {
       Authorization: `Bearer ${Local.token}`,
     }
   })

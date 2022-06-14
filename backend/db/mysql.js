@@ -8,10 +8,6 @@ module.exports = new Sequelize(process.env.DATABASE, process.env.USER, process.e
     dialect: 'mysql',
   });
 
-
-
-  
-  
   try {
     module.exports.authenticate();
     console.log('Connection has been established successfully.');

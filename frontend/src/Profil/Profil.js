@@ -179,7 +179,7 @@ const DeleteProfile = async (id) => {
   .then(() => {
     if (Local.id != myProfil.user.id) {
       navigate('/')
-      //return window.location.reload();
+      return window.location.reload();
     } else {
       localStorage.removeItem("User");
       navigate('/login')

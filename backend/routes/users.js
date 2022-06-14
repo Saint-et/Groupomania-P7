@@ -23,8 +23,5 @@ router.put('/users/update-admin/:id', auth, profilCtrl.updateAdmin);
 //supprimer un utilisateur
 router.delete('/users/delete/:id', auth, multer, profilCtrl.deleteUser);
 
-// supression
-//router.delete('/:id', auth,profilCtrl.deleteProfil);
-
 
 module.exports = router;

@@ -4,7 +4,8 @@ const Messagemedia = require('../models/forummedia');
 const fs = require('fs');
 
 exports.getAllUser = async (req, res, next) => {
-    User.findAll({attributes: ['firstName','lastName','email','imageUrl','isAdmin']})
+    User.findAll({order: [
+      ['firstName', 'ASC']], attributes: ['id','firstName','lastName','email','imageUrl','isAdmin']})
         .then(user => {
         return res.status(200).json({ user })
         })
@@ -71,11 +72,19 @@ exports.deleteUser = async (req, res, next) => {
       messageFind.forEach(element => {
         if (element.dataValues.imageUrl !== null) {
           const filename = element.dataValues.imageUrl.split('/images/')[1];
-          fs.unlink(`images/${filename}`);
+          fs.unlink(`images/${filename}`,() => {});
         }
       })
-      User.destroy({ where: { id: req.params.id }});
-      return res.status(200).json({ message: 'user deleted' });
+      if (userFind.dataValues.imageUrl !== null) {
+        const filename = userFind.dataValues.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`,() => {
+            User.destroy({ where: { id: req.params.id }});
+            return res.status(200).json({ message: 'user deleted' });
+          });
+      } else {
+        User.destroy({ where: { id: req.params.id }});
+        return res.status(200).json({ message: 'user deleted' });
+      }
      })
   })
   .catch(error => res.status(400).json({ error }));

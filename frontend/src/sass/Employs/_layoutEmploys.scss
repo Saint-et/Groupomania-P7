@@ -1,0 +1,90 @@
+.main_employs{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $backgroundPostMessage;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.section_employs{
+    background-color: $backgroundHeader;
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.card_employs{
+    //height: 190px;
+    width: 100%;
+    max-width: 400px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 10px;
+    border: 1px solid $border_backgroundMenu;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 200ms;
+    color: black;
+    &:hover{
+        transition: 100ms;
+        background-color: rgba(255, 255, 255, 0.950);
+        color: black;
+    }
+}
+.img_employs_container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+.img_employs_content{
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    max-height: 100px;
+    border-radius: 100px;
+    margin-top: 5px;
+    border: 1px solid $border_backgroundMenu;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: 0px 0px;
+}
+.name_content_admin{
+    color: rgb(0, 100, 0);
+}
+.barre_search_container{
+    background-color: $backgroundHeaderPublication;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.field_employs{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    @include field;
+    background-color: white;
+    max-width: 800px;
+    font-weight: 600;
+    cursor: pointer;
+    &::placeholder{
+        display: flex;
+        text-align: center;
+    }
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.800);
+    }
+}
+@media all and (min-width: $media_query) {
+    .section_employs{
+        margin-left: 5px;
+        margin-right: 5px;
+        border-radius: 25px;
+    }
+}
