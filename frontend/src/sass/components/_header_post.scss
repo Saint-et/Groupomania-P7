@@ -59,7 +59,7 @@
     justify-content: center;
     color: rgb(0, 100, 0);
 }
-@media all and (min-width: $media_query) {
+@media all and (min-width: $media_query_Pc) {
     .pulication_user_content{
         margin-left: 25px;
     }

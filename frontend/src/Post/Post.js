@@ -1,9 +1,9 @@
 import PublicationForm from '../components/PostComponent';
-import '../css/Post/Post.css'
+import '../css/Post/Post.css';
 import React, {useState, useEffect} from "react";
 import {API_URL} from '../config';
 import axios from "axios";
-import '../css/message/message.css';
+import '../css/CreatePost/CreatePost.css';
 import { useNavigate } from 'react-router-dom';
 import {Local} from '../config';
 import {isLog} from "../utils";
@@ -22,14 +22,13 @@ const Publication = () => {
       setPost(res.data);
       setMessage({message : ''});
   });
-  }
+  };
   
-/*________useState GET_______*/
 
-  const [post, setPost] = useState([]);
+  // récupération de mes post
+  const [post, setPost] = useState();
 
-/*________useState POST_______*/
-
+  // récupération de la valeur dans Textarea
   const [valueTextarea, setValueTextarea] = useState();
 
   //Affichage de l’image
@@ -43,7 +42,7 @@ const Publication = () => {
   // error & validate
   const [, setError] = useState("");
 
-/*________useEffect GET_______*/
+// vérification du login avant d'exécuter les post
 const navigate = useNavigate();
   useEffect(() => {
     if (isLog() === false) {
@@ -52,7 +51,7 @@ const navigate = useNavigate();
     GetALLPostFromAPI()
   }
   },[]);
-  /*___________POST___________*/
+  
 
   //Methode afin de cacher le bouton pour choisir un fichier
   const hiddenFileInput = React.useRef(null);
@@ -117,15 +116,14 @@ const Share = async () => {
 }
 };
 
-/*_________delete__________*/
-
+// suppression d'un post
 const deleted = async (id) => {
   await axios.delete(`${API_URL}api/groupomania/forum/delete/${id}`,{headers: {
     Authorization: `Bearer ${Local.token}`,
   }
 })
   .then(() => {
-          GetALLPostFromAPI()
+        GetALLPostFromAPI()
         });
   
 }
@@ -135,32 +133,33 @@ const deleted = async (id) => {
     return(
       <>
       <div className='main_home'>
-     <div className='section_home_message'>
+        <div className='section_home_message'>
 
-     <h4>Post something.</h4>
+          <h4>Post something.</h4>
 
-         <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} maxLength='2000' value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
+        <textarea onKeyDown={handleKeyDown} onClick={handleChange} onChange={handleChange('message')} maxLength='2000' value={valueTextarea} className='post_message_forum' placeholder='Write here .....' />
 
-         <div hidden={!img} className='img_upload_container'>
-           <div onClick={removeImage} className='facirclexmark_container'>
-             <i className="fa-solid fa-xmark"></i>
-           </div>
-           <div className='img_upload_content'>
-            <img className='img_upload' src={img} alt=' ' onClick={handleClick} />
-           </div>
-         </div>
+          <div hidden={!img} className='img_upload_container'>
+            <div onClick={removeImage} className='facirclexmark_container'>
+              <i className="fa-solid fa-xmark"></i>
+            </div>
+            <div className='img_upload_content'>
+              <img className='img_upload' src={img} alt=' ' onClick={handleClick} />
+            </div>
+          </div>
 
          <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
 
           <div className='button_message_container'>
-             <p className='button_message' onClick={Share}><i className="fa-solid fa-share">
-               </i><span className='text_Ico'>post</span>
-             </p>
-             <p className='button_add_img_container'>
-               <button className='button_add_img' onClick={handleClick}>
-                 <i className="fa-solid fa-image"></i><span className='text_Ico'>Add picture</span>
-               </button>
-             </p>
+              <p className='button_message' onClick={Share}><i className="fa-solid fa-share">
+                </i><span className='text_Ico'>post</span>
+              </p>
+
+              <p className='button_add_img_container'>
+                <button className='button_add_img' onClick={handleClick}>
+                  <i className="fa-solid fa-image"></i><span className='text_Ico'>Add picture</span>
+                </button>
+              </p>
           </div>
 
      </div>

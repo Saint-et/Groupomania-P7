@@ -11,12 +11,10 @@ const sequelize = require('../db/mysql');
 
   Messagemedia.init({
     message: {
-      type: DataTypes.STRING,
-      // allowNull defaults to true
+      type: DataTypes.STRING
     },
-    // Model attributes are defined here
     imageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     userId: {
       type: DataTypes.NUMBER,

@@ -10,9 +10,14 @@ import axios from "axios";
 
 const Employ = () => {
 
-    const [allUsers, setAllUsers] = useState()
+  const navigate = useNavigate();
 
-    const [searchUser, setSearchUser] = useState('')
+  // récupération des users
+    const [allUsers, setAllUsers] = useState();
+
+  // récupération de la valeur de la search bar
+    const [searchUser, setSearchUser] = useState('');
+
 
 //récupération des users
   const GetALLUsersFromAPI = async () => {
@@ -24,23 +29,23 @@ const Employ = () => {
     setAllUsers(res.data);
     
   });
-  }
-
-  const navigate = useNavigate();
+  };
+// vérification du login avant d'exécuter les users
   useEffect(() => {
     if (isLog() === false) {
       navigate('/login');
     } else {
-      GetALLUsersFromAPI()
+      GetALLUsersFromAPI();
   }
   },[]);
 
 
-
+// récupération de la valeur de la search bar
   const handleSearch = (e) => {
     console.log(e.target.value);
-    setSearchUser(e.target.value)
-  }
+    setSearchUser(e.target.value);
+  };
+
 
   if (!allUsers) return null;
 
@@ -75,7 +80,7 @@ const Employ = () => {
         </div>
         </div>
         </>
-    )
-}
+    );
+};
 
-export default Employ
+export default Employ;

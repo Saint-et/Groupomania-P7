@@ -1,8 +1,5 @@
 const Messagemedia = require('../models/forummedia');
 const { models } = require('../db/mysql');
-
-//console.log(models);
-
 const fs = require('fs');
 
 
@@ -32,7 +29,6 @@ exports.getOneMessageMedia = async (req,res,next) => (
 
 exports.postOneMessageMedia = async (req,res,next) => {
     try {
-
         const messageImg = req.file ?
         {
           ...req.body,
@@ -61,49 +57,38 @@ exports.updateMessageMedia = async (req,res,next) => (
     await Messagemedia.findOne({ where: { id: req.params.id }})
     .then((message) => {
 
-      console.log(req.body);
+          const messageImg = req.file ?{
+            ...req.body,
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+          } : {
+            ...req.body
+          }
 
-      const messageImg = req.file ?
-        {
-          ...req.body,
-          imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : {
-          ...req.body
-        }
-
-        //console.log(messageImg);
-        //console.log(message);
-
-        // si tous les champs sont vide
         if (messageImg.message === '' && messageImg.image === 'null') {
-          //console.log(0);
+          console.log(1);
           return (()=> res.status(400).json({ message : 'veuiller renseigné au moins un champs' }));
 
           } else {
 
-          //console.log(messageImg);
         if (message._previousDataValues.imageUrl == null || messageImg.image == message._previousDataValues.imageUrl) {
-          console.log(2);
           Messagemedia.update({ ...messageImg }, {where : { id: req.params.id }});
           return res.status(200).json({ message: 'Message changed' });
         } else {
           if (messageImg.image == message._previousDataValues.imageUrl || messageImg.image != null) {
-            console.log(3);
             const filename = message.imageUrl.split('/images/')[1];
           fs.unlink(`images/${filename}`, () => {
             Messagemedia.update({ ...messageImg, imageUrl: null }, {where : { id: req.params.id }});
           return res.status(200).json({ message: 'Message changed' })});
           } else {
-            console.log(4);
             const filename = message.imageUrl.split('/images/')[1];
           fs.unlink(`images/${filename}`, () => {
             Messagemedia.update({ ...messageImg }, {where : { id: req.params.id }});
           return res.status(200).json({ message: 'Message changed' })});
-        }      
+          }      
+        }
       }
     }
-    }
-    )
+  )
 );
 
 

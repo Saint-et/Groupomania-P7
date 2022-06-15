@@ -11,7 +11,7 @@ const Profil = () => {
       <GetOneUser />
       <ProfilPublication />
       </>
-    )
-}
+    );
+};
 
-export default Profil
+export default Profil;

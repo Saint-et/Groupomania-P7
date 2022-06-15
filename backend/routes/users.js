@@ -7,20 +7,20 @@ const profilCtrl = require('../controllers/users');
 
 
 
-// obtenir tous les profiles
+// get all users
 router.get('/users', auth, profilCtrl.getAllUser);
 
-//obtenir un profil
+// get one user
 router.get('/users/:id', auth, profilCtrl.getOneUser);
 
 
-//modifier un utilisateur
+// update one user
 router.put('/users/update/:id', auth, multer, profilCtrl.updateUser);
 
-//modifier un utilisateur
+// update admin status
 router.put('/users/update-admin/:id', auth, profilCtrl.updateAdmin);
 
-//supprimer un utilisateur
+// delete one user
 router.delete('/users/delete/:id', auth, multer, profilCtrl.deleteUser);
 
 

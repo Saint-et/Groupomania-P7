@@ -91,7 +91,7 @@
 .logo_menu_pc{
     display: none;
 }
-@media all and (min-width: $media_query) {
+@media all and (min-width: $media_query_Pc) {
     .container_slidemenu {
         z-index: 50;
         border-right: 1px solid $border_backgroundMenu;

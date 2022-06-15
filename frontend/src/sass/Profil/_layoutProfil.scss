@@ -1,7 +1,7 @@
 .section_profil{
     display: flex;
     justify-content: center;
-    background-color: $backgroundCommentaire;
+    background-color: $backgroundHeaderPublication;
     padding-bottom: 50px;
 }
 .header_myprofil{
@@ -18,7 +18,7 @@
 }
 .header_myprofil_title{
     color: $titleHeader;
-    font-size: 20px;
+    font-size: 25px;
     width: max-content;
     margin: auto;
 }
@@ -81,10 +81,15 @@
     color: rgb(0, 100, 0);
     margin-top: 5px;
 }
-@media all and (min-width: $media_query) {
+@media all and (min-width: 426px) {
     .container_profil{
         border-radius: 25px;
         margin-top: 100px;
-        border: 1px solid $border_backgroundMenu;
+    }
+}
+@media all and (min-width: $media_query_Pc) {
+    .container_profil{
+        border-radius: 25px;
+        margin-top: 100px;
     }
 }

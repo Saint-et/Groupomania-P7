@@ -62,7 +62,7 @@ const Slidemenu = () => {
     <p className='profil_menu_text PMenu'translate='no'>{myProfil.user.lastName}</p>
     </div>
     <Link to={'/'} className='button_menu'><i className="fa-solid fa-house"></i></Link>
-    <Link to={`my-profil/${Local.firstName}.${Local.lastName}/${Local.id}`} className='button_menu'><i className="fa-solid fa-user"></i></Link>
+    <Link to={`my-profil/${myProfil.user.firstName}.${myProfil.user.lastName}/${myProfil.user.id}`} className='button_menu'><i className="fa-solid fa-user"></i></Link>
     <Link to={'/employ'} className='button_menu'><i className="fa-solid fa-users"></i></Link>
     <p className='button_menu' onClick={handleShowButton}><i hidden={hiddenbutton} className="fa-solid fa-xmark"></i><i hidden={!hiddenbutton} className="fa-solid fa-power-off"></i></p>
     <p className='button_menu_y' hidden={hiddenbutton} onClick={handleClick}><i className="fa-solid fa-check"></i></p>

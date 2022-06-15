@@ -4,6 +4,7 @@ import {API_URL} from '../config';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {isLog} from "../utils";
+import {Local} from '../config';
 
 const ProfilPublication = () => {
 
@@ -13,8 +14,6 @@ const ProfilPublication = () => {
     const Id = url.split("/").pop();
 
     
-
-    const Local = JSON.parse(localStorage.getItem("User"));
   //récupération des POST
   const GetALLPostFromAPI = () => {
     axios.get(`${API_URL}api/groupomania/forum/user/${Id}`,{headers: {
@@ -25,7 +24,6 @@ const ProfilPublication = () => {
       setPost(res.data);
   });
   }
-
   useEffect(() => {
     if (isLog() === false) {
       navigate('/login');

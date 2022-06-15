@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import LoginForm from "../components/LoginForm";
 import {API_URL} from '../config';
 import {isLog} from "../utils";
@@ -10,7 +10,14 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-    //console.log(API_URL);
+  useEffect(() =>{
+    if (isLog() !== false) {
+        navigate('/');
+    }
+},[])
+
+
+    // création du body du post
     const [user, setUser] = useState({
         firstName : "",
         lastName : "",
@@ -19,23 +26,28 @@ const Signup = () => {
         password_verification : "",
     });
 
+    // l'affichage des error
     const [error, setError] = useState("");
 
+    // récupération des champs de text
     const handleChange = (name) => event => {
         setUser({...user, [name]: event.target.value})
     };
-    //console.log(user);
+
+    // Envoi du formulaire à L'API
     const userSignup = async (event) => {
         event.preventDefault()
         setUser(user)
         try {
             const data = await axios
           .post(`${API_URL}api/auth/Signup`, {
+
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             password: user.password,
             password_verification: user.password_verification
+
           })
           setUser(data)
           localStorage.setItem("User",JSON.stringify(data.data));

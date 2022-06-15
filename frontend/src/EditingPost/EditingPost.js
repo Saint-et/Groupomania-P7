@@ -12,9 +12,10 @@ import {isLog} from "../utils";
 
 const EditingPost = () => {
 
-// récupération de l'id dans URL
+
   const navigate = useNavigate();
 
+  // récupération de l'id dans URL
   const url = window.location.href;
     const Id = url.split("/").pop();
 
@@ -30,20 +31,21 @@ const EditingPost = () => {
       setValueTextarea(res.data.message.message);
       setImg(res.data.message.imageUrl);
       setImgUpload(res.data.message.imageUrl);
-      setMessage({message: res.data.message.message})
+      setMessage({message: res.data.message.message});
   });
   }
 
-    // useState
+    // récupération de la valeur dans Textarea
     const [valueTextarea, setValueTextarea] = useState();
 
+    // récupération de l'image à affiché
     const [img, setImg] = useState('');
 
+    // récupération de l'image à Upload
     const [imgUpload, setImgUpload] = useState('');
 
+    // récupération du post
     const [post, setPost] = useState();
-
-    const [, setError] = useState("");
 
     const hiddenFileInput = React.useRef(null);
 
@@ -57,7 +59,7 @@ const EditingPost = () => {
       if (isLog() === false) {
         navigate('/login');
       } else {
-      GetOnePostFromAPI()
+      GetOnePostFromAPI();
       }
       },[]);
 
@@ -91,8 +93,8 @@ const EditingPost = () => {
     setValueTextarea();
   };
 
-  // Methode put afin d'appliquer les modification
 
+// Methode put pour Update le post
 const AppliedModification = async () => {
     try {
         const formData = new FormData();
@@ -104,14 +106,14 @@ const AppliedModification = async () => {
         formData,
         {headers: {
           Authorization: `Bearer ${Local.token}`,
-          //' Content-Type ' : ' multipart/form-data ' ,
           accept: 'application/json'
         }
       })
       setMessage({message: ''});
       return navigate('/');
+      
       } catch (error) {
-          setError(error.response)
+          console.log(error.response);
       }
 };
 
@@ -170,4 +172,4 @@ const AppliedModification = async () => {
     )
 }
 
-export default EditingPost
+export default EditingPost;

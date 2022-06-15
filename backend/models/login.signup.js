@@ -6,17 +6,7 @@ const { models } = require('../db/mysql')
 // Connection à la Base de donné (DATAbase)
 const sequelize = require('../db/mysql');
 
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-     
-    }
-  }
+  class User extends Model {}
 
           User.init({
           firstName: {
@@ -26,12 +16,10 @@ const sequelize = require('../db/mysql');
           lastName: {
             type: DataTypes.STRING,
             allowNull: false
-            // allowNull defaults to true
           },
           email: {
             type: DataTypes.STRING,
             allowNull: false
-            // allowNull defaults to true
           },
           imageUrl: {
             type: DataTypes.STRING
@@ -42,7 +30,6 @@ const sequelize = require('../db/mysql');
           password: {
             type: DataTypes.STRING,
             allowNull: false
-            // allowNull defaults to true
           }
         },
      {

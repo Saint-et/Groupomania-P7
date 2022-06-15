@@ -16,15 +16,15 @@ const GetMyProfil = () => {
   const url = window.location.href;
     const Id = url.split("/").pop();
 
-  // chercher un user dans la db
+  // recherche d'un user dans la db
   const GetProfilFromAPI = async () => {
     await axios.get(`${API_URL}api/groupomania/users/${Id}`,{headers: {
       Authorization: `Bearer ${Local.token}`,
     }
   })
   .then((res) => {
-    
    setMyProfil(res.data);
+   // préset de tous les usestates
    setAdmin(res.data.user.isAdmin);
    setEditProfile({
      firstName: res.data.user.firstName,
@@ -35,8 +35,7 @@ const GetMyProfil = () => {
    setImgUpload(res.data.user.imageUrl);
   })
 }
-
-
+// vérification du login avant d'exécuter le profil
 useEffect(() => {
   if (isLog() === false) {
     navigate('/login');
@@ -45,9 +44,10 @@ useEffect(() => {
   }
 },[]);
 
-
+// récupération du profile
   const [myProfil, setMyProfil] = useState();
 
+// récupération admin value
   const [Admin, setAdmin] = useState();
 
   const [editProfile, setEditProfile] = useState({
@@ -56,51 +56,47 @@ useEffect(() => {
     email: ""
   })
 
+  // image à upload
   const [imgUpload, setImgUpload] = useState('');
 
+  const [img, setImg] = useState('');
+
+  // masquer et affiché des element
   const [hiddenValid, setHiddenValid] = useState(true);
   const [hiddenEdit, setHiddenEdit] = useState(true);
   const [deleteAccount, setdeleteAccount] = useState(true);
 
-  const [, setError] = useState("");
-
-  const [img, setImg] = useState('');
-
-
 
   const hiddenFileInput = React.useRef(null);
 
+  const handleClick = () => {
+    hiddenFileInput.current.click();
+  };
 
+  // afficher et masquer l'éditeur du profil
+  const handleShowEdit = () => {setHiddenEdit(!hiddenEdit)};
 
+  // préset de l'image a upload et set de l'image à afficher
     const handleLoad = (event) => {
       const fileUploaded = event.target.files[0];
       setImgUpload(fileUploaded);
       setImg(URL.createObjectURL(fileUploaded));
     };
 
+    // checkedbox admin
     const handleChecked = (value) => {
       let check = value.target.checked;
       setAdmin(check)
       setHiddenValid(false);
     };
 
-    const handleShowEdit = () => {
-      setHiddenEdit(false);
-    };
-
-    const handleHideEdit = () => {
-      setHiddenEdit(true);
-    }
-
+    // lecture des changement effectué
     const handleChange = (name) => event => {
       setEditProfile({ ...editProfile, [name]: event.target.value});
     };
 
-  const handleClick = () => {
-    hiddenFileInput.current.click();
-  };
 
-  //supression de l'image
+  //supression de l'image à upload
   const removeImage = () => {
     setImgUpload('');
     setImg(img_profil);
@@ -108,71 +104,56 @@ useEffect(() => {
 
 
   // methode put pour la mise à jour du compte
-    const updateAccount = async () => {
-      
-        try {
-          const formData = new FormData();
-          formData.append("firstName", editProfile.firstName);
-          formData.append("lastName", editProfile.lastName);
-          formData.append("email", editProfile.email);
-          formData.append("image", imgUpload || null);
-            await axios
-          .put(`${API_URL}api/groupomania/users/update/${Id}`,
-          formData,
-          {headers: {
-            Authorization: `Bearer ${Local.token}`,
-            //' Content-Type ' : ' multipart/form-data ',
-            accept: 'application/json'
-          }
-        })
-        GetProfilFromAPI();
-        return window.location.reload()
-        } catch (error) {
-            setError(error.response);
-        }
+  const updateAccount = async () => {
+    
+    try {
+      const formData = new FormData();
+      formData.append("firstName", editProfile.firstName);
+      formData.append("lastName", editProfile.lastName);
+      formData.append("email", editProfile.email);
+      formData.append("image", imgUpload || null);
+        await axios
+      .put(`${API_URL}api/groupomania/users/update/${Id}`,
+      formData,
+      {headers: {
+        Authorization: `Bearer ${Local.token}`,
+        accept: 'application/json'
+      }
+    })
+    GetProfilFromAPI();
+    return window.location.reload();
+    } catch (error) {
+        console.log(error.response);
+    }
   };
 
   // methode put pour la mise à jour des admin
-
-  const updateAdmin = async (event) => {
-    event.preventDefault();
-    const body = {
-          isAdmin: Admin
-        }
-    console.log(body);
-    setHiddenValid(true);
-
+  const updateAdmin = async () => {
     try {
-      const body = {
-        isAdmin: Admin
-      }
       await axios.put(`${API_URL}api/groupomania/users/update-admin/${Id}`,
-      body,
-      {headers: {
+      {
+        isAdmin: Admin
+      },{
+        headers: {
         Authorization: `Bearer ${Local.token}`,
-        //' Content-Type ' : ' multipart/form-data ',
         accept: 'application/json'
       }
       })
       GetProfilFromAPI();
-      return window.location.reload()
     } catch (error) {
-        setError(error.response);
+        console.log(error.response);
       }
     }
 
 
-    // Methode delete
-const deleted = () => {
-  setdeleteAccount(false)
-}
-const cancelAccountDelete = () => {
-  setdeleteAccount(true)
-}
+// affichage du menu delete
+const deleted = () => {setdeleteAccount(!deleteAccount)}
 
+
+// suppresion d'un 
 const DeleteProfile = async (id) => {
-  console.log(id);
-  await axios.delete(`${API_URL}api/groupomania/users/delete/${id}`,{headers: {
+  await axios.delete(`${API_URL}api/groupomania/users/delete/${id}`,
+  {headers: {
     Authorization: `Bearer ${Local.token}`,
   }
 })
@@ -184,13 +165,9 @@ const DeleteProfile = async (id) => {
       localStorage.removeItem("User");
       navigate('/login')
       return window.location.reload();
-    }
-      
-    
-  
-    });
-  
-}
+    };
+  });
+};
 
     if (!myProfil) return null;
 
@@ -199,7 +176,7 @@ const DeleteProfile = async (id) => {
       <div className='section_profil'>
         <div className='container_profil'>
           <div className='header_myprofil'>
-            <p className='header_myprofil_title'>Profil</p>
+            <h1 className='header_myprofil_title'>Profil</h1>
           </div>
           <div className='container_admin' hidden={Local.isAdmin !== true}>
             <div className='content_admin' hidden={Local.id === myProfil.user.id}>
@@ -273,7 +250,7 @@ const DeleteProfile = async (id) => {
 
           <div className='container_system_menu' hidden={Local.id !== myProfil.user.id}>
             <div className='content_system_menu'>
-                <div className='system_Modify' onClick={handleHideEdit} hidden={hiddenEdit}>
+                <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
                   <i className="fa-solid fa-xmark"></i>
                 </div>
 
@@ -291,7 +268,7 @@ const DeleteProfile = async (id) => {
           <div className='container_system_menu' hidden={myProfil.user.id === Local.id}>
             <div hidden={Local.isAdmin === false}>
               <div className='content_system_menu' hidden={!myProfil.user.isAdmin === Local.isAdmin}>
-                <div className='system_Modify' onClick={handleHideEdit} hidden={hiddenEdit}>
+                <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
                   <i className="fa-solid fa-xmark"></i>
                 </div>
 
@@ -309,7 +286,7 @@ const DeleteProfile = async (id) => {
 
          <div className='container_system_menu' hidden={myProfil.user.isAdmin === true}>
            <div className='content_system_menu' hidden={myProfil.user.isAdmin === Local.isAdmin}>
-             <div className='system_Modify' onClick={handleHideEdit} hidden={hiddenEdit}>
+             <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
                <i className="fa-solid fa-xmark" hidden={myProfil.user.id === Local.id}></i>
              </div>
  
@@ -331,7 +308,7 @@ const DeleteProfile = async (id) => {
             <span className='text_Ico'>Yes,I'm sure</span>
             </p>
             <p className='button_add_img_container'>
-            <button className='warning_cancel' onClick={cancelAccountDelete}>
+            <button className='warning_cancel' onClick={deleted}>
             <i className="fa-solid fa-xmark"></i>
             <span className='text_Ico'>Cancel</span>
             </button>

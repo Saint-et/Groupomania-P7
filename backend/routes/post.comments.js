@@ -4,21 +4,16 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const postCtrl = require('../controllers/comments');
 
-//obtenir tous les profils
+// get all comment
 router.get('/comments', auth, postCtrl.getAllCommentsPost);
 
-
+// post one comment
 router.post('/comments', auth, postCtrl.postOneCommentsPost);
 
-//obtenir un profil
-router.get('/comments/:id', auth, postCtrl.getOneCommentsPost);
-
-router.get('/comments/user/:userId', auth, postCtrl.getAllCommentsPostByUser);
-
-//modifier un message
+// update one comment
 router.put('/comments/edite/:id', auth, postCtrl.updateCommentsPost);
 
-//supprimer un message
+// delete one comment
 router.delete('/comments/delete/:id', auth, postCtrl.deleteCommentsPost);
 
 module.exports = router;

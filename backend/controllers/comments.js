@@ -4,7 +4,7 @@ const { models } = require('../db/mysql');
 
 exports.getAllCommentsPost = async (req,res,next) => (
     await Comments.findAll({order: [
-        ['updatedAt', 'DESC']],
+        ['createdAt', 'DESC']],
         attributes: ['id','comment','userId','postId','createdAt'], include: [models.users, models.post]})
       .then(message => {
           return  res.status(200).json({ message })
@@ -27,18 +27,14 @@ exports.postOneCommentsPost = async (req,res,next) => {
     }
 }
 
-exports.getOneCommentsPost = async (req,res,next) => (
-    console.log('bonjour')
-)
-
-exports.getAllCommentsPostByUser = async (req,res,next) => (
-    console.log('bonjour')
-)
-
 exports.updateCommentsPost = async (req,res,next) => (
-    console.log('bonjour')
+    await Comments.update({ comment: req.body.comment }, {where : { id: req.params.id }})
+    .then(() => res.status(200).json({ message: 'Comment changed' }))
+    .catch(error => res.status(400).json({ error }))
 )
 
 exports.deleteCommentsPost = async (req,res,next) => (
-    console.log('bonjour')
+    await Comments.destroy({ where: { id: req.params.id }})
+        .then(() => res.status(200).json({ message: 'Comment deleted.'}))
+        .catch(error => res.status(400).json({ error }))
 )

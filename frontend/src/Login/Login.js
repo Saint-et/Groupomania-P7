@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from "../components/LoginForm";
 import {isLog} from "../utils";
@@ -7,7 +7,14 @@ import {API_URL} from '../config';
 
 
 const Login = () => {
-    //console.log(API_URL);
+    const navigate = useNavigate();
+
+    useEffect(() =>{
+        if (isLog() !== false) {
+            navigate('/');
+        }
+    },[])
+    
     const [user, setUser] = useState({
         email:"",
         password:""
@@ -15,7 +22,6 @@ const Login = () => {
 
     const [error, setError] = useState("");
 
-    const navigate = useNavigate();
 
     const handleChange = (name) => event => {
         setUser({...user, [name]: event.target.value})
@@ -49,4 +55,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
