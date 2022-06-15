@@ -48,6 +48,7 @@ body button {
   background: none;
 }
 
+.M_error,
 .comments_message_content,
 .fiels,
 .container_profil,
@@ -187,6 +188,14 @@ body button {
 .section_login_signup .button_cancel:hover {
   color: rgb(255, 255, 255);
   background-color: rgba(150, 0, 0, 0.8);
+}
+.section_login_signup .M_error {
+  color: red;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=login_signup.css.map */

@@ -18,6 +18,8 @@ const PublicationForm = (props) => {
 
     const [valueTextareaCommentEdite, setValueTextareaCommentEdite] = useState();
 
+    const [hidePenEdite, sethidePenEdite] = useState(false)
+
     //chargement du message
     const [messageComment, setMessageComment] = useState({
         comment: ''
@@ -26,9 +28,6 @@ const PublicationForm = (props) => {
     const [messageCommentEdite, setMessageCommentEdite] = useState({
         comment: ''
     });
-
-  // Id du post à envoyer sur l'API
-  const [commentsId, setCommentsId] = useState("");
 
    // Id du commentaire à envoyer sur l'API
    const [commentsEditeId, setCommentsEditeId] = useState("");
@@ -46,9 +45,6 @@ const PublicationForm = (props) => {
     setValueTextareaCommentEdite()
   };
 
-  const handleId = (Id) => {
-    setCommentsId(Id)
-  };
 
 const [comments, setComments] = useState([]);
 
@@ -71,14 +67,14 @@ const GetALLCommentFromAPI = async () => {
 
 
 //Methode Post vers L'api
-const ShareComment = async () => {
+const ShareComment = async (Id) => {
   try {
     if (messageComment.comment) {
     await axios.post(`${API_URL}api/groupomania/comments`,
         {
         comment: messageComment.comment,
         userId: Local.id,
-        postId: commentsId
+        postId: Id
     },{
         headers: {
             Authorization: `Bearer ${Local.token}`,
@@ -100,19 +96,20 @@ const ShareComment = async () => {
     setMessageCommentEdite({comment: `${comment}`});
     setCommentsEditeId(Id)
     setPostCommentsEditeId(postId)
-    let boutonsDelete = document.querySelectorAll(".text_comment_bar_edite")
-
-    for (let j = 0; j < boutonsDelete.length; j++){
-    document.querySelectorAll(".text_comment_bar_edite")[j].hidden=true
-    };
+    sethidePenEdite(true)
+    
     let textareaEdite = document.getElementById(`edite_comment${postId}`);
     textareaEdite.hidden=false
 
-    
+  }
+
+  const handleClick = () => {
+    document.getElementById(`edite_comment${postCommentsEditeId}`).hidden = true
+    sethidePenEdite(false)
   }
 
 //Methode Put vers L'api
-const ModifyComment = async () => {
+const handleModifyComment = async () => {
     try {
       if (messageCommentEdite.comment) {
       await axios.put(`${API_URL}api/groupomania/comments/edite/${commentsEditeId}`,
@@ -125,6 +122,7 @@ const ModifyComment = async () => {
           }
       });
           //remise à zero des useState
+          sethidePenEdite(false)
           setValueTextareaCommentEdite('');
           setMessageCommentEdite({comment : ''});
           let textareaEdite = document.getElementById(`edite_comment${postCommentsEditeId}`);
@@ -147,6 +145,7 @@ const DeleteComment = async () => {
           }
       });
           //remise à zero des useState
+          sethidePenEdite(false)
           setValueTextareaCommentEdite('');
           setMessageCommentEdite({comment : ''});
           let textareaEdite = document.getElementById(`edite_comment${postCommentsEditeId}`);
@@ -266,8 +265,8 @@ const DeleteComment = async () => {
                                <p className='comment_user_comments' translate='no'>{comment.comment}</p>
                            </div>
                            <div className='container_edite_comment'>
-                           <button hidden={!Local.isAdmin} className='button_edite_comment' onClick={()=> handleIdComment(comment.id, publication.id, comment.comment)}><i className="fa-solid fa-pen-clip"></i></button>
-                           <button hidden={Local.id !== comment.userId || Local.isAdmin == true} className='button_edite_comment' onClick={()=> handleIdComment(comment.id, publication.id, comment.comment)}><i className="fa-solid fa-pen-clip"></i></button>
+                           <button hidden={!Local.isAdmin || hidePenEdite} className='button_edite_comment' onClick={()=> handleIdComment(comment.id, publication.id, comment.comment)}><i className="fa-solid fa-pen-clip"></i></button>
+                           <button hidden={Local.id !== comment.userId || Local.isAdmin === true || hidePenEdite} className='button_edite_comment' onClick={()=> handleIdComment(comment.id, publication.id, comment.comment)}><i className="fa-solid fa-pen-clip"></i></button>
                            </div>
                        </div>
                     ))}
@@ -275,15 +274,15 @@ const DeleteComment = async () => {
 
             <div className='text_comment_bar_w text_comment_bar_edite' id={`edite_comment${publication.id}`} hidden={true}>
             <button className='button_delete_comment' onClick={DeleteComment}><i className="fa-solid fa-trash"></i></button>
-                <textarea value={valueTextareaCommentEdite} onClick={()=> handleId(publication.id)} onChange={handleChangeEdite('comment')} onKeyDown={handleKeyDown} maxLength='500' className='post_message_forum comment_bar_Edit' placeholder='Modify here .....' />
-                <button className='send_comment_button' onClick={() => document.getElementById(`edite_comment${publication.id}`).hidden = true}><i className="fa-solid fa-xmark"></i></button>
-                <button className='send_comment_button' onClick={ModifyComment}><i className="fa-solid fa-check"></i></button>
+                <textarea value={valueTextareaCommentEdite} onChange={handleChangeEdite('comment')} onKeyDown={handleKeyDown} maxLength='500' className='post_message_forum comment_bar_Edit' placeholder='Modify here .....' />
+                <button className='send_comment_button' onClick={handleClick}><i className="fa-solid fa-xmark"></i></button>
+                <button className='send_comment_button' onClick={handleModifyComment}><i className="fa-solid fa-check"></i></button>
             </div>
 
 
             <div className='text_comment_bar_w'>
-                <textarea value={valueTextareaComment} onClick={()=> handleId(publication.id)} onChange={handleChange('comment')} onKeyDown={handleKeyDown} maxLength='500' className='post_message_forum comment_bar_w' placeholder='Commented here .....' />
-                <button className='send_comment_button'><i className="fa-solid fa-paper-plane" onClick={ShareComment}></i></button>
+                <textarea value={valueTextareaComment} onChange={handleChange('comment')} onKeyDown={handleKeyDown} maxLength='500' className='post_message_forum comment_bar_w' placeholder='Commented here .....' />
+                <button className='send_comment_button'><i className="fa-solid fa-paper-plane" onClick={()=> ShareComment(publication.id)}></i></button>
             </div>
             <div className='container_comments_icon'>
                 <button className='close_comments_icon' onClick={() => document.getElementById(`comment${publication.id}`).hidden = true}><i className="fa-solid fa-angle-up"></i></button>
