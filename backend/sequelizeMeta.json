@@ -1,8 +1,1 @@
-[
-  "20220515134013-create-users.js",
-  "20220519175249-create-forum-media.js",
-  "20220614124522-create-comments.js",
-  "40220604165225-user-associate.js",
-  "40220604165325-user-to-comment-associate.js",
-  "40220604165425-post-to-comment-associate.js"
-]
+[]
