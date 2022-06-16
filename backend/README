@@ -2,6 +2,10 @@
 
 ### Running installation backend
 
+Create your .env in a folder named env
+
+Create a folder named images in the backend
+
 ______ : npm install
 
 # create database
