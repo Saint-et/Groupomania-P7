@@ -192,7 +192,7 @@ body button {
 .section_login_signup .M_error {
   color: red;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 50px;
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-const { Sequelize, Op, Model, DataTypes, QueryTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 require("dotenv").config({path: "./env/.env"});
 
 

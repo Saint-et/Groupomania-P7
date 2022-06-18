@@ -1,20 +1,56 @@
+import { faCheck, faUserCheck, faXmark, faShare, faImage, faUserPen, faUserLargeSlash, faBan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {API_URL} from '../config';
 import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import img_profil from '../image/image_profil.png';
-import '../css/Profil/Profil.css';
 import {Local} from '../config';
 import { useNavigate } from 'react-router-dom';
 import {isLog} from "../utils";
 
 
 
+
 const GetMyProfil = () => {
+
+  const sessionLocal = JSON.parse(sessionStorage.getItem("user?"));
 
   const navigate = useNavigate();
   
   const url = window.location.href;
     const Id = url.split("/").pop();
+
+    // récupération du profile
+  const [myProfil, setMyProfil] = useState();
+
+  // récupération admin value
+    const [Admin, setAdmin] = useState();
+  
+    const [editProfile, setEditProfile] = useState({
+      firstName: "",
+      lastName: "",
+      email: ""
+    })
+  
+    // image à upload
+    const [imgUpload, setImgUpload] = useState('');
+  
+    const [img, setImg] = useState('');
+  
+    // masquer et affiché des element
+    const [hiddenValid, setHiddenValid] = useState(true);
+    const [hiddenEdit, setHiddenEdit] = useState(true);
+    const [deleteAccount, setdeleteAccount] = useState(true);
+    const deleted = () => {setdeleteAccount(!deleteAccount)};
+  
+  //Methode afin de cacher le bouton pour choisir un fichier
+    const hiddenFileInput = useRef(null);
+
+    const handleClick = () => {
+      hiddenFileInput.current.click();
+    };
+
+
 
   // recherche d'un user dans la db
   const GetProfilFromAPI = async () => {
@@ -30,7 +66,6 @@ const GetMyProfil = () => {
      firstName: res.data.user.firstName,
      lastName: res.data.user.lastName,
      email: res.data.user.email
-     
    })
    setImgUpload(res.data.user.imageUrl);
   })
@@ -43,35 +78,6 @@ useEffect(() => {
  GetProfilFromAPI();
   }
 },[]);
-
-// récupération du profile
-  const [myProfil, setMyProfil] = useState();
-
-// récupération admin value
-  const [Admin, setAdmin] = useState();
-
-  const [editProfile, setEditProfile] = useState({
-    firstName: "",
-    lastName: "",
-    email: ""
-  })
-
-  // image à upload
-  const [imgUpload, setImgUpload] = useState('');
-
-  const [img, setImg] = useState('');
-
-  // masquer et affiché des element
-  const [hiddenValid, setHiddenValid] = useState(true);
-  const [hiddenEdit, setHiddenEdit] = useState(true);
-  const [deleteAccount, setdeleteAccount] = useState(true);
-
-
-  const hiddenFileInput = React.useRef(null);
-
-  const handleClick = () => {
-    hiddenFileInput.current.click();
-  };
 
   // afficher et masquer l'éditeur du profil
   const handleShowEdit = () => {setHiddenEdit(!hiddenEdit)};
@@ -86,7 +92,7 @@ useEffect(() => {
     // checkedbox admin
     const handleChecked = (value) => {
       let check = value.target.checked;
-      setAdmin(check)
+      setAdmin(check);
       setHiddenValid(false);
     };
 
@@ -105,7 +111,6 @@ useEffect(() => {
 
   // methode put pour la mise à jour du compte
   const updateAccount = async () => {
-    
     try {
       const formData = new FormData();
       formData.append("firstName", editProfile.firstName);
@@ -146,8 +151,6 @@ useEffect(() => {
     }
 
 
-// affichage du menu delete
-const deleted = () => {setdeleteAccount(!deleteAccount)}
 
 
 // suppresion d'un 
@@ -159,26 +162,22 @@ const DeleteProfile = async (id) => {
 })
   .then(() => {
     if (Local.id !== myProfil.user.id) {
-      navigate('/')
-      return window.location.reload();
+      navigate('/');
     } else {
       localStorage.removeItem("User");
-      navigate('/login')
+      navigate('/login');
       return window.location.reload();
     };
   });
 };
 
+
     if (!myProfil) return null;
 
     return (
       <>
-      <div className='section_profil'>
-        <div className='container_profil'>
-          <div className='header_myprofil'>
-            <h1 className='header_myprofil_title'>Profil</h1>
-          </div>
-          <div className='container_admin' hidden={Local.isAdmin !== true}>
+          <div hidden={sessionLocal !== true}>
+          <div className='container_admin' hidden={myProfil.user.id === 1}>
             <div className='content_admin' hidden={Local.id === myProfil.user.id}>
               <p>Admin :</p>
               <div className='container_checkbox'>
@@ -195,16 +194,17 @@ const DeleteProfile = async (id) => {
 			</span>
 		</label>
                 <div className='valide_checkbox'>
-                  <i className="fa-solid fa-check" hidden={hiddenValid} onClick={updateAdmin}></i>
-                  </div>
+                  <FontAwesomeIcon icon={faCheck} hidden={hiddenValid} onClick={updateAdmin} />
+                </div>
                 </div>
               </div>
+            </div>
             </div>
 
 
           <div className='name_container' hidden={myProfil.user.isAdmin !== true}>
             <div className='name_content'>
-              <p className='name_content_admin'><i className="fa-solid fa-user-check"></i>Admin</p>
+              <p className='name_content_admin'><FontAwesomeIcon icon={faUserCheck} />Admin</p>
             </div>
           </div>
 
@@ -218,106 +218,105 @@ const DeleteProfile = async (id) => {
 
           <div className='img_upload_container' hidden={hiddenEdit}>
             <div onClick={removeImage} className='facirclexmark_container'>
-              <i className="fa-solid fa-xmark"></i>
+              <FontAwesomeIcon icon={faXmark} />
             </div>
           </div>
 
 
         <input ref={hiddenFileInput} onChange={handleLoad} accept="img/*" className='button_file_message' type='file' key={imgUpload} />
           <div className='button_message_container' hidden={hiddenEdit}>
-            <p className='button_message' onClick={updateAccount}><i className="fa-solid fa-share"></i>
+            <p className='button_message' onClick={updateAccount}><FontAwesomeIcon icon={faShare} />
             <span className='text_Ico'>applied</span>
             </p>
             <p className='button_add_img_container'>
             <button className='button_add_img' onClick={handleClick}>
-            <i className="fa-solid fa-image"></i>
+            <FontAwesomeIcon icon={faImage} />
             <span className='text_Ico'>Change picture</span>
             </button>
             </p>
          </div>
 
 
-          <div className='name_container'><div className='name_content'>
-            <p>firstname :<span translate='no'> {myProfil.user.firstName}</span></p>
-            <input className='fiels' onChange={handleChange("firstName")} hidden={hiddenEdit} type='text' />
-            <p translate='no'>lastname : <span translate='no'>{myProfil.user.lastName}</span></p>
-            <input className='fiels' onChange={handleChange("lastName")} hidden={hiddenEdit} type='text' />
-            <p translate='no'>email : <span translate='no'>{myProfil.user.email}</span></p>
-            <input className='fiels' onChange={handleChange("email")} hidden={hiddenEdit} type='text' />
+          <div className='name_container'>
+            <div className='name_content'>
+              <p>firstname : <span translate='no'> {myProfil.user.firstName}</span></p>
+              <input className='fiels' onChange={handleChange("firstName")} hidden={hiddenEdit} type='text' />
+              <p>lastname : <span translate='no'> {myProfil.user.lastName}</span></p>
+              <input className='fiels' onChange={handleChange("lastName")} hidden={hiddenEdit} type='text' />
+              <p translate='no'>email : <span translate='no'>{myProfil.user.email}</span></p>
+              <input className='fiels' onChange={handleChange("email")} hidden={hiddenEdit} type='text' />
             </div>
           </div>
 
-
+          
           <div className='container_system_menu' hidden={Local.id !== myProfil.user.id}>
             <div className='content_system_menu'>
                 <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
-                  <i className="fa-solid fa-xmark"></i>
+                <FontAwesomeIcon icon={faXmark} />
                 </div>
 
                 <div className='system_Modify' onClick={handleShowEdit} hidden={!hiddenEdit}>
-                  <i className="fa-solid fa-user-pen"></i>
+                  <FontAwesomeIcon icon={faUserPen} />
                 </div>
 
-                <div className='system_delete' onClick={deleted}>
-                  <i className="fa-solid fa-user-large-slash"></i>
+                <div className='system_delete' onClick={deleted} hidden={myProfil.user.id === 1}>
+                  <FontAwesomeIcon icon={faUserLargeSlash} />
                 </div>
             </div>
           </div>
 
-
+          <div className='container_admin' hidden={myProfil.user.id === 1}>
           <div className='container_system_menu' hidden={myProfil.user.id === Local.id}>
-            <div hidden={Local.isAdmin === false}>
-              <div className='content_system_menu' hidden={!myProfil.user.isAdmin === Local.isAdmin}>
+            <div hidden={sessionLocal === false}>
+              <div className='content_system_menu' hidden={!myProfil.user.isAdmin === sessionLocal}>
                 <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
-                  <i className="fa-solid fa-xmark"></i>
+                  <FontAwesomeIcon icon={faXmark} />
                 </div>
 
                 <div className='system_Modify' onClick={handleShowEdit} hidden={!hiddenEdit}>
-                  <i className="fa-solid fa-user-pen"></i>
+                  <FontAwesomeIcon icon={faUserPen} />
                 </div>
 
                 <div className='system_delete' onClick={deleted}>
-                  <i className="fa-solid fa-user-large-slash"></i>
+                  <FontAwesomeIcon icon={faUserLargeSlash} />
                 </div>
                 </div>
             </div>
           </div>
-          
+          </div>
 
+          
          <div className='container_system_menu' hidden={myProfil.user.isAdmin === true}>
-           <div className='content_system_menu' hidden={myProfil.user.isAdmin === Local.isAdmin}>
+           <div className='content_system_menu' hidden={myProfil.user.isAdmin === sessionLocal}>
              <div className='system_Modify' onClick={handleShowEdit} hidden={hiddenEdit}>
-               <i className="fa-solid fa-xmark" hidden={myProfil.user.id === Local.id}></i>
+                <FontAwesomeIcon icon={faXmark} hidden={myProfil.user.id === Local.id} />
              </div>
  
-             <div className='system_Modify' onClick={handleShowEdit} hidden={myProfil.user.id === Local.id}>
-               <i className="fa-solid fa-user-pen" hidden={myProfil.user.id === Local.id}></i>
+             <div className='system_Modify' onClick={handleShowEdit} hidden={!hiddenEdit}>
+                <FontAwesomeIcon icon={faUserPen} hidden={myProfil.user.id === Local.id} />
              </div>
              
              <div className='system_delete' onClick={deleted}>
-               <i className="fa-solid fa-user-large-slash" hidden={myProfil.user.id === Local.id}></i>
+             <FontAwesomeIcon icon={faUserLargeSlash} hidden={myProfil.user.id === Local.id} />
              </div>
            </div>
         </div>
 
         <div hidden={deleteAccount}>
           <p className='warning_delete'>Delete the account ?</p>
-        <div className='button_message_container'>
+          <div className='button_message_container'>
             <p className='button_warning_delete' onClick={()=> DeleteProfile(myProfil.user.id)}>
-            <i className="fa-solid fa-ban"></i>
+            <FontAwesomeIcon icon={faBan} />
             <span className='text_Ico'>Yes,I'm sure</span>
             </p>
             <p className='button_add_img_container'>
             <button className='warning_cancel' onClick={deleted}>
-            <i className="fa-solid fa-xmark"></i>
+            <FontAwesomeIcon icon={faXmark} />
             <span className='text_Ico'>Cancel</span>
             </button>
             </p>
-         </div>
-         </div>
-
+          </div>
         </div>
-      </div>
       </>
     )
 }

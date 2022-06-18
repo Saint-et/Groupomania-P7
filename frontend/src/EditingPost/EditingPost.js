@@ -1,3 +1,5 @@
+import { faXmark, faShare, faImage } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/home/home.css';
 import '../css/Editing_publication/Editing_publication.css';
 import React, {useState, useEffect} from "react";
@@ -7,6 +9,10 @@ import {API_URL} from '../config';
 import {Local} from '../config';
 import { useNavigate } from 'react-router-dom';
 import {isLog} from "../utils";
+import dayjs from "dayjs";
+require("dayjs/locale/fr");
+const relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 
 
@@ -97,12 +103,13 @@ const EditingPost = () => {
 // Methode put pour Update le post
 const AppliedModification = async () => {
     try {
+      let Date = dayjs().format('YYYY-MM-DD HH:mm:ss');
         const formData = new FormData();
         formData.append("userId", post.message.user.id);
         formData.append("message", message.message);
         formData.append("image", imgUpload || null);
-          const data = await axios
-        .put(`${API_URL}api/groupomania/forum/edite/${Id}`,
+        formData.append("createAt", Date);
+        await axios.put(`${API_URL}api/groupomania/forum/edite/${Id}`,
         formData,
         {headers: {
           Authorization: `Bearer ${Local.token}`,
@@ -142,7 +149,7 @@ const AppliedModification = async () => {
     
             <div hidden={!img} className='img_upload_container'>
                 <div onClick={removeImage} className='facirclexmark_container'>
-                    <i className="fa-solid fa-xmark"></i>
+                    <FontAwesomeIcon icon={faXmark}/>
                 </div>
     
                 <div className='img_upload_content'>
@@ -154,13 +161,13 @@ const AppliedModification = async () => {
     
             <div className='button_message_container'>
                 <p className='button_message' onClick={AppliedModification}>
-                    <i className="fa-solid fa-share"></i>
+                    <FontAwesomeIcon icon={faShare} />
                     <span className='text_Ico'>applied</span>
                 </p>
     
                <p className='button_add_img_container'>
                     <button className='button_add_img' onClick={handleClick}>
-                        <i className="fa-solid fa-image"></i>
+                        <FontAwesomeIcon icon={faImage}/>
                         <span className='text_Ico'>Change picture</span>
                     </button>
                 </p>

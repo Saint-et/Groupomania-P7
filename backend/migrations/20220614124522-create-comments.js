@@ -11,6 +11,9 @@ module.exports = {
       comment: {
         type: Sequelize.STRING(500)
       },
+      commentCreateAt: {
+        type: Sequelize.STRING(30)
+      },
       userId: {
         type: Sequelize.INTEGER
       },

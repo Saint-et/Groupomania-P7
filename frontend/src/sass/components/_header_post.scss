@@ -52,12 +52,17 @@
     margin-left: 10px;
 }
 .isAdmin_badge{
-    margin-top: 10px;
-    margin-bottom: -20px;
+    margin-top: -4px;
     width: 100%;
     display: flex;
     justify-content: center;
     color: rgb(0, 100, 0);
+}
+.time_posted{
+    margin-top: 5px;
+    margin-left: 10px;
+    color: rgba(0, 0, 170, 0.800);
+    margin-bottom: 0px;
 }
 @media all and (min-width: $media_query_Pc) {
     .pulication_user_content{

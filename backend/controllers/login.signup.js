@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = (req, res, next) => {
   let myRegexEmail = new RegExp(/^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i);
 
-  if (req.body.email == '' && req.body.firstName == '' && req.body.lastName == '' &&  req.body.password == '') {
+  if (req.body.email == '' || req.body.firstName == '' || req.body.lastName == '' ||  req.body.password == '') {
     return res.status(400).json({ message: 'please fill in all fields' });
   }
   else if (myRegexEmail.test(req.body.email) == false) {
@@ -43,13 +43,11 @@ User.findOne({ where:{ email: req.body.email }})
         })
       user.save()
             .then(() => res.status(201).json({
-              isAdmin: false,
               id:  user.dataValues.id,
                 //création du token de connexion
                 token: jwt.sign(
                   { id: user.dataValues.id },
                   process.env.TOKEN_SECRET,
-                  { expiresIn: '24h' },
               ) }))
             .catch(() => res.status(400).json({ message: 'Existing account.' }))
          
@@ -79,12 +77,10 @@ User.findOne({ where:{ email: req.body.email }})
             }
             res.status(200).json({
               id:  user.dataValues.id,
-              isAdmin: user.dataValues.isAdmin,
               //création du token de connexion
               token: jwt.sign(
                 { id: user.dataValues.id },
                 process.env.TOKEN_SECRET,
-                { expiresIn: '24h' },
               )
             });
           })

@@ -26,6 +26,7 @@
     overflow: hidden;
 }
 .message_com_mes{
+    margin-top: -5px;
     padding: 10px;
     width: 100%;
     word-wrap: break-word;
@@ -47,17 +48,8 @@
 }
 .img_com{
     max-height: 300px;
-    width: min-content;
+    width: auto;
     object-fit: cover;
-}
-.system_Modify_button{
-    @include button_ellipsis;
-    color: rgba(0, 0, 170, 0.500);
-    font-size: 14px;
-&:hover{
-    color: rgba(0, 0, 170, 0.800);
-    
-}
 }
 .comments_all_container{
     height: 100%;
@@ -114,6 +106,7 @@
 .img_comments_message{
     width: 40px;
     height: 40px;
+    max-height: 40px;
     overflow: hidden;
     object-fit: cover;
     border-radius: 50px;
@@ -137,7 +130,7 @@
     margin-bottom: 0px;
 }
 .comments_message_users{
-    width: max-content;
+    width: min-content;
     margin: 3px;
     height: auto;
     max-width: 200px;
@@ -179,7 +172,9 @@
 }
 .container_edite_comment{
     display: flex;
-    flex-direction: column;
+    margin-left: 20px;
+    color: white;
+    font-size: 14px;
 }
 .button_delete_comment{
     height: max-content;
@@ -191,8 +186,8 @@
 }
 .button_edite_comment{
     height: max-content;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.300);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.400);
     transition: 150ms;
     &:hover{
         transition: 100ms;
@@ -202,12 +197,30 @@
 .text_comment_bar_edite{
     margin-bottom: 5px;
 }
+.loader{
+    display: flex;
+    justify-content: center;
+}
 @media all and (min-width: $media_query_tablet) {
     .comments_message_users{
-        width: max-content;
+        width: 100%;
         margin: 3px;
         height: auto;
-        max-width: 400px;
+        max-width: 190px;
+        word-wrap: break-word;
+        border-radius: 25px;
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media all and (min-width: 560px) {
+    .comments_message_users{
+        width: 100%;
+        margin: 3px;
+        height: auto;
+        max-width: 300px;
         word-wrap: break-word;
         border-radius: 25px;
         padding: 10px;

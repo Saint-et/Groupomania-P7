@@ -16,6 +16,9 @@ const sequelize = require('../db/mysql');
     imageUrl: {
       type: DataTypes.STRING
     },
+    createAt: {
+      type: DataTypes.STRING
+    },
     userId: {
       type: DataTypes.NUMBER,
       references: {

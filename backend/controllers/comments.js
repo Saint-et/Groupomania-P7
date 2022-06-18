@@ -5,7 +5,7 @@ const { models } = require('../db/mysql');
 exports.getAllCommentsPost = async (req,res,next) => (
     await Comments.findAll({order: [
         ['createdAt', 'DESC']],
-        attributes: ['id','comment','userId','postId','createdAt'], include: [models.users, models.post]})
+        attributes: ['id','comment','commentCreateAt','userId','postId'], include: [models.users, models.post]})
       .then(message => {
           return  res.status(200).json({ message })
       })
@@ -16,7 +16,8 @@ exports.postOneCommentsPost = async (req,res,next) => {
         const comment = Comments.build({
             comment: req.body.comment,
             userId: req.body.userId,
-            postId: req.body.postId
+            postId: req.body.postId,
+            commentCreateAt: req.body.commentCreateAt
         })
     
         comment.save()

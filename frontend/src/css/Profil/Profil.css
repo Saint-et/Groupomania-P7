@@ -213,7 +213,7 @@ You'll need to replace with your own color values.
   height: 25px;
   cursor: pointer;
   transition: 500ms;
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(184, 0, 0, 0.5);
 }
 .system_delete:hover {
@@ -235,7 +235,7 @@ You'll need to replace with your own color values.
   cursor: pointer;
   transition: 500ms;
   color: rgba(0, 0, 170, 0.5);
-  font-size: 14px;
+  font-size: 16px;
 }
 .system_Modify:hover {
   transition: 200ms;
@@ -244,6 +244,87 @@ You'll need to replace with your own color values.
   color: rgba(0, 0, 170, 0.8);
 }
 
+.system_Modify_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  transition: 500ms;
+  color: rgba(0, 0, 170, 0.5);
+  font-size: 16px;
+}
+.system_Modify_button:hover {
+  transition: 200ms;
+}
+.system_Modify_button:hover {
+  color: rgba(0, 0, 170, 0.8);
+}
+
+@media all and (min-width: 785px) {
+  .system_delete {
+    background: none;
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    cursor: pointer;
+    transition: 500ms;
+    font-size: 14px;
+    color: rgba(184, 0, 0, 0.5);
+  }
+  .system_delete:hover {
+    transition: 200ms;
+  }
+  .system_delete:hover {
+    color: rgba(184, 0, 0, 0.8);
+  }
+
+  .system_Modify {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    cursor: pointer;
+    transition: 500ms;
+    color: rgba(0, 0, 170, 0.5);
+    font-size: 14px;
+  }
+  .system_Modify:hover {
+    transition: 200ms;
+  }
+  .system_Modify:hover {
+    color: rgba(0, 0, 170, 0.8);
+  }
+
+  .system_Modify_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    cursor: pointer;
+    transition: 500ms;
+    color: rgba(0, 0, 170, 0.5);
+    font-size: 14px;
+  }
+  .system_Modify_button:hover {
+    transition: 200ms;
+  }
+  .system_Modify_button:hover {
+    color: rgba(0, 0, 170, 0.8);
+  }
+}
 .warning_delete {
   width: 100%;
   display: flex;

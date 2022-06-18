@@ -32,9 +32,6 @@ const ProfilPublication = () => {
     }
   },[]);
 
-
-  
-
     const [post, setPost] = useState([]);
 
     const [deletePost, setDeletePost] = useState();

@@ -15,6 +15,9 @@ const sequelize = require('../db/mysql');
     comment: {
       type: DataTypes.STRING
     },
+    commentCreateAt: {
+      type: DataTypes.STRING
+    },
     userId: {
       type:DataTypes.INTEGER
     },

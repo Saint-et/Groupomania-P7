@@ -1,3 +1,5 @@
+import { faBars, faCheck, faHouse, faPowerOff, faUser, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import img_profil from '../image/image_profil.png';
 import '../css/menu/menu.css';
 import { useNavigate, Link } from 'react-router-dom';
@@ -17,13 +19,24 @@ const Slidemenu = () => {
     const [hiddenbutton, sethiddenbutton] = useState(true)
 
     const GetMyProfilFromAPI = async () => {
-        await axios.get(`${API_URL}api/groupomania/users/${Local.id}`,{headers: {
-            Authorization: `Bearer ${Local.token}`,
-          }
-        })
-        .then((res) => {
-          setMyProfil(res.data);
-        })
+        try {
+            await axios.get(`${API_URL}api/groupomania/users/${Local.id}`,{
+                headers: {
+                Authorization: `Bearer ${Local.token}`
+    
+              }
+            })
+            .then((res) => {
+              setMyProfil(res.data);
+              sessionStorage.setItem("user?",JSON.stringify(res.data.user.isAdmin));
+            })
+        } catch (error) {
+            navigate('/login')
+            localStorage.removeItem("User");
+            sessionStorage.removeItem("user?");
+            return window.location.reload();
+        }
+        
     }
 
     useEffect(() => {
@@ -36,6 +49,7 @@ const Slidemenu = () => {
     const handleClick = () => {
         navigate('/login')
         localStorage.removeItem("User");
+        sessionStorage.removeItem("user?");
         return window.location.reload();
     }
 
@@ -47,7 +61,7 @@ const Slidemenu = () => {
         sethiddenbutton(!hiddenbutton)
     }
 
-    if (!myProfil) return null;
+    if (!myProfil) return (null);
     
     return(
     <section className='container_slidemenu'>
@@ -55,17 +69,17 @@ const Slidemenu = () => {
     <div className='section_menu_content'>
     <img className='logo_menu_pc' src={logo_groupomania_menu} alt='' />
      <div className='profil_menu'>
-     <div className='menu_icon PMenu' translate='no'>Menu<p className='menu_icon_nav' onClick={showSidebar} hidden={sidebar}><i className="fa-solid fa-bars"></i></p><p className='menu_icon_nav' onClick={showSidebar} hidden={!sidebar}><i className="fa-solid fa-xmark"></i></p></div>
+     <div className='menu_icon PMenu' translate='no'>Menu<p className='menu_icon_nav' onClick={showSidebar} hidden={sidebar}><FontAwesomeIcon icon={faBars} /></p><p className='menu_icon_nav' onClick={showSidebar} hidden={!sidebar}><FontAwesomeIcon icon={faXmark} /></p></div>
      <img className='logo_menu' src={logo_groupomania_menu} alt='' />
      <img className='img_profil_menu' src={myProfil.user.imageUrl || img_profil} alt=''/>
     <p className='profil_menu_text PMenu'translate='no'>{myProfil.user.firstName}</p>
     <p className='profil_menu_text PMenu'translate='no'>{myProfil.user.lastName}</p>
     </div>
-    <Link to={'/'} className='button_menu'><i className="fa-solid fa-house"></i></Link>
-    <Link to={`my-profil/${myProfil.user.firstName}.${myProfil.user.lastName}/${myProfil.user.id}`} className='button_menu'><i className="fa-solid fa-user"></i></Link>
-    <Link to={'/employ'} className='button_menu'><i className="fa-solid fa-users"></i></Link>
-    <p className='button_menu' onClick={handleShowButton}><i hidden={hiddenbutton} className="fa-solid fa-xmark"></i><i hidden={!hiddenbutton} className="fa-solid fa-power-off"></i></p>
-    <p className='button_menu_y' hidden={hiddenbutton} onClick={handleClick}><i className="fa-solid fa-check"></i></p>
+    <Link to={'/'} className='button_menu'><FontAwesomeIcon icon={faHouse} /></Link>
+    <Link to={`my-profil/${myProfil.user.firstName}.${myProfil.user.lastName}/${myProfil.user.id}`} className='button_menu'><FontAwesomeIcon icon={faUser} /></Link>
+    <Link to={'/employ'} className='button_menu'><FontAwesomeIcon icon={faUsers} /></Link>
+    <p className='button_menu' onClick={handleShowButton}><FontAwesomeIcon hidden={hiddenbutton} icon={faXmark} /><FontAwesomeIcon hidden={!hiddenbutton} icon={faPowerOff} /></p>
+    <p className='button_menu_y' hidden={hiddenbutton} onClick={handleClick}><FontAwesomeIcon icon={faCheck} /></p>
     </div>
     </div>
     </section>

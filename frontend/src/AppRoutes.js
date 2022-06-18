@@ -1,4 +1,5 @@
 import React from 'react'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes} from "react-router-dom";
 import Login from './Login/Login';
 import Signup from './Signup/Signup';

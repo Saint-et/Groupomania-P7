@@ -6,7 +6,7 @@ const fs = require('fs');
 exports.getAllMessageMedia = async (req,res,next) => (
     await Messagemedia.findAll({order: [
       ['updatedAt', 'DESC']],
-      attributes: ['id','message','imageUrl','userId','createdAt'], include: [models.users]})
+      attributes: ['id','message','imageUrl','userId','createAt'], include: [models.users]})
     .then(message => {
         return  res.status(200).json({ message })
     })
@@ -39,10 +39,9 @@ exports.postOneMessageMedia = async (req,res,next) => {
         const message = Messagemedia.build({
             userId: messageImg.userId,
             message: messageImg.message,
-            imageUrl: messageImg.imageUrl
+            imageUrl: messageImg.imageUrl,
+            createAt: messageImg.createAt
         })
-
-        //console.log( message );
 
         message.save()
             .then(() => res.status(201).json({ message: 'New message created.' }))
@@ -65,7 +64,6 @@ exports.updateMessageMedia = async (req,res,next) => (
           }
 
         if (messageImg.message === '' && messageImg.image === 'null') {
-          console.log(1);
           return (()=> res.status(400).json({ message : 'veuiller renseigné au moins un champs' }));
 
           } else {
